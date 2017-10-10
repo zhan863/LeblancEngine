@@ -419,8 +419,8 @@ void ToneMapping::CreateRenderTargets()
     UINT height = deviceManager.BackBufferHeight();
 
     renderTarget.Initialize(device, width, height, DXGI_FORMAT_R16G16B16A16_FLOAT);
-    renderTargetMS.Initialize(device, width, height, DXGI_FORMAT_R16G16B16A16_FLOAT, 1, 4);
-    depthBufferMS.Initialize(device, width, height, DXGI_FORMAT_D24_UNORM_S8_UINT, false, 4);
+    renderTargetMS.Initialize(device, width, height, DXGI_FORMAT_R16G16B16A16_FLOAT);
+    depthBufferMS.Initialize(device, width, height, DXGI_FORMAT_D24_UNORM_S8_UINT);
 }
 
 
@@ -534,60 +534,16 @@ void ToneMapping::Render(const Timer& timer)
 {
     ID3D11DeviceContextPtr context = deviceManager.ImmediateContext();
 
-    ID3D11RenderTargetView* renderTargets[1] = { renderTargetMS.RTView };
-    context->OMSetRenderTargets(1, renderTargets, depthBufferMS.DSView);
+	ID3D11RenderTargetView* renderTargets[1] = { deviceManager.BackBuffer() };// { renderTargetMS.RTView };
+	context->OMSetRenderTargets(1, renderTargets, depthBufferMS.DSView);
 
-    context->ClearRenderTargetView(renderTarget.RTView, reinterpret_cast<float*>(&XMFLOAT4(0, 0, 0, 1)));
-    context->ClearDepthStencilView(depthBufferMS.DSView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
+	context->ClearRenderTargetView(renderTargets[0], reinterpret_cast<float*>(&XMFLOAT4(0, 0, 0, 1)));
+	context->ClearDepthStencilView(depthBufferMS.DSView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-    RenderMesh();
+	RenderMesh();
     
     XMFLOAT3 bias = XMFLOAT3(1, 1, 1);
     skybox.Render(context, envMaps[currEnvMap], camera.ViewMatrix(), camera.ProjectionMatrix(), bias);
-
-    // Resolve the multisampled render target
-    context->ResolveSubresource(renderTarget.Texture, 0, renderTargetMS.Texture, 0, renderTarget.Format);
-
-    D3DPERF_BeginEvent(0xFFFFFFFF, L"Post Processing");
-    TMPostProcessor::Constants constants;
-    constants.BloomThreshold = bloomThresholdSlider.Value();
-    constants.BloomMagnitude = bloomMagSlider.Value();
-    constants.BloomBlurSigma = bloomBlurSigma.Value();    
-    constants.WhiteLevel = whiteSlider.Value();
-    constants.Tau = adaptationRateSlider.Value();
-    constants.Exposure = exposureSlider.Value();
-    constants.AutoExposure = static_cast<float>(autoExposureType);
-    constants.KeyValue = keyValueSlider.Value();
-    constants.TimeDelta = timer.DeltaSecondsF();
-    constants.ToneMapTechnique = static_cast<float>(tmType);
-    constants.ShoulderStrength = shoulderStrengthSlider.Value();
-    constants.LinearStrength = linearStrengthSlider.Value();
-    constants.LinearAngle = linearAngleSlider.Value();
-    constants.ToeStrength = toeStrengthSlider.Value();
-    constants.ToeNumerator = toeNumeratorSlider.Value();
-    constants.ToeDenominator = toeDenominatorSlider.Value();
-    constants.LinearWhite = linearWhiteSlider.Value();
-    constants.LuminanceSaturation = luminanceSaturationSlider.Value();
-    constants.LumMapMipLevel = lumMapMipSlider.Value();
-    constants.Bias = biasSlider.Value();
-    
-    postProcessor.SetConstants(constants);
-    postProcessor.Render(context, renderTarget.SRView, deviceManager.BackBuffer());
-    D3DPERF_EndEvent();
-
-    renderTargets[0] = deviceManager.BackBuffer();
-    context->OMSetRenderTargets(1, renderTargets, NULL);
-
-    D3D11_VIEWPORT vp;
-    vp.Width = static_cast<float>(deviceManager.BackBufferWidth());
-    vp.Height = static_cast<float>(deviceManager.BackBufferHeight());
-    vp.TopLeftX = 0;
-    vp.TopLeftY = 0;
-    vp.MinDepth = 0;
-    vp.MaxDepth = 1;
-    context->RSSetViewports(1, &vp);
-
-    RenderHUD();
 }
 
 void ToneMapping::RenderMesh()
