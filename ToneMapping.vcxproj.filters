@@ -38,23 +38,11 @@
     <ClCompile Include="SampleFramework11\ShaderCompilation.cpp">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="SampleFramework11\SpriteFont.cpp">
-      <Filter>SampleFramework11\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="SampleFramework11\SpriteRenderer.cpp">
-      <Filter>SampleFramework11\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="SampleFramework11\Skybox.cpp">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="SampleFramework11\PostProcessor.cpp">
       <Filter>SampleFramework11\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="SampleFramework11\Slider.cpp">
-      <Filter>SampleFramework11\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="SampleFramework11\GUIObject.cpp">
-      <Filter>SampleFramework11\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,13 +87,7 @@
     <ClInclude Include="SampleFramework11\Mesh.h">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="SampleFramework11\SpriteRenderer.h">
-      <Filter>SampleFramework11\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="SampleFramework11\ShaderCompilation.h">
-      <Filter>SampleFramework11\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="SampleFramework11\SpriteFont.h">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="SampleFramework11\Skybox.h">
@@ -113,12 +95,6 @@
     </ClInclude>
     <ClInclude Include="SampleFramework11\PostProcessor.h">
       <Filter>SampleFramework11\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="SampleFramework11\Slider.h">
-      <Filter>SampleFramework11\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="SampleFramework11\GUIObject.h">
-      <Filter>SampleFramework11\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +126,6 @@
     </Filter>
     <Filter Include="SampleFramework11\Graphics">
       <UniqueIdentifier>{903f60a9-b7f2-4b72-888a-bbab0823c428}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SampleFramework11\GUI">
-      <UniqueIdentifier>{7618d8f8-2049-4e9c-ae7e-f55810a83e03}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

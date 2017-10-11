@@ -181,11 +181,8 @@
     <ClCompile Include="SampleFramework11\Camera.cpp" />
     <ClCompile Include="SampleFramework11\DeviceStates.cpp" />
     <ClCompile Include="SampleFramework11\DeviceManager.cpp" />
-    <ClCompile Include="SampleFramework11\GUIObject.cpp" />
     <ClCompile Include="SampleFramework11\PostProcessor.cpp" />
     <ClCompile Include="SampleFramework11\Skybox.cpp" />
-    <ClCompile Include="SampleFramework11\Slider.cpp" />
-    <ClCompile Include="SampleFramework11\SpriteFont.cpp" />
     <ClCompile Include="SampleFramework11\GraphicsTypes.cpp" />
     <ClCompile Include="SampleFramework11\Input.cpp" />
     <ClCompile Include="SampleFramework11\Mesh.cpp" />
@@ -200,15 +197,12 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="SampleFramework11\ShaderCompilation.cpp" />
-    <ClCompile Include="SampleFramework11\SpriteRenderer.cpp" />
     <ClCompile Include="SampleFramework11\Timer.cpp" />
     <ClCompile Include="SampleFramework11\Utility.cpp" />
     <ClCompile Include="SampleFramework11\Window.cpp" />
     <ClCompile Include="ToneMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SampleFramework11\GUIObject.h" />
-    <ClInclude Include="SampleFramework11\Slider.h" />
     <ClInclude Include="SampleFramework11\App.h" />
     <ClInclude Include="SampleFramework11\Camera.h" />
     <ClInclude Include="SampleFramework11\DeviceStates.h" />
@@ -216,14 +210,12 @@
     <ClInclude Include="SampleFramework11\Exceptions.h" />
     <ClInclude Include="SampleFramework11\PostProcessor.h" />
     <ClInclude Include="SampleFramework11\Skybox.h" />
-    <ClInclude Include="SampleFramework11\SpriteFont.h" />
     <ClInclude Include="SampleFramework11\GraphicsTypes.h" />
     <ClInclude Include="SampleFramework11\Input.h" />
     <ClInclude Include="SampleFramework11\InterfacePointers.h" />
     <ClInclude Include="SampleFramework11\Mesh.h" />
     <ClInclude Include="SampleFramework11\PCH.h" />
     <ClInclude Include="SampleFramework11\ShaderCompilation.h" />
-    <ClInclude Include="SampleFramework11\SpriteRenderer.h" />
     <ClInclude Include="SampleFramework11\Timer.h" />
     <ClInclude Include="SampleFramework11\Utility.h" />
     <ClInclude Include="SampleFramework11\Window.h" />

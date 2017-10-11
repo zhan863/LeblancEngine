@@ -16,11 +16,8 @@
 #include "SampleFramework11/InterfacePointers.h"
 #include "SampleFramework11/Camera.h"
 #include "SampleFramework11/Mesh.h"
-#include "SampleFramework11/SpriteFont.h"
-#include "SampleFramework11/SpriteRenderer.h"
 #include "SampleFramework11/Skybox.h"
 #include "SampleFramework11/GraphicsTypes.h"
-#include "SampleFramework11/Slider.h"
 
 using namespace SampleFramework11;
 
@@ -62,17 +59,11 @@ protected:
 
     FirstPersonCamera camera;
 
-    SpriteFont font;
-    SpriteRenderer spriteRenderer;
     Skybox skybox;
 
     RenderTarget2D renderTargetMS;
     DepthStencilBuffer depthBufferMS;
     RenderTarget2D renderTarget;    
-
-    std::vector<GUIObject*> guiObjects;
-    
-    std::vector<Slider*> toneMappingSliders[NumToneMappingTypes];
 
     UINT_PTR toneMapSlidersStart;    
 

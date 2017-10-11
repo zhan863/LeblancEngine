@@ -17,7 +17,6 @@
 #include "SampleFramework11/Window.h"  
 #include "SampleFramework11/DeviceManager.h"
 #include "SampleFramework11/Input.h"
-#include "SampleFramework11/SpriteRenderer.h"
 #include "SampleFramework11/Mesh.h"
 #include "SampleFramework11/Utility.h"
 #include "SampleFramework11/Camera.h"
@@ -114,10 +113,6 @@ void ToneMapping::LoadContent()
 {
     ID3D11DevicePtr device = deviceManager.Device();
     ID3D11DeviceContextPtr deviceContext = deviceManager.ImmediateContext();
-
-    // Create a font + SpriteRenderer
-    font.Initialize(L"Arial", 18, SpriteFont::Regular, true, device);
-    spriteRenderer.Initialize(device);
 
     // Camera setup    
     camera.SetPosition(XMLoadFloat3(&XMFLOAT3(0, 0, -10.0f)));

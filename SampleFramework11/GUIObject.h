@@ -11,8 +11,6 @@
 
 #include "PCH.h"
 
-#include "SpriteRenderer.h"
-
 namespace SampleFramework11
 {
 
