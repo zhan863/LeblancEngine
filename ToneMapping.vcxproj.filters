@@ -50,14 +50,12 @@
     <ClCompile Include="SampleFramework11\PostProcessor.cpp">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="TMPostProcessor.cpp" />
     <ClCompile Include="SampleFramework11\Slider.cpp">
       <Filter>SampleFramework11\GUI</Filter>
     </ClCompile>
     <ClCompile Include="SampleFramework11\GUIObject.cpp">
       <Filter>SampleFramework11\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="ToneGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -116,14 +114,12 @@
     <ClInclude Include="SampleFramework11\PostProcessor.h">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="TMPostProcessor.h" />
     <ClInclude Include="SampleFramework11\Slider.h">
       <Filter>SampleFramework11\GUI</Filter>
     </ClInclude>
     <ClInclude Include="SampleFramework11\GUIObject.h">
       <Filter>SampleFramework11\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="ToneGraph.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />

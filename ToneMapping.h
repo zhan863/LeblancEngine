@@ -22,9 +22,6 @@
 #include "SampleFramework11/GraphicsTypes.h"
 #include "SampleFramework11/Slider.h"
 
-#include "TMPostProcessor.h"
-#include "ToneGraph.h"
-
 using namespace SampleFramework11;
 
 class ToneMapping : public App
@@ -69,40 +66,9 @@ protected:
     SpriteRenderer spriteRenderer;
     Skybox skybox;
 
-    ToneGraph toneGraph;
-
-    TMPostProcessor postProcessor;
     RenderTarget2D renderTargetMS;
     DepthStencilBuffer depthBufferMS;
-    RenderTarget2D renderTarget; 
-    
-    ToneMappingType tmType;
-    AutoExposureType autoExposureType;    
-
-    // Sliders for adjusting values
-    Slider diffuseRSlider;
-    Slider diffuseGSlider;
-    Slider diffuseBSlider;
-    Slider specularRSlider;
-    Slider specularGSlider;
-    Slider specularBSlider;
-    Slider bloomThresholdSlider;
-    Slider bloomMagSlider;
-    Slider bloomBlurSigma;
-    Slider exposureSlider;
-    Slider luminanceSaturationSlider;
-    Slider keyValueSlider;
-    Slider lumMapMipSlider;
-    Slider adaptationRateSlider;    
-    Slider biasSlider;
-    Slider whiteSlider;    
-    Slider shoulderStrengthSlider;
-    Slider linearStrengthSlider;
-    Slider linearAngleSlider;
-    Slider toeStrengthSlider;
-    Slider toeNumeratorSlider;
-    Slider toeDenominatorSlider;
-    Slider linearWhiteSlider;    
+    RenderTarget2D renderTarget;    
 
     std::vector<GUIObject*> guiObjects;
     
@@ -148,11 +114,8 @@ protected:
     virtual void AfterReset();
 
     void CreateRenderTargets();
-    void InitializeGUI();
-    void AdjustGUI();
 
     void RenderMesh();
-    void RenderHUD();
 
 public:
 

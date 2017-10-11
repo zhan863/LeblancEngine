@@ -204,14 +204,11 @@
     <ClCompile Include="SampleFramework11\Timer.cpp" />
     <ClCompile Include="SampleFramework11\Utility.cpp" />
     <ClCompile Include="SampleFramework11\Window.cpp" />
-    <ClCompile Include="ToneGraph.cpp" />
     <ClCompile Include="ToneMapping.cpp" />
-    <ClCompile Include="TMPostProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SampleFramework11\GUIObject.h" />
     <ClInclude Include="SampleFramework11\Slider.h" />
-    <ClInclude Include="TMPostProcessor.h" />
     <ClInclude Include="SampleFramework11\App.h" />
     <ClInclude Include="SampleFramework11\Camera.h" />
     <ClInclude Include="SampleFramework11\DeviceStates.h" />
@@ -231,7 +228,6 @@
     <ClInclude Include="SampleFramework11\Utility.h" />
     <ClInclude Include="SampleFramework11\Window.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ToneGraph.h" />
     <ClInclude Include="ToneMapping.h" />
   </ItemGroup>
   <ItemGroup>
