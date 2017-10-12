@@ -1,0 +1,7 @@
+#ifndef LEBLANC_PIPELINE_MANAGER_H
+#define LEBLANC_PIPELINE_MANAGER_H
+
+
+
+
+#endif

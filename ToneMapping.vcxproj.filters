@@ -44,6 +44,18 @@
     <ClCompile Include="SampleFramework11\PostProcessor.cpp">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
+      <Filter>LeblancEngine\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancMainPipeline.cpp">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\LeblancGBuffer.cpp">
+      <Filter>LeblancEngine\Render\Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -96,6 +108,18 @@
     <ClInclude Include="SampleFramework11\PostProcessor.h">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h">
+      <Filter>LeblancEngine\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancMainPipeline.h">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\LeblancGBuffer.h">
+      <Filter>LeblancEngine\Render\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -126,6 +150,18 @@
     </Filter>
     <Filter Include="SampleFramework11\Graphics">
       <UniqueIdentifier>{903f60a9-b7f2-4b72-888a-bbab0823c428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine">
+      <UniqueIdentifier>{5a29a0e1-f7f2-4a67-8501-f9f63b95cb44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render">
+      <UniqueIdentifier>{2c8719d7-92bf-4f81-907e-355ec8d5f18d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Resource">
+      <UniqueIdentifier>{d928eecc-fd3a-4494-9c27-67063a99a482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Pipeline">
+      <UniqueIdentifier>{38b5b3ee-3591-4dd7-8945-76f37b4f16a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
