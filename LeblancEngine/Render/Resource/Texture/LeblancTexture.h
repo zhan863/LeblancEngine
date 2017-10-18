@@ -1,26 +1,19 @@
-#ifndef LEBLANC_GBUFFER_H
-#define LEBLANC_GBUFFER_H
-class Texture2D;
-class DepthStencilTexture;
+#ifndef LEBLANC_TEXTURE_H
+#define LEBLANC_TEXTURE_H
 
-class GBuffer
+class Texture
 {
 public:
-	GBuffer();
-	~GBuffer();
+	Texture();
+	~Texture();
 
-	void initialize(UINT width, UINT height);
+	virtual void initialize(UINT width, UINT height) = 0;
 
-	void release();
+	virtual void release() = 0;
 
-	void bind();
+	virtual void bind();
 
-	void unbind();
+	virtual void unbind();
 protected:
-	Texture2D* buffer1;
-	Texture2D* buffer2;
-	Texture2D* buffer3;
-
-	DepthStencilTexture* depth_stencil_texture;
 };
 #endif

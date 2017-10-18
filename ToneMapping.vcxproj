@@ -186,7 +186,9 @@
     <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Texture\LeblancGBuffer.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Resource\Texture\Texture2D.cpp" />
     <ClCompile Include="SampleFramework11\App.cpp" />
     <ClCompile Include="SampleFramework11\Camera.cpp" />
     <ClCompile Include="SampleFramework11\DeviceStates.cpp" />
@@ -222,7 +224,9 @@
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancGBuffer.h" />
+    <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h" />
+    <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.h" />
+    <ClInclude Include="LeblancEngine\Render\Resource\Texture\Texture2D.h" />
     <ClInclude Include="SampleFramework11\App.h" />
     <ClInclude Include="SampleFramework11\Camera.h" />
     <ClInclude Include="SampleFramework11\DeviceStates.h" />

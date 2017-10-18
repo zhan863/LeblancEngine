@@ -1,26 +1,21 @@
-#include "LeblancEngine/Render/Resource/LeblancResourceManager.h"
+#include "LeblancEngine/Render/Resource/Texture/LeblancTexture.h"
 
-ResourceManager::ResourceManager()
+Texture::Texture()
 {
 
 }
 
-ResourceManager::~ResourceManager()
+Texture::~Texture()
 {
 
 }
 
-void ResourceManager::initialize()
+void Texture::bind()
 {
 
 }
 
-void ResourceManager::clear()
-{
-
-}
-
-GBuffer ResourceManager::getGBuffer()
+void Texture::unbind()
 {
 
 }
