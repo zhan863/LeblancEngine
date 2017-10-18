@@ -53,8 +53,8 @@
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\LeblancGBuffer.cpp">
-      <Filter>LeblancEngine\Render\Resource</Filter>
+    <ClCompile Include="LeblancEngine\Render\Resource\Texture\LeblancGBuffer.cpp">
+      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,8 +117,8 @@
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\LeblancGBuffer.h">
-      <Filter>LeblancEngine\Render\Resource</Filter>
+    <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancGBuffer.h">
+      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +162,9 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\Pipeline">
       <UniqueIdentifier>{38b5b3ee-3591-4dd7-8945-76f37b4f16a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Resource\Texture">
+      <UniqueIdentifier>{78064a51-7316-4fa4-94fd-3f1b93b94d4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
