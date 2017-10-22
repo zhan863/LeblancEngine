@@ -177,18 +177,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancMainPipeline.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\Texture\Texture2D.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.cpp" />
     <ClCompile Include="SampleFramework11\App.cpp" />
     <ClCompile Include="SampleFramework11\Camera.cpp" />
     <ClCompile Include="SampleFramework11\DeviceStates.cpp" />
@@ -215,18 +212,16 @@
     <ClCompile Include="ToneMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancMainPipeline.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h" />
+    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h" />
+    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h" />
+    <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h" />
+    <ClInclude Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\Texture2D.h" />
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.h" />
     <ClInclude Include="SampleFramework11\App.h" />
     <ClInclude Include="SampleFramework11\Camera.h" />
     <ClInclude Include="SampleFramework11\DeviceStates.h" />

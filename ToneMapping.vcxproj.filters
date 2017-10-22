@@ -44,15 +44,6 @@
     <ClCompile Include="SampleFramework11\PostProcessor.cpp">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
-      <Filter>LeblancEngine\Render\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancMainPipeline.cpp">
-      <Filter>LeblancEngine\Render\Pipeline</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp">
-      <Filter>LeblancEngine\Render\Pipeline</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp">
       <Filter>LeblancEngine\Render\Resource\TextureOrganizer</Filter>
     </ClCompile>
@@ -61,6 +52,24 @@
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\Texture\Texture2D.cpp">
       <Filter>LeblancEngine\Render\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.cpp">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
+      <Filter>LeblancEngine\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.cpp">
+      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.cpp">
+      <Filter>LeblancEngine\Render\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.cpp">
+      <Filter>LeblancEngine\Render\utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,15 +123,6 @@
     <ClInclude Include="SampleFramework11\PostProcessor.h">
       <Filter>SampleFramework11\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h">
-      <Filter>LeblancEngine\Render\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancMainPipeline.h">
-      <Filter>LeblancEngine\Render\Pipeline</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h">
-      <Filter>LeblancEngine\Render\Pipeline</Filter>
-    </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
       <Filter>LeblancEngine\Render\Resource\TextureOrganizer</Filter>
     </ClInclude>
@@ -131,6 +131,27 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\Texture2D.h">
       <Filter>LeblancEngine\Render\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h">
+      <Filter>LeblancEngine\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.h">
+      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h">
+      <Filter>LeblancEngine\Render\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.h">
+      <Filter>LeblancEngine\Render\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.h">
+      <Filter>LeblancEngine\Render\utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +201,12 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\Resource\TextureOrganizer">
       <UniqueIdentifier>{f7949a53-0159-4724-b5c5-84ca07f0f11a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Include">
+      <UniqueIdentifier>{208c8acd-7a24-4aa0-b6c5-18b5f821402d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\utility">
+      <UniqueIdentifier>{5e32ee64-375e-4193-b162-ffd5af056f66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
