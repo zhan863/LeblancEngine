@@ -9,13 +9,3 @@ Texture::~Texture()
 {
 
 }
-
-void Texture::bind()
-{
-
-}
-
-void Texture::unbind()
-{
-
-}

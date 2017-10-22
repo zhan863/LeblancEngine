@@ -1,20 +1,24 @@
-#ifndef LEBLANC_TEXTURE_2D_H
-#define LEBLANC_TEXTURE_2D_H
+#ifndef LEBLANC_DEPTH_STENCIL_TEXTURE_H
+#define LEBLANC_DEPTH_STENCIL_TEXTURE_H
 
-class Texture2D : public Texture 
+#include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
+#include "LeblancEngine/Render/Resource/Texture/LeblancTexture.h"
+
+class DepthStencilTexture : public Texture
 {
 public:
-	Texture2D();
+	DepthStencilTexture();
 
-	~Texture2D();
+	~DepthStencilTexture();
 
-	virtual void intialize();
+	virtual bool intialize(ID3D11Device* device, UINT width, UINT height);
 
 	virtual void release();
 
-	virtual void bind();
+	virtual ID3D11Resource* getResource();
 
-	virtual void bind();
+protected:
+	ID3D11Texture2D* m_depth_stencil_texture = nullptr;
 };
 
 #endif

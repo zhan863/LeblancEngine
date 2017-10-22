@@ -1,5 +1,8 @@
 #ifndef LEBLANC_GBUFFER_H
 #define LEBLANC_GBUFFER_H
+
+#include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
+
 class Texture2D;
 class DepthStencilTexture;
 
@@ -9,7 +12,7 @@ public:
 	GBuffer();
 	~GBuffer();
 
-	void initialize(UINT width, UINT height);
+	void initialize(ID3D11Device* device, UINT width, UINT height);
 
 	void release();
 
@@ -17,10 +20,11 @@ public:
 
 	void unbind();
 protected:
-	Texture2D* buffer1;
-	Texture2D* buffer2;
-	Texture2D* buffer3;
+	Texture2D* m_normal_smoothness_buffer = nullptr;
+	Texture2D* m_albedo_buffer = nullptr;
+	Texture2D* m_metal_reflectance_ao_buffer = nullptr;
+	Texture2D* m_radiosity_buffer = nullptr;
 
-	DepthStencilTexture* depth_stencil_texture;
+	DepthStencilTexture* m_depth_stencil_texture_buffer = nullptr;
 };
 #endif
