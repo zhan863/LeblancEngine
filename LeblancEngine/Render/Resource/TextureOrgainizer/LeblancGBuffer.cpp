@@ -20,7 +20,7 @@ void ResourceManager::clear()
 
 }
 
-GBuffer ResourceManager::getGBuffer()
+GBuffer* ResourceManager::getGBuffer()
 {
 
 }
