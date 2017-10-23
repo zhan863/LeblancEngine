@@ -9,7 +9,7 @@ public:
 	Texture();
 	~Texture();
 
-	virtual bool initialize(ID3D11Device* device, UINT width, UINT height) = 0;
+	virtual bool initialize(UINT width, UINT height) = 0;
 
 	virtual void release() = 0;
 

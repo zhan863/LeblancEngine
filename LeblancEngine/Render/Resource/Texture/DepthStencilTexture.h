@@ -11,7 +11,7 @@ public:
 
 	~DepthStencilTexture();
 
-	virtual bool intialize(ID3D11Device* device, UINT width, UINT height);
+	virtual bool intialize(UINT width, UINT height);
 
 	virtual void release();
 
