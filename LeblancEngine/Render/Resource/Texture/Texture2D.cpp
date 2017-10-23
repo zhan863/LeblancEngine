@@ -18,8 +18,8 @@ bool Texture2D::intialize(UINT width, UINT height)
 		return true;
 
 	DeviceD3D11* device = g_leblanc_engine_global_context.m_device_manager->getCurrentDevice();
-	
-	m_d3d11_texture2d = static_cast<ID3D11Texture2D*>(device->createTexture());
+
+	m_d3d11_texture2d = static_cast<ID3D11Texture2D*>(device->createTexture(TextureType::Texture2D, width, height));
 
 	return m_d3d11_texture2d != nullptr;
 }

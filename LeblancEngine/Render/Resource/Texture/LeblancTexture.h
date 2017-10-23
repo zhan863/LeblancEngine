@@ -3,6 +3,13 @@
 
 #include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 
+enum TextureType
+{
+	Texture2D,
+	DepthStencilTexture,
+	Texture3D
+};
+
 class Texture
 {
 public:
