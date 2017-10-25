@@ -11,7 +11,7 @@ public:
 
 	~DeviceD3D11();
 	
-	void initialize();
+	void initialize(HWND window);
 	
 	void release();
 
@@ -20,6 +20,7 @@ public:
 private:
 	ID3D11Device* m_device;
 	ID3D11DeviceContext* m_device_context;
+	IDXGISwapChain* m_swap_chain;
 };
 
 

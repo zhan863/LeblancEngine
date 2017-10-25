@@ -8,13 +8,8 @@
 //======================================================================
 
 #pragma once
+#include "LeblancEngine/BasicInclude/LeblancPCH.h"
 
-#include "PCH.h"
-
-namespace SampleFramework11
-{
-
-// Generic exeption, used as base class for other types
 class Exception 
 {
 
@@ -182,5 +177,3 @@ protected:
 
 	Gdiplus::Status	errorCode;		// The GDI+ error code
 };
-
-} 
