@@ -65,10 +65,13 @@
     <ClCompile Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.cpp">
       <Filter>LeblancEngine\Render\Resource\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.cpp">
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.cpp">
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.cpp">
+    <ClCompile Include="LeblancEngine\Global\LeblancGlobalContext.cpp">
+      <Filter>LeblancEngine\global</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceManager.cpp">
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClCompile>
   </ItemGroup>
@@ -147,10 +150,13 @@
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h">
       <Filter>LeblancEngine\Render\Include</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.h">
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.h">
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.h">
+    <ClInclude Include="LeblancEngine\Global\LeblancGlobalContext.h">
+      <Filter>LeblancEngine\global</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceManager.h">
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClInclude>
   </ItemGroup>
@@ -207,6 +213,9 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\utility">
       <UniqueIdentifier>{5e32ee64-375e-4193-b162-ffd5af056f66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\global">
+      <UniqueIdentifier>{c7ee62ea-50f3-4b2b-8df2-effe05eaf3b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

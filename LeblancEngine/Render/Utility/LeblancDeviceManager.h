@@ -1,6 +1,6 @@
 #ifndef LEBLANC_DEVICE_MANAGER_H
 #define LEBLANC_DEVICE_MANAGER_H
-
+#include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 class DeviceManager
 {
