@@ -9,7 +9,8 @@
 
 #pragma once
 
-#include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
+#include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include "LeblancEngine/BasicInclude/LeblancExceptions.h"
 
 class Window 
 {
