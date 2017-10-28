@@ -177,7 +177,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LeblancEngine\BasicInclude\LeblancPCH.cpp" />
+    <ClCompile Include="LeblancEngine\Engine\LeblancEngine.cpp" />
     <ClCompile Include="LeblancEngine\Global\LeblancGlobalContext.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Basics\LeblancWindow.cpp" />
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.cpp" />
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp" />
@@ -213,7 +216,11 @@
     <ClCompile Include="ToneMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LeblancEngine\BasicInclude\LeblancExceptions.h" />
+    <ClInclude Include="LeblancEngine\BasicInclude\LeblancPCH.h" />
+    <ClInclude Include="LeblancEngine\Engine\LeblancEngine.h" />
     <ClInclude Include="LeblancEngine\Global\LeblancGlobalContext.h" />
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancWindow.h" />
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h" />

@@ -74,6 +74,15 @@
     <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceManager.cpp">
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Basics\LeblancWindow.cpp">
+      <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\BasicInclude\LeblancPCH.cpp">
+      <Filter>LeblancEngine\BasicInclude</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Engine\LeblancEngine.cpp">
+      <Filter>LeblancEngine\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -159,6 +168,18 @@
     <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceManager.h">
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancWindow.h">
+      <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\BasicInclude\LeblancExceptions.h">
+      <Filter>LeblancEngine\BasicInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\BasicInclude\LeblancPCH.h">
+      <Filter>LeblancEngine\BasicInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Engine\LeblancEngine.h">
+      <Filter>LeblancEngine\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -216,6 +237,15 @@
     </Filter>
     <Filter Include="LeblancEngine\global">
       <UniqueIdentifier>{c7ee62ea-50f3-4b2b-8df2-effe05eaf3b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Basics">
+      <UniqueIdentifier>{d64f7824-47d0-4f48-ab00-3319f3a01639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\BasicInclude">
+      <UniqueIdentifier>{0296d3da-b9e3-478b-86ed-f22bac5f4bd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Engine">
+      <UniqueIdentifier>{00befdca-d50a-4972-9740-582faa65b04f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
