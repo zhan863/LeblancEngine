@@ -3,6 +3,8 @@
 
 #include "LeblancEngine/Render/Utility/LeblancDeviceManager.h"
 #include "LeblancEngine/Render/Pipeline/LeblancPipelineManager.h"
+#include "LeblancEngine/Render/Resource/LeblancResourceManager.h"
+#include "LeblancEngine/Render/RenderState/LeblancRenderStateManager.h"
 
 class GlobalContext
 {
@@ -17,6 +19,8 @@ public:
 public:
 	DeviceManager* m_device_manager;
 	PipelineManager* m_pipeline_manager;
+	ResourceManager* m_resource_manager;
+	RenderStateManager* m_render_state_manager;
 
 };
 
