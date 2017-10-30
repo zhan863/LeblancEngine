@@ -69,7 +69,7 @@
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Global\LeblancGlobalContext.cpp">
-      <Filter>LeblancEngine\global</Filter>
+      <Filter>LeblancEngine\Global</Filter>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceManager.cpp">
       <Filter>LeblancEngine\Render\utility</Filter>
@@ -82,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="LeblancEngine\Engine\LeblancEngine.cpp">
       <Filter>LeblancEngine\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Main\LeblancMain.cpp">
+      <Filter>LeblancEngine\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.cpp">
+      <Filter>LeblancEngine\Render\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +169,7 @@
       <Filter>LeblancEngine\Render\utility</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Global\LeblancGlobalContext.h">
-      <Filter>LeblancEngine\global</Filter>
+      <Filter>LeblancEngine\Global</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceManager.h">
       <Filter>LeblancEngine\Render\utility</Filter>
@@ -179,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Engine\LeblancEngine.h">
       <Filter>LeblancEngine\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h">
+      <Filter>LeblancEngine\Render\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -235,9 +244,6 @@
     <Filter Include="LeblancEngine\Render\utility">
       <UniqueIdentifier>{5e32ee64-375e-4193-b162-ffd5af056f66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LeblancEngine\global">
-      <UniqueIdentifier>{c7ee62ea-50f3-4b2b-8df2-effe05eaf3b8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LeblancEngine\Render\Basics">
       <UniqueIdentifier>{d64f7824-47d0-4f48-ab00-3319f3a01639}</UniqueIdentifier>
     </Filter>
@@ -246,6 +252,12 @@
     </Filter>
     <Filter Include="LeblancEngine\Engine">
       <UniqueIdentifier>{00befdca-d50a-4972-9740-582faa65b04f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Main">
+      <UniqueIdentifier>{fdecbacd-c35e-4553-8875-d67b2a53d991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Global">
+      <UniqueIdentifier>{c7ee62ea-50f3-4b2b-8df2-effe05eaf3b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

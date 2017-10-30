@@ -4,6 +4,7 @@ class GBuffer;
 
 class ResourceManager
 {
+public:
 	ResourceManager();
 	~ResourceManager();
 

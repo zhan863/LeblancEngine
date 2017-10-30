@@ -180,9 +180,11 @@
     <ClCompile Include="LeblancEngine\BasicInclude\LeblancPCH.cpp" />
     <ClCompile Include="LeblancEngine\Engine\LeblancEngine.cpp" />
     <ClCompile Include="LeblancEngine\Global\LeblancGlobalContext.cpp" />
+    <ClCompile Include="LeblancEngine\Main\LeblancMain.cpp" />
     <ClCompile Include="LeblancEngine\Render\Basics\LeblancWindow.cpp" />
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.cpp" />
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.cpp" />
@@ -224,6 +226,7 @@
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h" />
+    <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.h" />

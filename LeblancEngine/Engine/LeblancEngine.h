@@ -1,7 +1,6 @@
 #ifndef LEBLANC_ENGINE_H
 #define LEBLANC_ENGINE_H
 
-#include "LeblancEngine/Render/Basics/LeblancWindow.h"
 class Engine
 {
 public:
@@ -25,7 +24,7 @@ private:
 	void present();
 
 private:
-	Window window;
+	Window m_window;
 };
 
 #endif

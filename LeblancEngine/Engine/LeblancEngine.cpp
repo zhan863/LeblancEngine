@@ -1,8 +1,10 @@
 #include "LeblancEngine/Engine/LeblancEngine.h"
 #include "LeblancEngine/BasicInclude/LeblancExceptions.h"
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include "LeblancEngine/Render/Basics/LeblancWindow.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 
-Engine::Engine()
+Engine::Engine() : m_window(NULL, L"Leblanc Engine", WS_OVERLAPPEDWINDOW, WS_EX_APPWINDOW, 1280, 720)
 {
 
 }
@@ -14,9 +16,8 @@ Engine::~Engine()
 
 void Engine::initialize()
 {
-	// initialize window
-
 	// initialize global context and the managers inside it
+	g_global_context.initialize(m_window);
 }
 
 void Engine::prepare()
@@ -56,30 +57,26 @@ void Engine::present()
 
 void Engine::run()
 {
-	initialize();
-
-	prepare();
-
 	try
 	{
-		window.ShowWindow();
-
 		initialize();
 
 		prepare();
 
-		while (window.IsAlive())
+		m_window.ShowWindow();
+
+		while (m_window.IsAlive())
 		{
-			if (!window.IsMinimized())
+			if (!m_window.IsMinimized())
 			{
 				update(0);
 
 				render(0);
-				
+
 				present();
 			}
 
-			window.MessageLoop();
+			m_window.MessageLoop();
 		}
 	}
 	catch (Exception exception)
