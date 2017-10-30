@@ -25,7 +25,6 @@ private:
 	void present();
 
 private:
-
 	Window window;
 };
 
