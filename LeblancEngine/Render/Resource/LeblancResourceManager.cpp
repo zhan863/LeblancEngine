@@ -15,7 +15,7 @@ void ResourceManager::initialize()
 
 }
 
-void ResourceManager::clear()
+void ResourceManager::release()
 {
 
 }

@@ -24,5 +24,5 @@ public:
 
 };
 
-GlobalContext g_global_context;
+extern GlobalContext g_global_context;
 #endif

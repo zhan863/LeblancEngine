@@ -1,5 +1,7 @@
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
+GlobalContext g_global_context;
+
 GlobalContext::GlobalContext()
 {
 

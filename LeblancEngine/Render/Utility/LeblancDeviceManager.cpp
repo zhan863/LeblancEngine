@@ -12,14 +12,13 @@ DeviceManager::~DeviceManager()
 
 void DeviceManager::initialize(HWND window)
 {
-	if (!m_device)
+	if (!m_device.initialized())
 	{
-		m_device = new DeviceD3D11();
-		m_device->initialize(window);
+		m_device.initialize(window);
 	}
 }
 
 void DeviceManager::release()
 {
-	m_device->release();
+	m_device.release();
 }

@@ -17,10 +17,12 @@ public:
 
 	ID3D11Resource* createTexture(TextureType texture_type, UINT width, UINT height);
 
+	bool initialized() { return m_device != nullptr; }
+
 private:
-	ID3D11Device* m_device;
-	ID3D11DeviceContext* m_device_context;
-	IDXGISwapChain* m_swap_chain;
+	ID3D11Device* m_device = nullptr;
+	ID3D11DeviceContext* m_device_context = nullptr;
+	IDXGISwapChain* m_swap_chain = nullptr;
 };
 
 

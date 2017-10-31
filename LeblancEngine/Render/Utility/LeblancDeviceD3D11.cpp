@@ -40,7 +40,7 @@ void DeviceD3D11::initialize(HWND window)
 	flags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-	D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, flags,
+	HRESULT hr = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, flags,
 		NULL, 0, D3D11_SDK_VERSION, &desc, &m_swap_chain, &m_device, NULL, &m_device_context);
 }
 
@@ -108,8 +108,20 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 void DeviceD3D11::release()
 {
 	if (m_device_context)
+	{
 		m_device_context->Release();
+		m_device_context = nullptr;
+	}
 
 	if (m_device)
+	{
 		m_device->Release();
+		m_device = nullptr;
+	}
+
+	if (m_swap_chain)
+	{
+		m_swap_chain->Release();
+		m_swap_chain = nullptr;
+	}
 }

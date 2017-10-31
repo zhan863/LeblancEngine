@@ -297,10 +297,11 @@ void ToneMapping::RenderMesh()
     meshes[currMesh].Render(context);
 }
 
-int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
+int wWinMain1(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {	    			                                     
 	ToneMapping app;
     app.Run();
+	return 0;
 }
 
 

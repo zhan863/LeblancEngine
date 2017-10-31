@@ -1,5 +1,4 @@
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
-
 #include "LeblancEngine/Render/Resource/Texture/DepthStencilTexture.h"
 
 DepthStencilTexture::DepthStencilTexture()
@@ -17,9 +16,9 @@ bool DepthStencilTexture::intialize(UINT width, UINT height)
 	if (m_depth_stencil_texture)
 		return true;
 
-	DeviceD3D11* device = g_global_context.m_device_manager->getCurrentDevice();
+	DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
 
-	m_depth_stencil_texture = static_cast<ID3D11Texture2D*>(device->createTexture(TextureType::DepthStencilTexture, width, height));
+	m_depth_stencil_texture = static_cast<ID3D11Texture2D*>(device.createTexture(TextureType::DepthStencilTexture, width, height));
 
 	return m_depth_stencil_texture != nullptr;
 }

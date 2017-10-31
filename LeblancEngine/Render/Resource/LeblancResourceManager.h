@@ -10,7 +10,7 @@ public:
 
 	void initialize();
 
-	void clear();
+	void release();
 
 	GBuffer* getGBuffer();
 
