@@ -15,6 +15,8 @@ public:
 
 	DeviceD3D11& getCurrentDevice() { return m_device; }
 
+	void present();
+
 private:
 	DeviceD3D11 m_device;
 };

@@ -15,6 +15,8 @@ public:
 	
 	void release();
 
+	void present();
+
 	ID3D11Resource* createTexture(TextureType texture_type, UINT width, UINT height);
 
 	bool initialized() { return m_device != nullptr; }

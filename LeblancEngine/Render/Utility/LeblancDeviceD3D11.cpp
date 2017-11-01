@@ -105,6 +105,14 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 	return nullptr;
 }
 
+void DeviceD3D11::present()
+{
+	if (m_swap_chain)
+	{
+		m_swap_chain->Present(0, 0);
+	}
+}
+
 void DeviceD3D11::release()
 {
 	if (m_device_context)

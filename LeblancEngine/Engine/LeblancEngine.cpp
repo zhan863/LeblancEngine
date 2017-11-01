@@ -53,6 +53,7 @@ void Engine::render(float delta_time)
 void Engine::present()
 {
 	// d3d device present
+	g_global_context.m_device_manager.present();
 }
 
 void Engine::run()

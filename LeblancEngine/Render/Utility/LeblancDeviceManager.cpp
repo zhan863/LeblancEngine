@@ -22,3 +22,8 @@ void DeviceManager::release()
 {
 	m_device.release();
 }
+
+void DeviceManager::present()
+{
+	m_device.present();
+}
