@@ -5,6 +5,7 @@
 #include "LeblancEngine/Render/Pipeline/LeblancPipelineManager.h"
 #include "LeblancEngine/Render/Resource/LeblancResourceManager.h"
 #include "LeblancEngine/Render/Resource/LeblancRenderStateManager.h"
+#include "LeblancEngine/Render/Scene/LeblancSceneManager.h"
 
 class GlobalContext
 {
@@ -21,7 +22,7 @@ public:
 	PipelineManager m_pipeline_manager;
 	ResourceManager m_resource_manager;
 	RenderStateManager m_render_state_manager;
-
+	SceneManager m_scene_manager;
 };
 
 extern GlobalContext g_global_context;

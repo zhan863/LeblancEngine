@@ -13,7 +13,7 @@ public:
 
 	void initialize();
 
-	void render(Texture2D* render_target);
+	void render(Texture2D* render_target, Scene& scene);
 protected:
 };
 

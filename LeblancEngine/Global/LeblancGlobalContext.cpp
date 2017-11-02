@@ -18,6 +18,7 @@ void GlobalContext::initialize(HWND window)
 	m_pipeline_manager.initialize();
 	m_resource_manager.initialize();
 	m_render_state_manager.initialize();
+	m_scene_manager.initialize();
 }
 
 void GlobalContext::release()
@@ -26,4 +27,5 @@ void GlobalContext::release()
 	m_pipeline_manager.release();
 	m_resource_manager.release();
 	m_render_state_manager.release();
+	m_scene_manager.release();
 }
