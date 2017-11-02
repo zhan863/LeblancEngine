@@ -49,7 +49,7 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 	if (!m_device)
 		return nullptr;
 
-	if (texture_type == Texture2D)
+	if (texture_type == Texture_2D)
 	{
 		D3D11_TEXTURE2D_DESC desc;
 		desc.Width = width;
@@ -73,7 +73,7 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 			return nullptr;
 		}
 	}
-	else if (texture_type == Texture3D)
+	else if (texture_type == Texture_3D)
 	{
 		return nullptr;
 	}

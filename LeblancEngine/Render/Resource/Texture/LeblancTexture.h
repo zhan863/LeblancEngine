@@ -5,9 +5,9 @@
 
 enum TextureType
 {
-	Texture2D,
+	Texture_2D,
 	DepthStencilTexture,
-	Texture3D
+	Texture_3D
 };
 
 class Texture

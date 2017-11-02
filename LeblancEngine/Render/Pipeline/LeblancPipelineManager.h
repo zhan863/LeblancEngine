@@ -1,5 +1,8 @@
 #ifndef LEBLANC_PIPELINE_MANAGER_H
 #define LEBLANC_PIPELINE_MANAGER_H
+
+#include "LeblancEngine/Render/Pipeline/LeblancDeferredPipeline.h"
+
 class PipelineManager
 {
 public:
@@ -11,5 +14,6 @@ public:
 	void release();
 
 protected:
+	DeferredPipeline deferred_pipeline;
 };
 #endif

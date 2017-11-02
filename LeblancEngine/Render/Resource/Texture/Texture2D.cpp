@@ -18,7 +18,7 @@ bool Texture2D::intialize(UINT width, UINT height)
 
 	DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
 
-	m_d3d11_texture2d = static_cast<ID3D11Texture2D*>(device.createTexture(TextureType::Texture2D, width, height));
+	m_d3d11_texture2d = static_cast<ID3D11Texture2D*>(device.createTexture(TextureType::Texture_2D, width, height));
 
 	return m_d3d11_texture2d != nullptr;
 }
