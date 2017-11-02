@@ -46,6 +46,9 @@
     <ClCompile Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.cpp">
       <Filter>LeblancEngine\Render\Resource</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.cpp">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -95,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h">
       <Filter>LeblancEngine\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.h">
+      <Filter>LeblancEngine\Render\Pipeline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

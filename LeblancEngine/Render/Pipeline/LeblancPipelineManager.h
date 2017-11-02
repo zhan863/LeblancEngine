@@ -3,6 +3,12 @@
 
 #include "LeblancEngine/Render/Pipeline/LeblancDeferredPipeline.h"
 
+enum class RenderType
+{
+	Deferred,
+	Forward
+};
+
 class PipelineManager
 {
 public:
@@ -13,7 +19,9 @@ public:
 
 	void release();
 
+	void render(RenderType render_type);
+
 protected:
-	DeferredPipeline deferred_pipeline;
+	DeferredPipeline m_deferred_pipeline;
 };
 #endif

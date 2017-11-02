@@ -48,6 +48,7 @@ void Engine::update(float delta_time)
 void Engine::render(float delta_time)
 {
 	// render the scene to a texture
+	g_global_context.m_pipeline_manager.render(RenderType::Deferred);
 }
 
 void Engine::present()
