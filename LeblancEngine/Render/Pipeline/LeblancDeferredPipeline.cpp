@@ -18,5 +18,24 @@ void DeferredPipeline::initialize()
 
 void DeferredPipeline::render(Texture2D* render_target, Scene& scene)
 {
+	generateGBuffer();
+
+	deferredShading();
+
+	postProcessing();
+}
+
+void DeferredPipeline::generateGBuffer()
+{
+
+}
+
+void DeferredPipeline::deferredShading()
+{
+
+}
+
+void DeferredPipeline::postProcessing()
+{
 
 }

@@ -55,6 +55,12 @@
     <ClCompile Include="LeblancEngine\Render\Scene\LeblancSceneManager.cpp">
       <Filter>LeblancEngine\Render\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.cpp">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.cpp">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -114,6 +120,12 @@
     <ClInclude Include="LeblancEngine\Render\Scene\LeblancSceneManager.h">
       <Filter>LeblancEngine\Render\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.h">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -163,6 +175,9 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\Scene">
       <UniqueIdentifier>{6b8cb59f-ecd3-4c85-969c-1ff46599692a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\RenderEntity">
+      <UniqueIdentifier>{448f1725-cce5-4b5b-b132-5a795989ed0c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

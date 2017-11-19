@@ -14,7 +14,13 @@ public:
 	void initialize();
 
 	void render(Texture2D* render_target, Scene& scene);
+
 protected:
+	void generateGBuffer();
+
+	void deferredShading();
+
+	void postProcessing();
 };
 
 
