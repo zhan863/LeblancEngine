@@ -61,6 +61,9 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.cpp">
+      <Filter>LeblancEngine\Render\Resource\ResourceLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -126,6 +129,9 @@
     <ClInclude Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.h">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.h">
+      <Filter>LeblancEngine\Render\Resource\ResourceLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -178,6 +184,9 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\RenderEntity">
       <UniqueIdentifier>{448f1725-cce5-4b5b-b132-5a795989ed0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Resource\ResourceLoader">
+      <UniqueIdentifier>{f6307263-488d-4b9d-aff1-42348d0282b1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

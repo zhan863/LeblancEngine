@@ -213,6 +213,7 @@
     <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.cpp" />
     <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -252,6 +253,7 @@
     <ClInclude Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h" />
+    <ClInclude Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.h" />
