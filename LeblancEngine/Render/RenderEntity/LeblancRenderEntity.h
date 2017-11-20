@@ -1,11 +1,7 @@
 #ifndef LEBLANC_RENDER_ENTITY_H
 #define LEBLANC_RENDER_ENTITY_H
 
-enum class MeshFileType
-{
-	OBJ,
-	X
-};
+#include "LeblancEngine/BasicInclude/LeblancPCH.h"
 
 enum class Pass
 {
@@ -22,13 +18,13 @@ public:
 	RenderEntity();
 	~RenderEntity();
 
-	virtual void createFromFile(char* file_name, MeshFileType file_type);
+	virtual void createFromFile(char* file_name);
 
 	void release();
 
 	virtual void render(Pass pass);
 
 protected:
-	
+	ID3DX10Mesh* m_mesh = nullptr;
 };
 #endif
