@@ -60,6 +60,7 @@
 #include <cmath>
 #include <sstream>
 #include <fstream>
+#include <iosfwd>
 
 // MSVC COM Support
 #include <comip.h>
