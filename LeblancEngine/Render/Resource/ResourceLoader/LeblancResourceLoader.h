@@ -2,6 +2,7 @@
 #define LEBLANC_RESOURCE_LOADER_H
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 using namespace std;
 
 enum class MeshFileType
@@ -11,11 +12,10 @@ enum class MeshFileType
 	tbx
 };
 
-struct VERTEX
+struct VertexEntry
 {
-	D3DXVECTOR3 position;
-	D3DXVECTOR3 normal;
-	D3DXVECTOR2 texcoord;
+	UINT index;
+	VertexEntry* next;
 };
 
 class ResourceLoader
@@ -24,7 +24,7 @@ public:
 	static ID3DX10Mesh* loadMeshFromFile(char* file_name, MeshFileType type);
 
 protected:
-	static void addVertex(UINT index, VERTEX vertex, vector<UINT>& indices, vector<VERTEX>& vertices);
+	static DWORD addVertex(UINT index, Vertex vertex, vector<DWORD>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable);
 };
 
 #endif

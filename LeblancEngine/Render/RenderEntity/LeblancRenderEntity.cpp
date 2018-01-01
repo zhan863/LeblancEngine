@@ -11,7 +11,7 @@ RenderEntity::~RenderEntity()
 	release();
 }
 
-void RenderEntity::createFromFile(char* file_name)
+void RenderEntity::createFromFile( char* file_name)
 {
 	// currently all mesh are loaded from obj files.
 	m_mesh = ResourceLoader::loadMeshFromFile(file_name, MeshFileType::obj);

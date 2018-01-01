@@ -3,6 +3,7 @@
 
 #include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 #include "LeblancEngine/Render/Resource/Texture/LeblancTexture.h"
+#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 
 class DeviceD3D11
 {
@@ -18,6 +19,8 @@ public:
 	void present();
 
 	ID3D11Resource* createTexture(TextureType texture_type, UINT width, UINT height);
+	
+	ID3DX10Mesh* createMesh(vector<Vertex>& vertices, vector<DWORD>& indices);
 
 	bool initialized() { return m_device != nullptr; }
 

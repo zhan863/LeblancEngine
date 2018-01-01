@@ -1,4 +1,7 @@
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
+#include <vector>
+
+using namespace std;
 
 DeviceD3D11::DeviceD3D11()
 {
@@ -42,6 +45,48 @@ void DeviceD3D11::initialize(HWND window)
 
 	HRESULT hr = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, flags,
 		NULL, 0, D3D11_SDK_VERSION, &desc, &m_swap_chain, &m_device, NULL, &m_device_context);
+}
+
+ID3DX10Mesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<DWORD>& indices)
+{
+	// Create the encapsulated mesh
+	ID3DX10Mesh *p_mesh = NULL;
+
+	HRESULT hr = D3DX10CreateMesh(m_device,
+		layout_CMeshLoader10,
+		numElements_layout_CMeshLoader10,
+		layout_CMeshLoader10[0].SemanticName,
+		vertices.size(),
+		indices.size() / 3,
+		D3DX10_MESH_32_BIT,
+		&p_mesh);
+
+	if (hr == S_OK)
+	{
+		// Set the vertex data
+		p_mesh->SetVertexData(0, (void*)&vertices[0]);
+
+		// Set the index data
+		p_mesh->SetIndexData((void*)&indices[0], indices.size());
+
+		//// Reorder the vertices according to subset and optimize the mesh for this graphics 
+		//// card's vertex cache. When rendering the mesh's triangle list the vertices will 
+		//// cache hit more often so it won't have to re-execute the vertex shader.
+		//V(p_mesh->GenerateAdjacencyAndPointReps(1e-6f));
+		//V(p_mesh->Optimize(D3DXMESHOPT_ATTRSORT | D3DXMESHOPT_VERTEXCACHE, NULL, NULL));
+
+		//p_mesh->GetAttributeTable(NULL, &m_NumAttribTableEntries);
+		//m_pAttribTable = new D3DX10_ATTRIBUTE_RANGE[m_NumAttribTableEntries];
+		//p_mesh->GetAttributeTable(m_pAttribTable, &m_NumAttribTableEntries);
+
+		p_mesh->CommitToDevice();
+
+		return p_mesh;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width, UINT height)

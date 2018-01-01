@@ -1,73 +1,76 @@
 #include "LeblancEngine/Render/Resource/ResourceLoader/LeblancResourceLoader.h"
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 
-void ResourceLoader::addVertex(UINT index, VERTEX vertex, vector<UINT>& indices, vector<VERTEX>& vertices)
+DWORD ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<DWORD>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable)
 {
-	//bool found = false;
-	//UINT index = 0;
+	bool found = false;
+	UINT index = 0;
 
-	//// Since it's very slow to check every element in the vertex list, a hashtable stores
-	//// vertex indices according to the vertex position's index as reported by the OBJ file
-	//if ((UINT)m_VertexCache.GetSize() > hash)
-	//{
-	//	CacheEntry* pEntry = m_VertexCache.GetAt(hash);
-	//	while (pEntry != NULL)
-	//	{
-	//		VERTEX* pCacheVertex = m_Vertices.GetData() + pEntry->index;
+	// Since it's very slow to check every element in the vertex list, a hashtable stores
+	// vertex indices according to the vertex position's index as reported by the OBJ file
+	if ((UINT)vertex_hashtable.size() > hash)
+	{
+		VertexEntry* p_entry = vertex_hashtable[hash];
+		while (p_entry != NULL)
+		{
+			Vertex p_cached_vertex = vertices[p_entry->index];
 
-	//		// If this vertex is identical to the vertex already in the list, simply
-	//		// point the index buffer to the existing vertex
-	//		if (0 == memcmp(pVertex, pCacheVertex, sizeof(VERTEX)))
-	//		{
-	//			found = true;
-	//			index = pEntry->index;
-	//			break;
-	//		}
+			// If this vertex is identical to the vertex already in the list, simply
+			// point the index buffer to the existing vertex
+			if (0 == memcmp(&vertex, &p_cached_vertex, sizeof(Vertex)))
+			{
+				found = true;
+				index = p_entry->index;
+				break;
+			}
 
-	//		pEntry = pEntry->pNext;
-	//	}
-	//}
+			p_entry = p_entry->next;
+		}
+	}
 
-	//// Vertex was not found in the list. Create a new entry, both within the Vertices list
-	//// and also within the hashtable cache
-	//if (!found)
-	//{
-	//	vertices.push_back(vertex);
+	// Vertex was not found in the list. Create a new entry, both within the Vertices list
+	// and also within the hash table cache
+	if (!found)
+	{
+		// Add to the Vertices list
+		index = vertices.size();
+		vertices.push_back(vertex);
 
-	//	// Add this to the hashtable
-	//	CacheEntry* pNewEntry = new CacheEntry;
-	//	if (pNewEntry == NULL)
-	//		return (DWORD)E_OUTOFMEMORY;
+		// Add this to the hash table
+		VertexEntry* p_new_entry = new VertexEntry;
+		if (p_new_entry == NULL)
+			return (DWORD)E_OUTOFMEMORY;
 
-	//	pNewEntry->index = index;
-	//	pNewEntry->pNext = NULL;
+		p_new_entry->index = index;
+		p_new_entry->next = NULL;
 
-	//	// Grow the cache if needed
-	//	while ((UINT)m_VertexCache.GetSize() <= hash)
-	//	{
-	//		m_VertexCache.Add(NULL);
-	//	}
+		// Grow the cache if needed
+		while ((UINT)vertex_hashtable.size() <= hash)
+		{
+			vertex_hashtable.push_back(NULL);
+		}
 
-	//	// Add to the end of the linked list
-	//	CacheEntry* pCurEntry = m_VertexCache.GetAt(hash);
-	//	if (pCurEntry == NULL)
-	//	{
-	//		// This is the head element
-	//		m_VertexCache.SetAt(hash, pNewEntry);
-	//	}
-	//	else
-	//	{
-	//		// Find the tail
-	//		while (pCurEntry->pNext != NULL)
-	//		{
-	//			pCurEntry = pCurEntry->pNext;
-	//		}
+		// Add to the end of the linked list
+		VertexEntry* p_cur_entry = vertex_hashtable[hash];
+		if (p_cur_entry == NULL)
+		{
+			// This is the head element
+			vertex_hashtable[hash] = p_new_entry;
+		}
+		else
+		{
+			// Find the tail
+			while (p_cur_entry->next != NULL)
+			{
+				p_cur_entry = p_cur_entry->next;
+			}
 
-	//		pCurEntry->pNext = pNewEntry;
-	//	}
-	//}
+			p_cur_entry->next = p_new_entry;
+		}
+	}
 
-	//return index;
+	return index;
 }
 
 ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type)
@@ -81,9 +84,10 @@ ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type
 	vector<D3DXVECTOR3> positions;
 	vector<D3DXVECTOR2> texcoords;
 	vector<D3DXVECTOR3> normals;
+	vector<VertexEntry*> vertex_hashtable;
 
-	vector<UINT> indices;
-	vector<VERTEX> vertices;
+	vector<DWORD> indices;
+	vector<Vertex> vertices;
 
 	for (; ;)
 	{
@@ -120,11 +124,11 @@ ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type
 		{
 			// Face
 			UINT i_position, i_texcoord, i_normal;
-			VERTEX vertex;
+			Vertex vertex;
 
 			for (UINT iFace = 0; iFace < 3; iFace++)
 			{
-				ZeroMemory(&vertex, sizeof(VERTEX));
+				ZeroMemory(&vertex, sizeof(Vertex));
 
 				// OBJ format uses 1-based arrays
 				in_file >> i_position;
@@ -155,7 +159,7 @@ ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type
 				// list. Store the index in the Indices array. The Vertices and Indices
 				// lists will eventually become the Vertex Buffer and Index Buffer for
 				// the mesh.
-				addVertex(i_position, vertex, indices, vertices);
+				addVertex(i_position, vertex, indices, vertices, vertex_hashtable);
 			}
 		}
 		else if (0 == wcscmp(str_command, L"mtllib"))
@@ -177,7 +181,26 @@ ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type
 
 	// Cleanup
 	in_file.close();
-	DeleteCache();
+	
+	// Iterate through all the elements in the cache and subsequent linked lists
+	for (int i = 0; i < vertex_hashtable.size(); i++)
+	{
+		VertexEntry* p_entry = vertex_hashtable[i];
+		while (p_entry != NULL)
+		{
+			VertexEntry* next = p_entry->next;
+			if (p_entry)
+			{
+				delete p_entry;
+			}
 
-	return S_OK;
+			p_entry = next;
+		}
+	}
+	vertex_hashtable.clear();
+
+	ID3DX10Mesh *p_mesh = nullptr;
+
+	DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
+	return device.createMesh(vertices, indices);
 }
