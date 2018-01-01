@@ -64,6 +64,9 @@
     <ClCompile Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.cpp">
       <Filter>LeblancEngine\Render\Resource\ResourceLoader</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Basics\LeblancGeometry.cpp">
+      <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -131,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.h">
       <Filter>LeblancEngine\Render\Resource\ResourceLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancGeometry.h">
+      <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

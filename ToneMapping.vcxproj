@@ -189,6 +189,7 @@
     <ClCompile Include="LeblancEngine\Main\LeblancMain.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Basics\LeblancGeometry.cpp" />
     <ClCompile Include="LeblancEngine\Render\Basics\LeblancWindow.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -244,6 +245,7 @@
     <ClInclude Include="LeblancEngine\BasicInclude\LeblancPCH.h" />
     <ClInclude Include="LeblancEngine\Engine\LeblancEngine.h" />
     <ClInclude Include="LeblancEngine\Global\LeblancGlobalContext.h" />
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancGeometry.h" />
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancWindow.h" />
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h" />
