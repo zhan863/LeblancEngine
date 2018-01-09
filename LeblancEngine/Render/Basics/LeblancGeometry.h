@@ -12,7 +12,19 @@
 
 struct Vertex
 {
-	D3DXVECTOR3 position;
-	D3DXVECTOR3 normal;
-	D3DXVECTOR2 texcoord;
+	XMFLOAT3 position;
+	XMFLOAT3 normal;
+	XMFLOAT2 texcoord;
+};
+
+class LeblancMesh
+{
+public:
+	ID3D11Buffer* m_vertex_buffer = nullptr;
+	ID3D11Buffer* m_index_buffer = nullptr;
+
+	LeblancMesh();
+	~LeblancMesh();
+
+	void release();
 };

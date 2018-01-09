@@ -5,6 +5,9 @@
 #include "LeblancEngine/Render/Resource/Texture/LeblancTexture.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 
+#include <vector>
+using namespace std;
+
 class DeviceD3D11
 {
 public:
@@ -20,7 +23,7 @@ public:
 
 	ID3D11Resource* createTexture(TextureType texture_type, UINT width, UINT height);
 	
-	ID3DX10Mesh* createMesh(vector<Vertex>& vertices, vector<DWORD>& indices);
+	LeblancMesh* createMesh(vector<Vertex>& vertices, vector<DWORD>& indices);
 
 	bool initialized() { return m_device != nullptr; }
 

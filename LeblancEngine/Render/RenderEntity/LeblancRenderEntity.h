@@ -2,6 +2,7 @@
 #define LEBLANC_RENDER_ENTITY_H
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 
 enum class Pass
 {
@@ -25,6 +26,6 @@ public:
 	virtual void render(Pass pass);
 
 protected:
-	ID3DX10Mesh* m_mesh = nullptr;
+	LeblancMesh* m_mesh = nullptr;
 };
 #endif

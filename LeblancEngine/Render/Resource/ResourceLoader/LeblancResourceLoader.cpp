@@ -73,7 +73,7 @@ DWORD ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<DWORD>& indices
 	return index;
 }
 
-ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type)
+LeblancMesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type)
 {
 	// File input
 	WCHAR str_command[256] = { 0 };
@@ -81,9 +81,9 @@ ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type
 	if (!in_file)
 		return nullptr;	
 	
-	vector<D3DXVECTOR3> positions;
-	vector<D3DXVECTOR2> texcoords;
-	vector<D3DXVECTOR3> normals;
+	vector<XMFLOAT3> positions;
+	vector<XMFLOAT2> texcoords;
+	vector<XMFLOAT3> normals;
 	vector<VertexEntry*> vertex_hashtable;
 
 	vector<DWORD> indices;
@@ -104,21 +104,21 @@ ID3DX10Mesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type
 			// Vertex Position
 			float x, y, z;
 			in_file >> x >> y >> z;
-			positions.push_back(D3DXVECTOR3(x, y, z));
+			positions.push_back(XMFLOAT3(x, y, z));
 		}
 		else if (0 == wcscmp(str_command, L"vt"))
 		{
 			// Vertex TexCoord
 			float u, v;
 			in_file >> u >> v;
-			texcoords.push_back(D3DXVECTOR2(u, v));
+			texcoords.push_back(XMFLOAT2(u, v));
 		}
 		else if (0 == wcscmp(str_command, L"vn"))
 		{
 			// Vertex Normal
 			float x, y, z;
 			in_file >> x >> y >> z;
-			normals.push_back(D3DXVECTOR3(x, y, z));
+			normals.push_back(XMFLOAT3(x, y, z));
 		}
 		else if (0 == wcscmp(str_command, L"f"))
 		{

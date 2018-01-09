@@ -1,4 +1,5 @@
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
+#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include <vector>
 
 using namespace std;
@@ -47,46 +48,64 @@ void DeviceD3D11::initialize(HWND window)
 		NULL, 0, D3D11_SDK_VERSION, &desc, &m_swap_chain, &m_device, NULL, &m_device_context);
 }
 
-ID3DX10Mesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<DWORD>& indices)
+LeblancMesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<DWORD>& indices)
 {
 	// Create the encapsulated mesh
-	ID3DX10Mesh *p_mesh = NULL;
+	LeblancMesh *p_mesh = new LeblancMesh;
 
-	HRESULT hr = D3DX10CreateMesh(m_device,
-		layout_CMeshLoader10,
-		numElements_layout_CMeshLoader10,
-		layout_CMeshLoader10[0].SemanticName,
-		vertices.size(),
-		indices.size() / 3,
-		D3DX10_MESH_32_BIT,
-		&p_mesh);
-
-	if (hr == S_OK)
+	if (p_mesh)
 	{
-		// Set the vertex data
-		p_mesh->SetVertexData(0, (void*)&vertices[0]);
+		// Fill in a buffer description.
+		D3D11_BUFFER_DESC vertex_buffer_desc;
+		vertex_buffer_desc.Usage = D3D11_USAGE_DEFAULT;
+		vertex_buffer_desc.ByteWidth = sizeof(Vertex) * vertices.size();
+		vertex_buffer_desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+		vertex_buffer_desc.CPUAccessFlags = 0;
+		vertex_buffer_desc.MiscFlags = 0;
 
-		// Set the index data
-		p_mesh->SetIndexData((void*)&indices[0], indices.size());
+		// Fill in the subresource data.
+		D3D11_SUBRESOURCE_DATA Init_vertex_data;
+		Init_vertex_data.pSysMem = &vertices[0];
+		Init_vertex_data.SysMemPitch = 0;
+		Init_vertex_data.SysMemSlicePitch = 0;
 
-		//// Reorder the vertices according to subset and optimize the mesh for this graphics 
-		//// card's vertex cache. When rendering the mesh's triangle list the vertices will 
-		//// cache hit more often so it won't have to re-execute the vertex shader.
-		//V(p_mesh->GenerateAdjacencyAndPointReps(1e-6f));
-		//V(p_mesh->Optimize(D3DXMESHOPT_ATTRSORT | D3DXMESHOPT_VERTEXCACHE, NULL, NULL));
+		// Create the vertex buffer.
+		HRESULT hr_vertex = m_device->CreateBuffer(&vertex_buffer_desc, &Init_vertex_data, &p_mesh->m_vertex_buffer);
+		
+		// Fill in a buffer description.
+		D3D11_BUFFER_DESC index_buffer_desc;
+		index_buffer_desc.Usage = D3D11_USAGE_DEFAULT;
+		index_buffer_desc.ByteWidth = sizeof(DWORD) * indices.size();
+		index_buffer_desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+		index_buffer_desc.CPUAccessFlags = 0;
+		index_buffer_desc.MiscFlags = 0;
 
-		//p_mesh->GetAttributeTable(NULL, &m_NumAttribTableEntries);
-		//m_pAttribTable = new D3DX10_ATTRIBUTE_RANGE[m_NumAttribTableEntries];
-		//p_mesh->GetAttributeTable(m_pAttribTable, &m_NumAttribTableEntries);
+		// Define the resource data.
+		D3D11_SUBRESOURCE_DATA init_index_data;
+		init_index_data.pSysMem = &indices[0];
+		init_index_data.SysMemPitch = 0;
+		init_index_data.SysMemSlicePitch = 0;
 
-		p_mesh->CommitToDevice();
+		// Create the buffer with the device.
+		HRESULT hr_index = m_device->CreateBuffer(&index_buffer_desc, &init_index_data, &p_mesh->m_index_buffer);
+		
+		if (hr_index != S_OK || hr_vertex != S_OK)
+		{
+			if (p_mesh->m_vertex_buffer)
+			{
+				p_mesh->m_vertex_buffer->Release();
+			}
 
-		return p_mesh;
+			if (p_mesh->m_index_buffer)
+			{
+				p_mesh->m_index_buffer->Release();
+			}
+
+			return nullptr;
+		}
 	}
-	else
-	{
-		return nullptr;
-	}
+
+	return p_mesh;
 }
 
 ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width, UINT height)

@@ -21,7 +21,7 @@ struct VertexEntry
 class ResourceLoader
 {
 public:
-	static ID3DX10Mesh* loadMeshFromFile(char* file_name, MeshFileType type);
+	static LeblancMesh* loadMeshFromFile(char* file_name, MeshFileType type);
 
 protected:
 	static DWORD addVertex(UINT index, Vertex vertex, vector<DWORD>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable);

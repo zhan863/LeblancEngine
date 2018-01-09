@@ -1,5 +1,6 @@
 #include "LeblancEngine/Render/RenderEntity/LeblancRenderEntity.h"
 #include "LeblancEngine/Render/Resource/ResourceLoader/LeblancResourceLoader.h"
+#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 
 RenderEntity::RenderEntity()
 {
@@ -21,7 +22,7 @@ void RenderEntity::release()
 {
 	if (m_mesh)
 	{
-		m_mesh->Release();
+		m_mesh->release();
 		m_mesh = nullptr;
 	}
 }
