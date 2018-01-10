@@ -73,7 +73,7 @@ DWORD ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<DWORD>& indices
 	return index;
 }
 
-LeblancMesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type)
+LeblancMesh* ResourceLoader::loadMeshFromFile(const char* file_name, MeshFileType type)
 {
 	// File input
 	WCHAR str_command[256] = { 0 };
@@ -203,4 +203,60 @@ LeblancMesh* ResourceLoader::loadMeshFromFile(char* file_name, MeshFileType type
 
 	DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
 	return device.createMesh(vertices, indices);
+}
+
+void ResourceLoader::loadSceneFromFile(const char* file_name, Scene& scene)
+{
+	// File input
+	WCHAR str_command[256] = { 0 }; 
+	WCHAR str_file_name[256] = { 0 };
+	wifstream in_file(file_name);
+	if (!in_file)
+		return;
+
+	for (; ;)
+	{
+		in_file >> str_command;
+		if (!in_file)
+			break;
+
+		if (0 == wcscmp(str_command, L"#"))
+		{
+			// Comment
+		}
+		else if (0 == wcscmp(str_command, L"s"))
+		{
+			XMFLOAT4X4 transform;
+			in_file >> str_file_name;
+			in_file >> transform.m[0][0];
+			in_file >> transform.m[0][1];
+			in_file >> transform.m[0][2];
+			in_file >> transform.m[0][3];
+			in_file >> transform.m[1][0];
+			in_file >> transform.m[1][1];
+			in_file >> transform.m[1][2];
+			in_file >> transform.m[1][3];
+			in_file >> transform.m[2][0];
+			in_file >> transform.m[2][1];
+			in_file >> transform.m[2][2];
+			in_file >> transform.m[2][3];
+			in_file >> transform.m[3][0];
+			in_file >> transform.m[3][1];
+			in_file >> transform.m[3][2];
+			in_file >> transform.m[3][3];
+
+			RenderEntity& render_entity = scene.addRenderEntity();
+			render_entity.createFromFile(file_name);
+			render_entity.setTransform(transform);
+		}
+		else
+		{
+			// Unimplemented or unrecognized command
+		}
+
+		in_file.ignore(1000, '\n');
+	}
+
+	// Cleanup
+	in_file.close();
 }

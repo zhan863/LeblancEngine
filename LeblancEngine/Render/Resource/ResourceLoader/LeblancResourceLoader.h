@@ -3,6 +3,7 @@
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
+#include "LeblancEngine/Render/Scene/LeblancScene.h"
 using namespace std;
 
 enum class MeshFileType
@@ -21,7 +22,8 @@ struct VertexEntry
 class ResourceLoader
 {
 public:
-	static LeblancMesh* loadMeshFromFile(char* file_name, MeshFileType type);
+	static LeblancMesh* loadMeshFromFile(const char* file_name, MeshFileType type);
+	static void loadSceneFromFile(const char* file_name, Scene& scene);
 
 protected:
 	static DWORD addVertex(UINT index, Vertex vertex, vector<DWORD>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable);

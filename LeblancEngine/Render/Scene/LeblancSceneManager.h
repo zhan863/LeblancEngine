@@ -13,6 +13,8 @@ public:
 
 	void release();
 
+	void buildScene(const char* scene_file_name);
+
 	Scene& getCurrentScene();
 
 protected:

@@ -1,4 +1,5 @@
 #include "LeblancEngine/Render/Scene/LeblancSceneManager.h"
+#include "LeblancEngine/Render/Resource/ResourceLoader/LeblancResourceLoader.h"
 
 SceneManager::SceneManager()
 {
@@ -23,4 +24,11 @@ void SceneManager::release()
 Scene& SceneManager::getCurrentScene()
 {
 	return m_current_scene;
+}
+
+void SceneManager::buildScene(const char* scene_file_name)
+{
+	m_current_scene.clear();
+
+	ResourceLoader::loadSceneFromFile(scene_file_name, m_current_scene);
 }

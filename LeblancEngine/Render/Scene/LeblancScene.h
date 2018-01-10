@@ -1,5 +1,10 @@
 #ifndef LEBLANC_SCENE_H
 #define LEBLANC_SCENE_H
+
+#include "LeblancEngine/Render/RenderEntity/LeblancRenderEntity.h"
+#include <vector>
+using namespace std;
+
 class Scene
 {
 public:
@@ -10,9 +15,10 @@ public:
 
 	void clear();
 
-	void addMesh();
+	RenderEntity& addRenderEntity();
 
-	void getMesh();
+	RenderEntity* getRenderEntity(int index);
 protected:
+	vector<RenderEntity> m_render_entities;
 };
 #endif

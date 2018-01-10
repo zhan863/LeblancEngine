@@ -19,13 +19,19 @@ public:
 	RenderEntity();
 	~RenderEntity();
 
-	virtual void createFromFile(char* file_name);
+	virtual void createFromFile(const char* file_name);
 
 	void release();
 
 	virtual void render(Pass pass);
 
+	void setTransform(XMFLOAT4X4 transform)
+	{
+		m_transform = transform;
+	}
+
 protected:
 	LeblancMesh* m_mesh = nullptr;
+	XMFLOAT4X4 m_transform;
 };
 #endif

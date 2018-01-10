@@ -17,15 +17,27 @@ void Scene::initialize()
 
 void Scene::clear()
 {
+	for (int i = 0; i < m_render_entities.size(); i++)
+	{
+		m_render_entities[i].release();
+	}
 
+	m_render_entities.clear();
 }
 
-void Scene::addMesh()
+RenderEntity& Scene::addRenderEntity()
 {
-
+	RenderEntity render_entity;
+	m_render_entities.push_back(render_entity);
+	return m_render_entities[m_render_entities.size() - 1];
 }
 
-void Scene::getMesh()
+RenderEntity* Scene::getRenderEntity(int index)
 {
+	if (m_render_entities.size() > index)
+	{
+		return &m_render_entities[index];
+	}
 
+	return nullptr;
 }
