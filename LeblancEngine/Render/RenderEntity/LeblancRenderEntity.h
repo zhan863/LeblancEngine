@@ -19,7 +19,7 @@ public:
 	RenderEntity();
 	~RenderEntity();
 
-	virtual void createFromFile(const char* file_name);
+	virtual void createFromFile(const WCHAR* file_name);
 
 	void release();
 

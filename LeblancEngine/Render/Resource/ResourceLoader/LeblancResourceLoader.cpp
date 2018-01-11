@@ -73,7 +73,7 @@ DWORD ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<DWORD>& indices
 	return index;
 }
 
-LeblancMesh* ResourceLoader::loadMeshFromFile(const char* file_name, MeshFileType type)
+LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileType type)
 {
 	// File input
 	WCHAR str_command[256] = { 0 };
@@ -246,7 +246,7 @@ void ResourceLoader::loadSceneFromFile(const char* file_name, Scene& scene)
 			in_file >> transform.m[3][3];
 
 			RenderEntity& render_entity = scene.addRenderEntity();
-			render_entity.createFromFile(file_name);
+			render_entity.createFromFile(str_file_name);
 			render_entity.setTransform(transform);
 		}
 		else

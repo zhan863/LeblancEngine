@@ -4,6 +4,9 @@
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
+// To do: replace these strings with another way of loading scene
+const char* scene_file = "Content/Scene/leblanc_test_scene.scene";
+
 Engine::Engine() : m_window(NULL, L"Leblanc Engine", WS_OVERLAPPEDWINDOW, WS_EX_APPWINDOW, 1280, 720)
 {
 
@@ -27,6 +30,7 @@ void Engine::prepare()
 	// initialize all the render states and textures needed
 
 	// load engine content
+	g_global_context.m_scene_manager.buildScene(scene_file);
 }
 
 void Engine::clear()
