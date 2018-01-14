@@ -67,6 +67,15 @@
     <ClCompile Include="LeblancEngine\Render\Basics\LeblancGeometry.cpp">
       <Filter>LeblancEngine\Render\Basics</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.cpp">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.cpp">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaders.cpp">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -138,6 +147,15 @@
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancGeometry.h">
       <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.h">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.h">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaders.h">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -193,6 +211,9 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\Resource\ResourceLoader">
       <UniqueIdentifier>{f6307263-488d-4b9d-aff1-42348d0282b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Resource\Material">
+      <UniqueIdentifier>{4355b3bb-ecef-4ef5-abc1-4dde5e5c92ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

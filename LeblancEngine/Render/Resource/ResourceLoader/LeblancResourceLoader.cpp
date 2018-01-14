@@ -70,7 +70,7 @@ DWORD ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<DWORD>& indices
 		}
 	}
 
-	return index;
+	indices.push_back(index);
 }
 
 LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileType type)
@@ -123,7 +123,7 @@ LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileTy
 		else if (0 == wcscmp(str_command, L"f"))
 		{
 			// Face
-			UINT i_position, i_texcoord, i_normal;
+			INT i_position, i_texcoord, i_normal;
 			Vertex vertex;
 
 			for (UINT iFace = 0; iFace < 3; iFace++)
@@ -132,6 +132,7 @@ LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileTy
 
 				// OBJ format uses 1-based arrays
 				in_file >> i_position;
+				i_position = abs(i_position);
 				vertex.position = positions[i_position - 1];
 
 				if ('/' == in_file.peek())
@@ -142,6 +143,7 @@ LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileTy
 					{
 						// Optional texture coordinate
 						in_file >> i_texcoord;
+						i_texcoord = abs(i_texcoord);
 						vertex.texcoord = texcoords[i_texcoord - 1];
 					}
 
@@ -151,6 +153,7 @@ LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileTy
 
 						// Optional vertex normal
 						in_file >> i_normal;
+						i_normal = abs(i_normal);
 						vertex.normal = normals[i_normal - 1];
 					}
 				}
