@@ -16,7 +16,7 @@ ID3D10Blob* compileShader(LPCWSTR path,
 #endif
 
 		ID3D10Blob* compiledShader;
-		ID3D10BlobPtr errorMessages;
+		ID3D10Blob* errorMessages;
 		HRESULT hr = D3DX11CompileFromFileW(path, defines, includes, function_name, profile,
 			flags, 0, NULL, &compiledShader, &errorMessages, NULL);
 
@@ -64,10 +64,10 @@ ID3D11VertexShader* compileVSFromFile(ID3D11Device* device,
 {
 	ID3D10Blob* compiledShader = compileShader(path, function_name, profile, defines, includes);
 	ID3D11VertexShader* shader = NULL;
-	DXCall(device->CreateVertexShader(compiledShader->GetBufferPointer(),
+	device->CreateVertexShader(compiledShader->GetBufferPointer(),
 		compiledShader->GetBufferSize(),
 		NULL,
-		&shader));
+		&shader);
 
 	if (byteCode != NULL)
 		*byteCode = compiledShader.Detach();
@@ -84,10 +84,10 @@ ID3D11PixelShader* compilePSFromFile(ID3D11Device* device,
 {
 	ID3D10Blob* compiledShader = compileShader(path, function_name, profile, defines, includes);
 	ID3D11PixelShader* shader = NULL;
-	DXCall(device->CreatePixelShader(compiledShader->GetBufferPointer(),
+	device->CreatePixelShader(compiledShader->GetBufferPointer(),
 		compiledShader->GetBufferSize(),
 		NULL,
-		&shader));
+		&shader);
 
 	return shader;
 }
@@ -101,10 +101,10 @@ ID3D11GeometryShader* compileGSFromFile(ID3D11Device* device,
 {
 	ID3D10Blob* compiledShader = compileShader(path, function_name, profile, defines, includes);
 	ID3D11GeometryShader* shader = NULL;
-	DXCall(device->CreateGeometryShader(compiledShader->GetBufferPointer(),
+	device->CreateGeometryShader(compiledShader->GetBufferPointer(),
 		compiledShader->GetBufferSize(),
 		NULL,
-		&shader));
+		&shader);
 
 	return shader;
 }
@@ -118,10 +118,10 @@ ID3D11HullShader* compileHSFromFile(ID3D11Device* device,
 {
 	ID3D10Blob* compiledShader = compileShader(path, function_name, profile, defines, includes);
 	ID3D11HullShader* shader = NULL;
-	DXCall(device->CreateHullShader(compiledShader->GetBufferPointer(),
+	device->CreateHullShader(compiledShader->GetBufferPointer(),
 		compiledShader->GetBufferSize(),
 		NULL,
-		&shader));
+		&shader);
 
 	return shader;
 }
@@ -135,10 +135,10 @@ ID3D11DomainShader* compileDSFromFile(ID3D11Device* device,
 {
 	ID3D10Blob* compiledShader = compileShader(path, function_name, profile, defines, includes);
 	ID3D11DomainShader* shader = NULL;
-	DXCall(device->CreateDomainShader(compiledShader->GetBufferPointer(),
+	device->CreateDomainShader(compiledShader->GetBufferPointer(),
 		compiledShader->GetBufferSize(),
 		NULL,
-		&shader));
+		&shader);
 
 	return shader;
 }
@@ -152,10 +152,10 @@ ID3D11ComputeShader* compileCSFromFile(ID3D11Device* device,
 {
 	ID3D10Blob* compiledShader = compileShader(path, function_name, profile, defines, includes);
 	ID3D11ComputeShader* shader = NULL;
-	DXCall(device->CreateComputeShader(compiledShader->GetBufferPointer(),
+	device->CreateComputeShader(compiledShader->GetBufferPointer(),
 		compiledShader->GetBufferSize(),
 		NULL,
-		&shader));
+		&shader);
 
 	return shader;
 }
