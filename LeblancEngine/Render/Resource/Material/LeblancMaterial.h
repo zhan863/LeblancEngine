@@ -13,7 +13,6 @@ public:
 
 	void release();
 
-protected:
 	VertexShader m_vertex_shader;
 	PixelShader m_pixel_shader;
 	ComputeShader m_compute_shader;

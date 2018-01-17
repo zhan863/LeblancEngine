@@ -6,6 +6,14 @@
 
 using namespace std;
 
+enum class GlobalMaterialType : UINT
+{
+	ShadowMap,
+	GBuffer,
+	DeferredShading,
+	Postprocessing
+};
+
 class MaterialManager
 {
 public:
@@ -17,6 +25,15 @@ public:
 	void release();
 
 protected:
+	void loadShadowMapMaterial();
+
+	void loadGBufferMaterial();
+
+	void loadDeferredShadingMaterial();
+
+	void loadPostProcessingMaterial();
+
+	void compileMaterial(const char* material_file_name, Material& material, const char* vs, const char* ps);
 
 	vector<Material> m_global_materials;
 };

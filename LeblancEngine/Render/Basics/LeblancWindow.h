@@ -10,7 +10,6 @@
 #pragma once
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
-#include "LeblancEngine/BasicInclude/LeblancExceptions.h"
 
 class Window 
 {

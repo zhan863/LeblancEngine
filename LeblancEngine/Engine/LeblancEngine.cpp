@@ -1,5 +1,4 @@
 #include "LeblancEngine/Engine/LeblancEngine.h"
-#include "LeblancEngine/BasicInclude/LeblancExceptions.h"
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"

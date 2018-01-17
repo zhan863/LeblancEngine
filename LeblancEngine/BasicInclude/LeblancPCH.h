@@ -117,3 +117,5 @@
 
 // Warning disables
 #pragma warning(disable : 4482)		// enum qualifier extension
+
+#include "LeblancEngine/BasicInclude/LeblancExceptions.h"
