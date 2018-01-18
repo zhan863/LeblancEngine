@@ -33,7 +33,7 @@ protected:
 
 	void loadPostProcessingMaterial();
 
-	void compileMaterial(const char* material_file_name, Material& material, const char* vs, const char* ps);
+	void compileMaterial(LPCWSTR material_file_name, Material& material, LPCSTR vs, LPCSTR ps);
 
 	vector<Material> m_global_materials;
 };

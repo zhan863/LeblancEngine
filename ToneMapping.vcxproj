@@ -222,7 +222,9 @@
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.cpp" />
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaders.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>

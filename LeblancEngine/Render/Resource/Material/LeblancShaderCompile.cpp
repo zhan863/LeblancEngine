@@ -1,7 +1,8 @@
 #include "LeblancEngine/Render/Resource/Material/LeblancShaderCompile.h"
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 
-namespace MaterialCompiler
+namespace ShaderCompiler
 {
 	ID3D10Blob* compileShader(LPCWSTR path,
 		LPCSTR function_name,
@@ -62,7 +63,8 @@ namespace MaterialCompiler
 		LPCSTR function_name,
 		LPCSTR profile,
 		CONST D3D10_SHADER_MACRO* defines,
-		ID3D10Include* includes)
+		ID3D10Include* includes,
+		ID3D10Blob** byteCode)
 	{
 		ID3D10Blob* compiledShader = compileShader(path, function_name, profile, defines, includes);
 		ID3D11VertexShader* shader = NULL;
@@ -159,10 +161,12 @@ namespace MaterialCompiler
 		return shader;
 	}
 
-	void compileMaterial(const char* material_file_name,
-		const char* vs,
-		const char* ps,
+	void compileMaterial(LPCWSTR material_file_name,
+		LPCSTR vs,
+		LPCSTR ps,
 		Material& material)
 	{
+		material.m_vertex_shader.setShader(compileVSFromFile(g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, vs, "vs_4_0"));
+		material.m_pixel_shader.setShader(compilePSFromFile(g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, vs, "ps_4_0"));
 	}
 }

@@ -76,6 +76,9 @@
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaders.cpp">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.cpp">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -154,6 +157,9 @@
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaders.h">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.h">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClInclude>
   </ItemGroup>

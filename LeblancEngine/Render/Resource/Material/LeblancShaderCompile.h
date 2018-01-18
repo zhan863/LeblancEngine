@@ -3,12 +3,12 @@
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
 
-namespace MaterialCompiler
+namespace ShaderCompiler
 {
 	// Compile material from hlsl file
-	void compileMaterial(const char* material_file_name,
-		const char* vs,
-		const char* ps,
+	void compileMaterial(LPCWSTR material_file_name,
+		LPCSTR vs,
+		LPCSTR ps,
 		Material& material);
 
 	// Compiles a shader from file and returns the compiled bytecode

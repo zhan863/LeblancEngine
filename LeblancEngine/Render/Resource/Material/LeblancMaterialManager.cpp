@@ -14,10 +14,10 @@ MaterialManager::~MaterialManager()
 
 void MaterialManager::initialize()
 {
-	loadShadowMapMaterial();
+	//loadShadowMapMaterial();
 	loadGBufferMaterial();
-	loadPostProcessingMaterial();
 	loadDeferredShadingMaterial();
+	//loadPostProcessingMaterial();
 }
 
 void MaterialManager::release()
@@ -31,32 +31,32 @@ void MaterialManager::release()
 void MaterialManager::loadShadowMapMaterial()
 {
 	Material material;
-	compileMaterial("Content/Shader/shadow_map.hlsl", material, "VS", "PS");
+	compileMaterial(L"Content/Shader/shadow_map.hlsl", material, "VS", "PS");
 	m_global_materials.push_back(material);
 }
 
 void MaterialManager::loadGBufferMaterial()
 {
 	Material material;
-	compileMaterial("Content/Shader/shadow_map.hlsl", material, "VS", "PS");
+	compileMaterial(L"Content/Shader/gbuffer.hlsl", material, "VS", "PS");
 	m_global_materials.push_back(material);
 }
 
 void MaterialManager::loadDeferredShadingMaterial()
 {
 	Material material;
-	compileMaterial("Content/Shader/shadow_map.hlsl", material, "VS", "PS");
+	compileMaterial(L"Content/Shader/deferred.hlsl", material, "VS", "PS");
 	m_global_materials.push_back(material);
 }
 
 void MaterialManager::loadPostProcessingMaterial()
 {
 	Material material;
-	compileMaterial("Content/Shader/shadow_map.hlsl", material, "VS", "PS");
+	compileMaterial(L"Content/Shader/post_processing.hlsl", material, "VS", "PS");
 	m_global_materials.push_back(material);
 }
 
-void MaterialManager::compileMaterial(const char* material_file_name, Material& material, const char* vs, const char* ps)
+void MaterialManager::compileMaterial(LPCWSTR material_file_name, Material& material, LPCSTR vs, LPCSTR ps)
 {
-	MaterialCompiler::compileMaterial(material_file_name, vs, ps, material);
+	ShaderCompiler::compileMaterial(material_file_name, vs, ps, material);
 }

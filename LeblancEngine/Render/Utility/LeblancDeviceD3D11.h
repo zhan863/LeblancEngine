@@ -22,6 +22,8 @@ public:
 	void present();
 
 	ID3D11Resource* createTexture(TextureType texture_type, UINT width, UINT height);
+
+	ID3D11Device* getD3D11Device() { return m_device; }
 	
 	LeblancMesh* createMesh(vector<Vertex>& vertices, vector<DWORD>& indices);
 

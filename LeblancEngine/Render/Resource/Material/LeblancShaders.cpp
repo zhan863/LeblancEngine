@@ -44,6 +44,11 @@ void VertexShader::release()
 	}
 }
 
+void VertexShader::setShader(void* shader)
+{
+	m_vertex_shader = (ID3D11VertexShader*)shader;
+}
+
 PixelShader::PixelShader()
 {
 
@@ -68,6 +73,11 @@ void PixelShader::release()
 	}
 }
 
+void PixelShader::setShader(void* shader)
+{
+	m_pixel_shader = (ID3D11PixelShader*)shader;
+}
+
 ComputeShader::ComputeShader()
 {
 
@@ -90,4 +100,9 @@ void ComputeShader::release()
 		m_compute_shader->Release();
 		m_compute_shader = nullptr;
 	}
+}
+
+void ComputeShader::setShader(void* shader)
+{
+	m_compute_shader = (ID3D11ComputeShader*)shader;
 }
