@@ -167,6 +167,6 @@ namespace ShaderCompiler
 		Material& material)
 	{
 		material.m_vertex_shader.setShader(compileVSFromFile(g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, vs, "vs_4_0"));
-		material.m_pixel_shader.setShader(compilePSFromFile(g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, vs, "ps_4_0"));
+		material.m_pixel_shader.setShader(compilePSFromFile(g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, ps, "ps_4_0"));
 	}
 }

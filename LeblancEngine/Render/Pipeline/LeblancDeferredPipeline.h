@@ -18,7 +18,7 @@ public:
 protected:
 	void generateGBuffer();
 
-	void deferredShading();
+	void deferredShading(Texture2D* render_target, Scene& scene);
 
 	void postProcessing();
 };

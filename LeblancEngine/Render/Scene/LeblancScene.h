@@ -18,6 +18,8 @@ public:
 	RenderEntity& addRenderEntity();
 
 	RenderEntity* getRenderEntity(int index);
+
+	size_t getRenderEntityCount() { return m_render_entities.size(); }
 protected:
 	vector<RenderEntity> m_render_entities;
 };
