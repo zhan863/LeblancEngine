@@ -36,3 +36,8 @@ ID3D11Resource* Texture2D::getResource()
 {
 	return m_d3d11_texture2d;
 }
+
+ID3D11View* Texture2D::getRenderTargetView()
+{
+	return m_d3d11_render_target_view;
+}

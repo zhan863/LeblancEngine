@@ -17,8 +17,11 @@ public:
 
 	virtual ID3D11Resource* getResource();
 
+	virtual ID3D11View* getRenderTargetView();
+
 protected:
 	ID3D11Texture2D* m_depth_stencil_texture = nullptr;
+	ID3D11DepthStencilView* m_depth_stencil_view = nullptr;
 };
 
 #endif

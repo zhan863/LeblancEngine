@@ -4,6 +4,8 @@
 
 using namespace std;
 
+const static UINT k_max_render_target_view = 8;
+
 DeviceD3D11::DeviceD3D11()
 {
 
@@ -141,7 +143,7 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 	{
 		return nullptr;
 	}
-	else if (texture_type == DepthStencilTexture)
+	else if (texture_type == Depth_Stencil_Texture)
 	{
 		D3D11_TEXTURE2D_DESC desc;
 		desc.Width = width;
@@ -164,6 +166,24 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 		{
 			return nullptr;
 		}
+	}
+
+	return nullptr;
+}
+
+ID3D11View* DeviceD3D11::createRenderTargetView(TextureType texture_type, UINT width, UINT height, ID3D11Resource* resource)
+{
+	if (texture_type == Depth_Stencil_Texture)
+	{
+
+	}
+	else if (texture_type == Texture_2D)
+	{
+
+	}
+	else if (texture_type == Texture_3D)
+	{
+
 	}
 
 	return nullptr;
@@ -196,4 +216,16 @@ void DeviceD3D11::release()
 		m_swap_chain->Release();
 		m_swap_chain = nullptr;
 	}
+}
+
+void DeviceD3D11::setRenderTargets(UINT num_targets, Texture2D** render_targets, DepthStencilTexture* depth_stentil_texture)
+{
+	ID3D11DepthStencilView* depth_stencil_view = (ID3D11DepthStencilView*)depth_stentil_texture->getRenderTargetView();
+	ID3D11RenderTargetView* render_target_views[k_max_render_target_view] = { nullptr };
+	for (UINT i = 0; i < num_targets; i++)
+	{
+		render_target_views[i] = (ID3D11RenderTargetView*)render_targets[i]->getRenderTargetView();
+	}
+
+	m_device_context->OMSetRenderTargets(num_targets, render_target_views, depth_stencil_view);
 }

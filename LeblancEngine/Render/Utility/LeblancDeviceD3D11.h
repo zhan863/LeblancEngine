@@ -3,6 +3,8 @@
 
 #include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 #include "LeblancEngine/Render/Resource/Texture/LeblancTexture.h"
+#include "LeblancEngine/Render/Resource/Texture/DepthStencilTexture.h"
+#include "LeblancEngine/Render/Resource/Texture/Texture2D.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 
 #include <vector>
@@ -23,11 +25,15 @@ public:
 
 	ID3D11Resource* createTexture(TextureType texture_type, UINT width, UINT height);
 
+	ID3D11View* createRenderTargetView(TextureType texture_type, UINT width, UINT height, ID3D11Resource* resource);
+
 	ID3D11Device* getD3D11Device() { return m_device; }
 	
 	LeblancMesh* createMesh(vector<Vertex>& vertices, vector<DWORD>& indices);
 
 	bool initialized() { return m_device != nullptr; }
+
+	void setRenderTargets(UINT num_targets, Texture2D** render_targets, DepthStencilTexture* depth_stentil_texture);
 
 private:
 	ID3D11Device* m_device = nullptr;

@@ -6,7 +6,7 @@
 enum TextureType
 {
 	Texture_2D,
-	DepthStencilTexture,
+	Depth_Stencil_Texture,
 	Texture_3D
 };
 
@@ -21,6 +21,8 @@ public:
 	virtual void release() = 0;
 
 	virtual ID3D11Resource* getResource() = 0;
+
+	virtual ID3D11View* getRenderTargetView() = 0;
 protected:
 };
 #endif
