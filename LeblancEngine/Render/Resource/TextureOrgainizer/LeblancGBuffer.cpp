@@ -13,17 +13,14 @@ GBuffer::~GBuffer()
 	release();
 }
 
-void GBuffer::initialize(ID3D11Device* device, UINT width, UINT height)
+void GBuffer::initialize(UINT width, UINT height)
 {
-	if (device)
-	{
-		m_normal_smoothness_buffer->intialize(width, height);
-		m_albedo_buffer->intialize(width, height);
-		m_metal_reflectance_ao_buffer->intialize(width, height);
-		m_radiosity_buffer->intialize(width, height);
+	m_normal_smoothness_buffer->intialize(width, height, true);
+	m_albedo_buffer->intialize(width, height, true);
+	m_metal_reflectance_ao_buffer->intialize(width, height, true);
+	m_radiosity_buffer->intialize(width, height, true);
 
-		m_depth_stencil_texture_buffer->initialize(width, height);
-	}
+	m_depth_stencil_texture_buffer->initialize(width, height, true);
 }
 
 void GBuffer::release()

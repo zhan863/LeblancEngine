@@ -1,6 +1,9 @@
 #include "LeblancEngine/Render/RenderEntity/LeblancRenderEntity.h"
 #include "LeblancEngine/Render/Resource/ResourceLoader/LeblancResourceLoader.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
+#include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
+#include "LeblancEngine/Render/Resource/Material/LeblancMaterialManager.h"
 
 RenderEntity::RenderEntity()
 {
@@ -29,5 +32,8 @@ void RenderEntity::release()
 
 void RenderEntity::render(Pass pass)
 {
-
+	if (pass == Pass::DeferredShading)
+	{
+		Material* deferred_material = g_global_context.m_material_manager.getGlobalPassMaterial(pass);
+	}
 }

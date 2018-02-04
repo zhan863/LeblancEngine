@@ -11,7 +11,7 @@ public:
 
 	~Texture2D();
 
-	virtual bool intialize(UINT width, UINT height);
+	virtual bool intialize(UINT width, UINT height, BOOL is_render_target);
 
 	virtual void release();
 

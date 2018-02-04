@@ -3,15 +3,7 @@
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
-
-enum class Pass
-{
-	GBuffer,
-	DeferredShading,
-	SingleForward,
-	Transparent,
-	DepthOnly
-};
+#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
 
 class RenderEntity
 {

@@ -60,3 +60,8 @@ void MaterialManager::compileMaterial(LPCWSTR material_file_name, Material& mate
 {
 	ShaderCompiler::compileMaterial(material_file_name, vs, ps, material);
 }
+
+Material* MaterialManager::getGlobalPassMaterial(Pass pass)
+{
+	return &m_global_materials[(UINT)pass];
+}

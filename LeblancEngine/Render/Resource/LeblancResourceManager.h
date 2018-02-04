@@ -1,5 +1,8 @@
 #ifndef LEBLANC_RESOURCE_MANAGER_H
 #define LEBLANC_RESOURCE_MANAGER_H
+
+#include "LeblancEngine/BasicInclude/LeblancPCH.h"
+
 class GBuffer;
 
 class ResourceManager
@@ -14,7 +17,10 @@ public:
 
 	GBuffer* getGBuffer();
 
+	void createGBuffer(UINT width, UINT height);
+
 protected:
+
 	GBuffer* gbuffer = nullptr;
 };
 #endif

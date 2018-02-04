@@ -179,7 +179,16 @@ ID3D11View* DeviceD3D11::createRenderTargetView(TextureType texture_type, UINT w
 	}
 	else if (texture_type == Texture_2D)
 	{
+		ID3D11RenderTargetView* render_target_view = nullptr;
 
+		D3D11_RENDER_TARGET_VIEW_DESC target_desc;
+		target_desc.Texture2D.MipSlice = 0;
+		target_desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+		target_desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+
+		m_device->CreateRenderTargetView(resource, &target_desc, &render_target_view);
+
+		return render_target_view;
 	}
 	else if (texture_type == Texture_3D)
 	{
@@ -220,7 +229,7 @@ void DeviceD3D11::release()
 
 void DeviceD3D11::setRenderTargets(UINT num_targets, Texture2D** render_targets, DepthStencilTexture* depth_stentil_texture)
 {
-	ID3D11DepthStencilView* depth_stencil_view = (ID3D11DepthStencilView*)depth_stentil_texture->getRenderTargetView();
+	ID3D11DepthStencilView* depth_stencil_view = depth_stentil_texture ? (ID3D11DepthStencilView*)depth_stentil_texture->getRenderTargetView() : nullptr;
 	ID3D11RenderTargetView* render_target_views[k_max_render_target_view] = { nullptr };
 	for (UINT i = 0; i < num_targets; i++)
 	{

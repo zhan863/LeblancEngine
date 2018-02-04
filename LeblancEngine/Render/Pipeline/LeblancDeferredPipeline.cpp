@@ -36,12 +36,14 @@ void DeferredPipeline::deferredShading(Texture2D* render_target, Scene& scene)
 {
 	DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
 
+	device.setRenderTargets(1, &render_target, nullptr);
+
 	for (UINT i = 0; i < scene.getRenderEntityCount(); i++)
 	{
 		RenderEntity* render_entity = scene.getRenderEntity(i);
 		if (render_entity)
 		{
-
+			render_entity->render(Pass::SingleForward);
 		}
 	}
 }

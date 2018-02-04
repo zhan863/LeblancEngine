@@ -6,7 +6,6 @@
 //  All code and content licensed under Microsoft Public License (Ms-PL)
 //
 //======================================================================
-
 #pragma once
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 

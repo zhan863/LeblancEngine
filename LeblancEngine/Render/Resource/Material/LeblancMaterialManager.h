@@ -2,6 +2,7 @@
 #define LEBLANC_MATERIAL_MANAGER_H
 
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
 #include <vector>
 
 using namespace std;
@@ -23,6 +24,8 @@ public:
 	void initialize();
 
 	void release();
+
+	Material* getGlobalPassMaterial(Pass pass);
 
 protected:
 	void loadShadowMapMaterial();

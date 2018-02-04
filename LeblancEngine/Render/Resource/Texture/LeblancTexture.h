@@ -16,7 +16,7 @@ public:
 	Texture();
 	~Texture();
 
-	virtual bool initialize(UINT width, UINT height) = 0;
+	virtual bool initialize(UINT width, UINT height, BOOL is_render_target) = 0;
 
 	virtual void release() = 0;
 

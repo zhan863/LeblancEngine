@@ -12,14 +12,14 @@ public:
 	GBuffer();
 	~GBuffer();
 
-	void initialize(ID3D11Device* device, UINT width, UINT height);
+	void initialize(UINT width, UINT height);
 
 	void release();
 
 	void bind();
 
 	void unbind();
-protected:
+
 	Texture2D* m_normal_smoothness_buffer = nullptr;
 	Texture2D* m_albedo_buffer = nullptr;
 	Texture2D* m_metal_reflectance_ao_buffer = nullptr;

@@ -11,7 +11,7 @@ DepthStencilTexture::~DepthStencilTexture()
 	release();
 }
 
-bool DepthStencilTexture::intialize(UINT width, UINT height)
+bool DepthStencilTexture::intialize(UINT width, UINT height, BOOL is_render_target)
 {
 	if (m_depth_stencil_texture)
 		return true;

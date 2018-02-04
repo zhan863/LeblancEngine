@@ -162,6 +162,9 @@
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.h">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderBasicDefine.h">
+      <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />

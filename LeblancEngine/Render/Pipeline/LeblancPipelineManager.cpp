@@ -1,6 +1,7 @@
 #include "LeblancEngine/Render/Pipeline/LeblancPipelineManager.h"
 #include "LeblancEngine/Render/Scene/LeblancSceneManager.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
+#include "LeblancEngine/Render/Resource/TextureOrgainizer/LeblancGBuffer.h"
 
 PipelineManager::PipelineManager()
 {
@@ -26,6 +27,7 @@ void PipelineManager::render(RenderType render_type)
 {
 	if (render_type == RenderType::Deferred)
 	{
-		m_deferred_pipeline.render(nullptr, g_global_context.m_scene_manager.getCurrentScene());
+		GBuffer* gbuffer = g_global_context.m_resource_manager.getGBuffer();
+		m_deferred_pipeline.render(gbuffer->m_albedo_buffer, g_global_context.m_scene_manager.getCurrentScene());
 	}
 }
