@@ -2,6 +2,7 @@
 #define LEBLANC_RESOURCE_MANAGER_H
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
 class GBuffer;
 
@@ -11,7 +12,7 @@ public:
 	ResourceManager();
 	~ResourceManager();
 
-	void initialize();
+	void initialize(Window& window);
 
 	void release();
 

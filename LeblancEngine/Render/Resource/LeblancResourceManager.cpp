@@ -11,21 +11,32 @@ ResourceManager::~ResourceManager()
 
 }
 
-void ResourceManager::initialize()
+void ResourceManager::initialize(Window& window)
 {
+	INT width, height;
+	window.GetClientArea(width, height);
+
+	if (width > 0 && height > 0)
+		createGBuffer((UINT)width, (UINT)height);
 }
 
 void ResourceManager::release()
 {
 	if (gbuffer)
 	{
-		gbuffer->release();
+		delete gbuffer;
 		gbuffer = nullptr;
 	}
 }
 
 void ResourceManager::createGBuffer(UINT width, UINT height)
 {
+	if (gbuffer)
+	{
+		delete gbuffer;
+	}
+
+	gbuffer = new GBuffer();
 	gbuffer->initialize(width, height);
 }
 

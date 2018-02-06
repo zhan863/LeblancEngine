@@ -12,11 +12,11 @@ GlobalContext::~GlobalContext()
 
 }
 
-void GlobalContext::initialize(HWND window)
+void GlobalContext::initialize(Window& window)
 {
 	m_device_manager.initialize(window);
 	m_pipeline_manager.initialize();
-	m_resource_manager.initialize();
+	m_resource_manager.initialize(window);
 	m_render_state_manager.initialize();
 	m_scene_manager.initialize();
 	m_material_manager.initialize();

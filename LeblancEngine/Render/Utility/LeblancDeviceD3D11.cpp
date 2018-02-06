@@ -16,7 +16,7 @@ DeviceD3D11::~DeviceD3D11()
 	release();
 }
 
-void DeviceD3D11::initialize(HWND window)
+void DeviceD3D11::initialize(Window& window)
 {
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -27,8 +27,10 @@ void DeviceD3D11::initialize(HWND window)
 
 	desc.BufferCount = 2;
 	desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
-	desc.BufferDesc.Width = 1280;
-	desc.BufferDesc.Height = 720;
+	INT width = 0, height = 0;
+	window.GetClientArea(width, height);
+	desc.BufferDesc.Width = width;
+	desc.BufferDesc.Height = height;
 	desc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	desc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	desc.BufferDesc.RefreshRate = refresh_rate;
@@ -123,9 +125,11 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 		desc.MipLevels = desc.ArraySize = 1;
 		desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		desc.SampleDesc.Count = 1;
-		desc.Usage = D3D11_USAGE_DYNAMIC;
+		desc.SampleDesc.Quality = 0;
+		desc.Usage = D3D11_USAGE_DEFAULT;
 		desc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
-		desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+		desc.CPUAccessFlags = 0;
+		desc.MiscFlags = 0;
 
 		ID3D11Texture2D* d3d11_texture_2d = nullptr;
 		HRESULT hr = m_device->CreateTexture2D(&desc, nullptr, &d3d11_texture_2d);
@@ -149,9 +153,10 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 		desc.Width = width;
 		desc.Height = height;
 		desc.MipLevels = desc.ArraySize = 1;
-		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 		desc.SampleDesc.Count = 1;
-		desc.Usage = D3D11_USAGE_DYNAMIC;
+		desc.SampleDesc.Quality = 0;
+		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		desc.Usage = D3D11_USAGE_DEFAULT;
 		desc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
 		desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
 

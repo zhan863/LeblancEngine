@@ -10,7 +10,7 @@ DeviceManager::~DeviceManager()
 	release();
 }
 
-void DeviceManager::initialize(HWND window)
+void DeviceManager::initialize(Window& window)
 {
 	if (!m_device.initialized())
 	{

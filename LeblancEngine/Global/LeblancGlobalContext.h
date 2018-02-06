@@ -7,6 +7,7 @@
 #include "LeblancEngine/Render/Resource/LeblancRenderStateManager.h"
 #include "LeblancEngine/Render/Scene/LeblancSceneManager.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterialManager.h"
+#include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
 class GlobalContext
 {
@@ -14,7 +15,7 @@ public:
 	GlobalContext();
 	~GlobalContext();
 
-	void initialize(HWND window);
+	void initialize(Window& window);
 
 	void release();
 	

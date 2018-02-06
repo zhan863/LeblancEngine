@@ -15,10 +15,18 @@ GBuffer::~GBuffer()
 
 void GBuffer::initialize(UINT width, UINT height)
 {
-	m_normal_smoothness_buffer->intialize(width, height, true);
-	m_albedo_buffer->intialize(width, height, true);
-	m_metal_reflectance_ao_buffer->intialize(width, height, true);
-	m_radiosity_buffer->intialize(width, height, true);
+	release();
+	m_normal_smoothness_buffer = new Texture2D();
+	m_albedo_buffer = new Texture2D();
+	m_metal_reflectance_ao_buffer = new Texture2D();
+	m_radiosity_buffer = new Texture2D();
+
+	m_depth_stencil_texture_buffer = new DepthStencilTexture();
+
+	m_normal_smoothness_buffer->initialize(width, height, true);
+	m_albedo_buffer->initialize(width, height, true);
+	m_metal_reflectance_ao_buffer->initialize(width, height, true);
+	m_radiosity_buffer->initialize(width, height, true);
 
 	m_depth_stencil_texture_buffer->initialize(width, height, true);
 }

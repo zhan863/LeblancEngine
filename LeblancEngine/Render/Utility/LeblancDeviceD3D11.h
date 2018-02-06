@@ -6,6 +6,7 @@
 #include "LeblancEngine/Render/Resource/Texture/DepthStencilTexture.h"
 #include "LeblancEngine/Render/Resource/Texture/Texture2D.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
+#include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
 #include <vector>
 using namespace std;
@@ -17,7 +18,7 @@ public:
 
 	~DeviceD3D11();
 	
-	void initialize(HWND window);
+	void initialize(Window& window);
 	
 	void release();
 

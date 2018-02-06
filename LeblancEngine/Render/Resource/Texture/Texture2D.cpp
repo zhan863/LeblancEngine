@@ -11,7 +11,7 @@ Texture2D::~Texture2D()
 	release();
 }
 
-bool Texture2D::intialize(UINT width, UINT height, BOOL is_render_target)
+bool Texture2D::initialize(UINT width, UINT height, BOOL is_render_target)
 {
 	if (m_d3d11_texture2d)
 		return true;
