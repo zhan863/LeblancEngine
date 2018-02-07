@@ -52,6 +52,11 @@ void Engine::render(float delta_time)
 {
 	// render the scene to a texture
 	g_global_context.m_pipeline_manager.render(RenderType::Deferred);
+
+	// Debug present code.
+	ID3D11RenderTargetView* back_buffer_view = g_global_context.m_device_manager.getBackBufferView();
+	g_global_context.m_device_manager.getCurrentDevice().setRenderTargets(1, &back_buffer_view, nullptr);
+	g_global_context.m_device_manager.getCurrentDevice().clearRenderTarget(back_buffer_view);
 }
 
 void Engine::present()

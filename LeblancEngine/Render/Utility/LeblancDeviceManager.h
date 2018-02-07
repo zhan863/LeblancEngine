@@ -18,6 +18,8 @@ public:
 
 	void present();
 
+	ID3D11RenderTargetView* getBackBufferView();
+
 private:
 	DeviceD3D11 m_device;
 };

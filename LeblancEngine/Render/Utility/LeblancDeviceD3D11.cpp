@@ -50,6 +50,18 @@ void DeviceD3D11::initialize(Window& window)
 
 	HRESULT hr = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, flags,
 		NULL, 0, D3D11_SDK_VERSION, &desc, &m_swap_chain, &m_device, NULL, &m_device_context);
+
+	if (m_swap_chain && hr == S_OK)
+	{
+		ID3D11Texture2D* back_buffer = nullptr;
+		m_swap_chain->GetBuffer(0, __uuidof(back_buffer), reinterpret_cast<void**>(&back_buffer));
+		m_device->CreateRenderTargetView(back_buffer, nullptr, &m_back_buffer_view);
+	}
+}
+
+ID3D11RenderTargetView* DeviceD3D11::getBackBufferView()
+{
+	return m_back_buffer_view;
 }
 
 LeblancMesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<DWORD>& indices)
@@ -242,4 +254,17 @@ void DeviceD3D11::setRenderTargets(UINT num_targets, Texture2D** render_targets,
 	}
 
 	m_device_context->OMSetRenderTargets(num_targets, render_target_views, depth_stencil_view);
+}
+
+
+void DeviceD3D11::setRenderTargets(UINT num_targets, ID3D11RenderTargetView** render_targets, DepthStencilTexture* depth_stentil_texture)
+{
+	ID3D11DepthStencilView* depth_stencil_view = depth_stentil_texture ? (ID3D11DepthStencilView*)depth_stentil_texture->getRenderTargetView() : nullptr;
+	m_device_context->OMSetRenderTargets(num_targets, render_targets, depth_stencil_view);
+}
+
+void DeviceD3D11::clearRenderTarget(ID3D11RenderTargetView* render_target)
+{
+	float red[4] = { 1.0, 0.0 ,0.0, 1.0 };
+	m_device_context->ClearRenderTargetView(render_target, red);
 }

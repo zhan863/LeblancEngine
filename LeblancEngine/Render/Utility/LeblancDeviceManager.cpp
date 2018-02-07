@@ -27,3 +27,8 @@ void DeviceManager::present()
 {
 	m_device.present();
 }
+
+ID3D11RenderTargetView* DeviceManager::getBackBufferView()
+{
+	return m_device.getBackBufferView();
+}

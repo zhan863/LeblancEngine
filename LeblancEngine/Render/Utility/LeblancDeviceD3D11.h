@@ -32,14 +32,20 @@ public:
 	
 	LeblancMesh* createMesh(vector<Vertex>& vertices, vector<DWORD>& indices);
 
+	ID3D11RenderTargetView* getBackBufferView();
+
 	bool initialized() { return m_device != nullptr; }
 
 	void setRenderTargets(UINT num_targets, Texture2D** render_targets, DepthStencilTexture* depth_stentil_texture);
+	void setRenderTargets(UINT num_targets, ID3D11RenderTargetView** render_targets, DepthStencilTexture* depth_stentil_texture);
+
+	void clearRenderTarget(ID3D11RenderTargetView* render_target);
 
 private:
 	ID3D11Device* m_device = nullptr;
 	ID3D11DeviceContext* m_device_context = nullptr;
 	IDXGISwapChain* m_swap_chain = nullptr;
+	ID3D11RenderTargetView* m_back_buffer_view = nullptr;
 };
 
 
