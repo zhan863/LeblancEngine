@@ -35,5 +35,10 @@ void RenderEntity::render(Pass pass)
 	if (pass == Pass::DeferredShading)
 	{
 		Material* deferred_material = g_global_context.m_material_manager.getGlobalPassMaterial(pass);
+
+		DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
+		device.setVertexShader(&deferred_material->m_vertex_shader);
+		device.setPixelShader(&deferred_material->m_pixel_shader);
+		device.renderMesh(m_mesh);
 	}
 }

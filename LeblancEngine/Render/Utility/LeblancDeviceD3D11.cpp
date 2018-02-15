@@ -102,6 +102,9 @@ LeblancMesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<DWORD>& in
 		init_index_data.SysMemPitch = 0;
 		init_index_data.SysMemSlicePitch = 0;
 
+		p_mesh->m_stride = sizeof(Vertex);
+		p_mesh->m_index_size = indices.size();
+
 		// Create the buffer with the device.
 		HRESULT hr_index = m_device->CreateBuffer(&index_buffer_desc, &init_index_data, &p_mesh->m_index_buffer);
 		
@@ -267,4 +270,21 @@ void DeviceD3D11::clearRenderTarget(ID3D11RenderTargetView* render_target)
 {
 	float red[4] = { 1.0, 0.0 ,0.0, 1.0 };
 	m_device_context->ClearRenderTargetView(render_target, red);
+}
+
+void DeviceD3D11::setVertexShader(VertexShader* vertex_shader)
+{
+	m_device_context->VSSetShader(vertex_shader->getVertexShader(), nullptr, 0);
+}
+
+void DeviceD3D11::setPixelShader(PixelShader* pixel_shader)
+{
+	m_device_context->PSSetShader(pixel_shader->getPixelShader(), nullptr, 0);
+}
+
+void DeviceD3D11::renderMesh(LeblancMesh* mesh)
+{
+	m_device_context->IASetVertexBuffers(0, 1, &mesh->m_vertex_buffer, &mesh->m_stride, 0);
+	m_device_context->IASetIndexBuffer(mesh->m_index_buffer, DXGI_FORMAT_R16_UINT, 0);
+	m_device_context->DrawIndexed(mesh->m_index_size, 0, 0);
 }

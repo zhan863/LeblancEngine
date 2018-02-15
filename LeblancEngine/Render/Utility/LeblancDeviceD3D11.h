@@ -5,6 +5,7 @@
 #include "LeblancEngine/Render/Resource/Texture/LeblancTexture.h"
 #include "LeblancEngine/Render/Resource/Texture/DepthStencilTexture.h"
 #include "LeblancEngine/Render/Resource/Texture/Texture2D.h"
+#include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
@@ -40,6 +41,11 @@ public:
 	void setRenderTargets(UINT num_targets, ID3D11RenderTargetView** render_targets, DepthStencilTexture* depth_stentil_texture);
 
 	void clearRenderTarget(ID3D11RenderTargetView* render_target);
+
+	void setVertexShader(VertexShader* vertex_shader);
+	void setPixelShader(PixelShader* pixel_shader);
+
+	void renderMesh(LeblancMesh* mesh);
 
 private:
 	ID3D11Device* m_device = nullptr;

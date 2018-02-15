@@ -29,6 +29,8 @@ public:
 
 	virtual void setShader(void* shader);
 
+	ID3D11VertexShader* getVertexShader() { return m_vertex_shader; }
+
 protected:
 	ID3D11VertexShader* m_vertex_shader = nullptr;
 };
@@ -44,6 +46,8 @@ public:
 
 	virtual void setShader(void* shader);
 
+	ID3D11PixelShader* getPixelShader() { return m_pixel_shader; }
+
 protected:
 	ID3D11PixelShader* m_pixel_shader = nullptr;
 };
@@ -58,6 +62,8 @@ public:
 	virtual void release();
 
 	virtual void setShader(void* shader);
+
+	ID3D11ComputeShader* getComputeShader() { return m_compute_shader; }
 
 protected:
 	ID3D11ComputeShader* m_compute_shader = nullptr;

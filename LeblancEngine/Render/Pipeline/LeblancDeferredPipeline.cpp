@@ -43,7 +43,7 @@ void DeferredPipeline::deferredShading(Texture2D* render_target, Scene& scene)
 		RenderEntity* render_entity = scene.getRenderEntity(i);
 		if (render_entity)
 		{
-			render_entity->render(Pass::SingleForward);
+			render_entity->render(Pass::DeferredShading);
 		}
 	}
 }
