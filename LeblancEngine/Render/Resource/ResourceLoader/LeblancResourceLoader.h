@@ -26,7 +26,7 @@ public:
 	static void loadSceneFromFile(const char* file_name, Scene& scene);
 
 protected:
-	static DWORD addVertex(UINT index, Vertex vertex, vector<DWORD>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable);
+	static UINT addVertex(UINT index, Vertex vertex, vector<UINT>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable);
 };
 
 #endif

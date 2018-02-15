@@ -64,7 +64,7 @@ ID3D11RenderTargetView* DeviceD3D11::getBackBufferView()
 	return m_back_buffer_view;
 }
 
-LeblancMesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<DWORD>& indices)
+LeblancMesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<UINT>& indices)
 {
 	// Create the encapsulated mesh
 	LeblancMesh *p_mesh = new LeblancMesh;
@@ -91,7 +91,7 @@ LeblancMesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<DWORD>& in
 		// Fill in a buffer description.
 		D3D11_BUFFER_DESC index_buffer_desc;
 		index_buffer_desc.Usage = D3D11_USAGE_DEFAULT;
-		index_buffer_desc.ByteWidth = sizeof(DWORD) * indices.size();
+		index_buffer_desc.ByteWidth = sizeof(UINT) * indices.size();
 		index_buffer_desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 		index_buffer_desc.CPUAccessFlags = 0;
 		index_buffer_desc.MiscFlags = 0;
@@ -284,7 +284,10 @@ void DeviceD3D11::setPixelShader(PixelShader* pixel_shader)
 
 void DeviceD3D11::renderMesh(LeblancMesh* mesh)
 {
-	m_device_context->IASetVertexBuffers(0, 1, &mesh->m_vertex_buffer, &mesh->m_stride, 0);
-	m_device_context->IASetIndexBuffer(mesh->m_index_buffer, DXGI_FORMAT_R16_UINT, 0);
+	UINT offset = 0;
+	m_device_context->IASetVertexBuffers(0, 1, &mesh->m_vertex_buffer, &mesh->m_stride, &offset);
+	m_device_context->IASetIndexBuffer(mesh->m_index_buffer, DXGI_FORMAT_R32_UINT, 0);
+	m_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	m_device_context->IASetInputLayout(mesh->m_input_layout);
 	m_device_context->DrawIndexed(mesh->m_index_size, 0, 0);
 }

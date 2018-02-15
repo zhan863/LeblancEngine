@@ -31,7 +31,7 @@ public:
 
 	ID3D11Device* getD3D11Device() { return m_device; }
 	
-	LeblancMesh* createMesh(vector<Vertex>& vertices, vector<DWORD>& indices);
+	LeblancMesh* createMesh(vector<Vertex>& vertices, vector<UINT>& indices);
 
 	ID3D11RenderTargetView* getBackBufferView();
 

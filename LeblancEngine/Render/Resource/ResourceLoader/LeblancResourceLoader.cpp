@@ -2,7 +2,7 @@
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
-DWORD ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<DWORD>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable)
+UINT ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<UINT>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable)
 {
 	bool found = false;
 	UINT index = 0;
@@ -86,7 +86,7 @@ LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileTy
 	vector<XMFLOAT3> normals;
 	vector<VertexEntry*> vertex_hashtable;
 
-	vector<DWORD> indices;
+	vector<UINT> indices;
 	vector<Vertex> vertices;
 
 	for (; ;)

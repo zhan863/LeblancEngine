@@ -21,6 +21,7 @@ class LeblancMesh
 public:
 	ID3D11Buffer* m_vertex_buffer = nullptr;
 	ID3D11Buffer* m_index_buffer = nullptr;
+	ID3D11InputLayout* m_input_layout = nullptr;
 
 	UINT m_stride = 0;
 	UINT m_index_size = 0;
