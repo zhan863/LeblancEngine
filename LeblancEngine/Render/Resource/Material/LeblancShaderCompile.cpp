@@ -58,7 +58,8 @@ namespace ShaderCompiler
 		}
 	}
 
-	ID3D11VertexShader* compileVSFromFile(ID3D11Device* device,
+	void compileVSFromFile(VertexShader* vertex_shader,
+		ID3D11Device* device,
 		LPCWSTR path,
 		LPCSTR function_name,
 		LPCSTR profile,
@@ -73,10 +74,12 @@ namespace ShaderCompiler
 			NULL,
 			&shader);
 
-		return shader;
+		vertex_shader->setShader(shader);
+		vertex_shader->setBlob(compiledShader);
 	}
 
-	ID3D11PixelShader* compilePSFromFile(ID3D11Device* device,
+	void compilePSFromFile(PixelShader* pixel_shader,
+		ID3D11Device* device,
 		LPCWSTR path,
 		LPCSTR function_name,
 		LPCSTR profile,
@@ -90,7 +93,8 @@ namespace ShaderCompiler
 			NULL,
 			&shader);
 
-		return shader;
+		pixel_shader->setShader(shader);
+		pixel_shader->setBlob(compiledShader);
 	}
 
 	ID3D11GeometryShader* compileGSFromFile(ID3D11Device* device,
@@ -166,7 +170,7 @@ namespace ShaderCompiler
 		LPCSTR ps,
 		Material& material)
 	{
-		material.m_vertex_shader.setShader(compileVSFromFile(g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, vs, "vs_4_0"));
-		material.m_pixel_shader.setShader(compilePSFromFile(g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, ps, "ps_4_0"));
+		compileVSFromFile(&material.m_vertex_shader, g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, vs, "vs_4_0");
+		compilePSFromFile(&material.m_pixel_shader, g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, ps, "ps_4_0");
 	}
 }

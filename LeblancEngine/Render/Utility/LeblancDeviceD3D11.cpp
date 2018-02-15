@@ -282,6 +282,11 @@ void DeviceD3D11::setPixelShader(PixelShader* pixel_shader)
 	m_device_context->PSSetShader(pixel_shader->getPixelShader(), nullptr, 0);
 }
 
+void DeviceD3D11::setInputLayout(ID3D11InputLayout* input_layout)
+{
+	m_device_context->IASetInputLayout(input_layout);
+}
+
 void DeviceD3D11::renderMesh(LeblancMesh* mesh)
 {
 	UINT offset = 0;
@@ -290,4 +295,11 @@ void DeviceD3D11::renderMesh(LeblancMesh* mesh)
 	m_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	m_device_context->IASetInputLayout(mesh->m_input_layout);
 	m_device_context->DrawIndexed(mesh->m_index_size, 0, 0);
+}
+
+ID3D11InputLayout* DeviceD3D11::createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader)
+{
+	ID3D11InputLayout* layout = nullptr;
+	m_device->CreateInputLayout(input_layout_desc, layout_desc_count, vertex_shader->getBlob()->GetBufferPointer(), vertex_shader->getBlob()->GetBufferSize(), &layout);
+	return layout;
 }

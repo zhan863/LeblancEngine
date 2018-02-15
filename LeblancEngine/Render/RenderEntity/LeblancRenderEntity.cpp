@@ -39,6 +39,7 @@ void RenderEntity::render(Pass pass)
 		DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
 		device.setVertexShader(&deferred_material->m_vertex_shader);
 		device.setPixelShader(&deferred_material->m_pixel_shader);
+		device.setInputLayout(g_global_context.m_render_state_manager.getOrCreateInputLayout(input_layout_pos_normal_uv, &deferred_material->m_vertex_shader));
 		device.renderMesh(m_mesh);
 	}
 }

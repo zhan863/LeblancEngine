@@ -19,7 +19,8 @@ namespace ShaderCompiler
 		ID3D10Include* includes = NULL);
 
 	// Compiles a shader from file and creates the appropriate shader instance
-	ID3D11VertexShader* compileVSFromFile(ID3D11Device* device,
+	void compileVSFromFile(VertexShader* vertex_shader,
+		ID3D11Device* device,
 		LPCWSTR path,
 		LPCSTR function_name = "VS",
 		LPCSTR profile = "vs_4_0",
@@ -27,7 +28,8 @@ namespace ShaderCompiler
 		ID3D10Include* includes = NULL,
 		ID3D10Blob** byteCode = NULL);
 
-	ID3D11PixelShader* compilePSFromFile(ID3D11Device* device,
+	void compilePSFromFile(PixelShader* pixel_shader,
+		ID3D11Device* device,
 		LPCWSTR path,
 		LPCSTR function_name = "PS",
 		LPCSTR profile = "ps_4_0",

@@ -14,7 +14,12 @@ public:
 
 	virtual void setShader(void* shader) = 0;
 
+	void setBlob(ID3D10Blob* blob) { m_blob = blob; }
+
+	ID3D10Blob* getBlob() { return m_blob; }
+
 protected:
+	ID3D10Blob* m_blob = nullptr;
 };
 
 class Shader;

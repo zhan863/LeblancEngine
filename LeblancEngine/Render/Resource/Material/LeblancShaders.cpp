@@ -7,7 +7,6 @@ Shader::Shader()
 
 Shader::~Shader()
 {
-
 }
 
 void Shader::initialize()
@@ -42,6 +41,12 @@ void VertexShader::release()
 		m_vertex_shader->Release();
 		m_vertex_shader = nullptr;
 	}
+
+	if (m_blob)
+	{
+		m_blob->Release();
+		m_blob = nullptr;
+	}
 }
 
 void VertexShader::setShader(void* shader)
@@ -71,6 +76,12 @@ void PixelShader::release()
 		m_pixel_shader->Release();
 		m_pixel_shader = nullptr;
 	}
+
+	if (m_blob)
+	{
+		m_blob->Release();
+		m_blob = nullptr;
+	}
 }
 
 void PixelShader::setShader(void* shader)
@@ -99,6 +110,12 @@ void ComputeShader::release()
 	{
 		m_compute_shader->Release();
 		m_compute_shader = nullptr;
+	}
+
+	if (m_blob)
+	{
+		m_blob->Release();
+		m_blob = nullptr;
 	}
 }
 

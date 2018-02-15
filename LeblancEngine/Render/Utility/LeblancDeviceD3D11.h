@@ -45,7 +45,11 @@ public:
 	void setVertexShader(VertexShader* vertex_shader);
 	void setPixelShader(PixelShader* pixel_shader);
 
+	void setInputLayout(ID3D11InputLayout* input_layout);
+
 	void renderMesh(LeblancMesh* mesh);
+
+	ID3D11InputLayout* createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader);
 
 private:
 	ID3D11Device* m_device = nullptr;

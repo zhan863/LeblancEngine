@@ -3,7 +3,8 @@ float4x4 view_proj_matrix;
 
 struct VSIn
 {
-	float4 position : POSITION;
+	float3 position : POSITION;
+	float3 normal : NORMAL;
 	float2 texture_coord : TEXCOORD;
 };
 
