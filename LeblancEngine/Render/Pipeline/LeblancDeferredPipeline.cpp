@@ -36,7 +36,8 @@ void DeferredPipeline::deferredShading(Texture2D* render_target, Scene& scene)
 {
 	DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
 
-	device.setRenderTargets(1, &render_target, nullptr);
+	//device.setRenderTargets(1, &render_target, nullptr);
+	device.setViewPort(0, 0, render_target->getSize().x, render_target->getSize().y);
 
 	for (UINT i = 0; i < scene.getRenderEntityCount(); i++)
 	{

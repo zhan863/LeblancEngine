@@ -293,8 +293,20 @@ void DeviceD3D11::renderMesh(LeblancMesh* mesh)
 	m_device_context->IASetVertexBuffers(0, 1, &mesh->m_vertex_buffer, &mesh->m_stride, &offset);
 	m_device_context->IASetIndexBuffer(mesh->m_index_buffer, DXGI_FORMAT_R32_UINT, 0);
 	m_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	m_device_context->IASetInputLayout(mesh->m_input_layout);
 	m_device_context->DrawIndexed(mesh->m_index_size, 0, 0);
+}
+
+void DeviceD3D11::setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT height)
+{
+	D3D11_VIEWPORT view_port;
+	view_port.TopLeftX = left_x;
+	view_port.TopLeftY = tp_y;
+	view_port.Width = width;
+	view_port.Height = height;
+	view_port.MinDepth = 0;
+	view_port.MaxDepth = 1;
+
+	m_device_context->RSSetViewports(1, &view_port);
 }
 
 ID3D11InputLayout* DeviceD3D11::createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader)

@@ -19,9 +19,14 @@ public:
 
 	virtual ID3D11View* getRenderTargetView();
 
+	XMFLOAT2 getSize() { return XMFLOAT2(m_width, m_height); }
+
 protected:
 	ID3D11Texture2D* m_d3d11_texture2d = nullptr;
 	ID3D11RenderTargetView* m_d3d11_render_target_view = nullptr;
+
+	FLOAT m_width = 0;
+	FLOAT m_height = 0;
 };
 
 #endif

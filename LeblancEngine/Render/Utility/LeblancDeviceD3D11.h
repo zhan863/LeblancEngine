@@ -49,6 +49,8 @@ public:
 
 	void renderMesh(LeblancMesh* mesh);
 
+	void setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT height);
+
 	ID3D11InputLayout* createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader);
 
 private:

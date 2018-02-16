@@ -22,6 +22,9 @@ bool Texture2D::initialize(UINT width, UINT height, BOOL is_render_target)
 
 	m_d3d11_render_target_view = static_cast<ID3D11RenderTargetView*>(device.createRenderTargetView(Texture_2D, width, height, m_d3d11_texture2d));
 
+	m_width = width;
+	m_height = height;
+
 	return m_d3d11_texture2d != nullptr;
 }
 
