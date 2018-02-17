@@ -1,6 +1,5 @@
 #ifndef LEBLANC_DEVICE_D3D11_H
 #define LEBLANC_DEVICE_D3D11_H
-
 #include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 #include "LeblancEngine/Render/Resource/Texture/LeblancTexture.h"
 #include "LeblancEngine/Render/Resource/Texture/DepthStencilTexture.h"
@@ -8,6 +7,8 @@
 #include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
+#include "Effect/Include/d3dxGlobal.h"
+#include "Effect/Include/d3dx11effect.h"
 
 #include <vector>
 using namespace std;

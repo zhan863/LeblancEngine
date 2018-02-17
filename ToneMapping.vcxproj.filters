@@ -165,14 +165,17 @@
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderBasicDefine.h">
       <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\Effect\Include\d3dx11effect.h">
+      <Filter>ThirdParty\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Effect\Include\d3dxGlobal.h">
+      <Filter>ThirdParty\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="SampleFramework11">
-      <UniqueIdentifier>{2f9c9f9c-5d06-4e89-b1f2-5da3a5a5e932}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LeblancEngine">
       <UniqueIdentifier>{5a29a0e1-f7f2-4a67-8501-f9f63b95cb44}</UniqueIdentifier>
     </Filter>
@@ -223,6 +226,12 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\Resource\Material">
       <UniqueIdentifier>{4355b3bb-ecef-4ef5-abc1-4dde5e5c92ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{a07208d9-fba7-42f4-bff2-28bbfb3fc325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Effect">
+      <UniqueIdentifier>{d0b4c132-e242-4bf1-b44d-d547375bff3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
