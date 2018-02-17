@@ -7,8 +7,6 @@
 #include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
-#include "Effect/Include/d3dxGlobal.h"
-#include "Effect/Include/d3dx11effect.h"
 
 #include <vector>
 using namespace std;
@@ -19,9 +17,9 @@ public:
 	DeviceD3D11();
 
 	~DeviceD3D11();
-	
+
 	void initialize(Window& window);
-	
+
 	void release();
 
 	void present();
@@ -31,7 +29,7 @@ public:
 	ID3D11View* createRenderTargetView(TextureType texture_type, UINT width, UINT height, ID3D11Resource* resource);
 
 	ID3D11Device* getD3D11Device() { return m_device; }
-	
+
 	LeblancMesh* createMesh(vector<Vertex>& vertices, vector<UINT>& indices);
 
 	ID3D11RenderTargetView* getBackBufferView();

@@ -40,10 +40,11 @@
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 #define STRICT							// Use strict declarations for Windows types
 
-// Windows Header Files:
-#include <windows.h>
+//Currently we have no solution to this windows and effect order include issue
+#include "Effect/Include/d3dx11effect.h"
+
+// Windows Header Files
 #include <commctrl.h>
-#include <psapi.h>
 
 // C RunTime Header Files
 #include <stdlib.h>
