@@ -22,7 +22,7 @@ struct VertexEntry
 class ResourceLoader
 {
 public:
-	static LeblancMesh* loadMeshFromFile(const WCHAR* file_name, MeshFileType type);
+	static Mesh* loadMeshFromFile(const WCHAR* file_name, MeshFileType type);
 	static void loadSceneFromFile(const char* file_name, Scene& scene);
 
 protected:

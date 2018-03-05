@@ -58,9 +58,6 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.cpp">
-      <Filter>LeblancEngine\Render\RenderEntity</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.cpp">
       <Filter>LeblancEngine\Render\Resource\ResourceLoader</Filter>
     </ClCompile>
@@ -139,9 +136,6 @@
       <Filter>LeblancEngine\Render\Scene</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h">
-      <Filter>LeblancEngine\Render\RenderEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.h">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.h">

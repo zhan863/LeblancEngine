@@ -210,9 +210,6 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -272,7 +269,6 @@
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h" />
-    <ClInclude Include="LeblancEngine\Render\RenderEntity\MeshRenderEntity.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.h" />

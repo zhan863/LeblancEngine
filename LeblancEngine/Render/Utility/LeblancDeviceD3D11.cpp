@@ -64,10 +64,10 @@ ID3D11RenderTargetView* DeviceD3D11::getBackBufferView()
 	return m_back_buffer_view;
 }
 
-LeblancMesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<UINT>& indices)
+Mesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<UINT>& indices)
 {
 	// Create the encapsulated mesh
-	LeblancMesh *p_mesh = new LeblancMesh;
+	Mesh *p_mesh = new Mesh;
 
 	if (p_mesh)
 	{
@@ -287,7 +287,7 @@ void DeviceD3D11::setInputLayout(ID3D11InputLayout* input_layout)
 	m_device_context->IASetInputLayout(input_layout);
 }
 
-void DeviceD3D11::renderMesh(LeblancMesh* mesh)
+void DeviceD3D11::renderMesh(Mesh* mesh)
 {
 	UINT offset = 0;
 	m_device_context->IASetVertexBuffers(0, 1, &mesh->m_vertex_buffer, &mesh->m_stride, &offset);

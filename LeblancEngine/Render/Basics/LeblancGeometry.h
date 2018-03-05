@@ -16,7 +16,7 @@ struct Vertex
 	XMFLOAT2 texcoord;
 };
 
-class LeblancMesh
+class Mesh
 {
 public:
 	ID3D11Buffer* m_vertex_buffer = nullptr;
@@ -25,8 +25,8 @@ public:
 	UINT m_stride = 0;
 	UINT m_index_size = 0;
 
-	LeblancMesh();
-	~LeblancMesh();
+	Mesh();
+	~Mesh();
 
 	void release();
 };

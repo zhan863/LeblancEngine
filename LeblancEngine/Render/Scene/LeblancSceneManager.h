@@ -13,11 +13,12 @@ public:
 
 	void release();
 
-	void buildScene(const char* scene_file_name);
+	void loadScene(const char* scene_file_name);
 
-	Scene& getCurrentScene();
+	Scene* getSceneByIndex(int index);
 
 protected:
-	Scene m_current_scene;
+
+	vector<Scene*> m_scenes;
 };
 #endif

@@ -2,6 +2,8 @@
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
+#include "assimp/Include/Importer.hpp"
+
 UINT ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<UINT>& indices, vector<Vertex>& vertices, vector<VertexEntry*>& vertex_hashtable)
 {
 	bool found = false;
@@ -73,7 +75,7 @@ UINT ResourceLoader::addVertex(UINT hash, Vertex vertex, vector<UINT>& indices, 
 	indices.push_back(index);
 }
 
-LeblancMesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileType type)
+Mesh* ResourceLoader::loadMeshFromFile(const WCHAR* file_name, MeshFileType type)
 {
 	// File input
 	WCHAR str_command[256] = { 0 };

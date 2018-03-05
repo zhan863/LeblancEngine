@@ -29,7 +29,7 @@ void Engine::prepare()
 	// initialize all the render states and textures needed
 
 	// load engine content
-	g_global_context.m_scene_manager.buildScene(scene_file);
+	g_global_context.m_scene_manager.loadScene(scene_file);
 }
 
 void Engine::clear()

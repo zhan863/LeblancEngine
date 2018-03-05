@@ -12,34 +12,17 @@ RenderEntity::RenderEntity()
 
 RenderEntity::~RenderEntity()
 {
-	release();
-}
-
-void RenderEntity::createFromFile(const WCHAR* file_name)
-{
-	// currently all mesh are loaded from obj files.
-	m_mesh = ResourceLoader::loadMeshFromFile(file_name, MeshFileType::obj);
 }
 
 void RenderEntity::release()
 {
-	if (m_mesh)
+	for (UINT i = 0; i < m_meshes.size(); i++)
 	{
-		m_mesh->release();
-		m_mesh = nullptr;
+		if (m_meshes[i])
+		{
+			m_meshes[i]->release();
+		}
 	}
-}
 
-void RenderEntity::render(Pass pass)
-{
-	if (pass == Pass::DeferredShading)
-	{
-		Material* deferred_material = g_global_context.m_material_manager.getGlobalPassMaterial(pass);
-
-		DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
-		device.setVertexShader(&deferred_material->m_vertex_shader);
-		device.setPixelShader(&deferred_material->m_pixel_shader);
-		device.setInputLayout(g_global_context.m_render_state_manager.getOrCreateInputLayout(input_layout_pos_normal_uv, &deferred_material->m_vertex_shader));
-		device.renderMesh(m_mesh);
-	}
+	m_meshes.clear();
 }
