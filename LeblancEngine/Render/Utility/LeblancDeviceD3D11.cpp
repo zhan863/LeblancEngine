@@ -64,10 +64,10 @@ ID3D11RenderTargetView* DeviceD3D11::getBackBufferView()
 	return m_back_buffer_view;
 }
 
-Mesh* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<UINT>& indices)
+Mesh1* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<UINT>& indices)
 {
 	// Create the encapsulated mesh
-	Mesh *p_mesh = new Mesh;
+	Mesh1 *p_mesh = new Mesh1;
 
 	if (p_mesh)
 	{
@@ -287,7 +287,7 @@ void DeviceD3D11::setInputLayout(ID3D11InputLayout* input_layout)
 	m_device_context->IASetInputLayout(input_layout);
 }
 
-void DeviceD3D11::renderMesh(Mesh* mesh)
+void DeviceD3D11::renderMesh(Mesh1* mesh)
 {
 	UINT offset = 0;
 	m_device_context->IASetVertexBuffers(0, 1, &mesh->m_vertex_buffer, &mesh->m_stride, &offset);

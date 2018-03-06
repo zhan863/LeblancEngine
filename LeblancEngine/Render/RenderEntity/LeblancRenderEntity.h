@@ -2,9 +2,11 @@
 #define LEBLANC_RENDER_ENTITY_H
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
-#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
-#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
+#include "LeblancEngine/Render/RenderEntity/LeblancMesh.h"
 
+#include <vector>
+
+using namespace std;
 class RenderEntity
 {
 public:
@@ -12,6 +14,8 @@ public:
 	~RenderEntity();
 
 	void release();
+
+	void addMesh(Mesh* mesh);
 
 	void setTransform(XMFLOAT4X4 transform)
 	{

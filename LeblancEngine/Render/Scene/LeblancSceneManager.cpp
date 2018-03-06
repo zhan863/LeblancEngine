@@ -1,5 +1,4 @@
 #include "LeblancEngine/Render/Scene/LeblancSceneManager.h"
-#include "LeblancEngine/Render/Resource/ResourceLoader/LeblancResourceLoader.h"
 
 SceneManager::SceneManager()
 {

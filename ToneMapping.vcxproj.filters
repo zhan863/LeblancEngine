@@ -58,9 +58,6 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.cpp">
-      <Filter>LeblancEngine\Render\Resource\ResourceLoader</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Basics\LeblancGeometry.cpp">
       <Filter>LeblancEngine\Render\Basics</Filter>
     </ClCompile>
@@ -75,6 +72,15 @@
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.cpp">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.cpp">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancMesh.cpp">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.cpp">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -138,9 +144,6 @@
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.h">
-      <Filter>LeblancEngine\Render\Resource\ResourceLoader</Filter>
-    </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancGeometry.h">
       <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
@@ -164,6 +167,15 @@
     </ClInclude>
     <ClInclude Include="ThirdParty\Effect\Include\d3dxGlobal.h">
       <Filter>ThirdParty\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.h">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancMesh.h">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.h">
+      <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,9 +226,6 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\RenderEntity">
       <UniqueIdentifier>{448f1725-cce5-4b5b-b132-5a795989ed0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LeblancEngine\Render\Resource\ResourceLoader">
-      <UniqueIdentifier>{f6307263-488d-4b9d-aff1-42348d0282b1}</UniqueIdentifier>
     </Filter>
     <Filter Include="LeblancEngine\Render\Resource\Material">
       <UniqueIdentifier>{4355b3bb-ecef-4ef5-abc1-4dde5e5c92ee}</UniqueIdentifier>

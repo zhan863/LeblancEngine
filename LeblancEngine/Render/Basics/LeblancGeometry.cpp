@@ -1,16 +1,16 @@
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 
-Mesh::Mesh()
+Mesh1::Mesh1()
 {
 	
 }
 
-Mesh::~Mesh()
+Mesh1::~Mesh1()
 {
 	release();
 }
 
-void Mesh::release()
+void Mesh1::release()
 {
 	if (m_index_buffer)
 		m_index_buffer->Release();

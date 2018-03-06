@@ -30,7 +30,7 @@ public:
 
 	ID3D11Device* getD3D11Device() { return m_device; }
 
-	Mesh* createMesh(vector<Vertex>& vertices, vector<UINT>& indices);
+	Mesh1* createMesh(vector<Vertex>& vertices, vector<UINT>& indices);
 
 	ID3D11RenderTargetView* getBackBufferView();
 
@@ -46,7 +46,7 @@ public:
 
 	void setInputLayout(ID3D11InputLayout* input_layout);
 
-	void renderMesh(Mesh* mesh);
+	void renderMesh(Mesh1* mesh);
 
 	void setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT height);
 

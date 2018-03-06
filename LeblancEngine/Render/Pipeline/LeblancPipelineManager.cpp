@@ -28,6 +28,6 @@ void PipelineManager::render(RenderType render_type)
 	if (render_type == RenderType::Deferred)
 	{
 		GBuffer* gbuffer = g_global_context.m_resource_manager.getGBuffer();
-		m_deferred_pipeline.render(gbuffer->m_albedo_buffer, g_global_context.m_scene_manager.getSceneByIndex());
+		//m_deferred_pipeline.render(gbuffer->m_albedo_buffer, g_global_context.m_scene_manager.getSceneByIndex());
 	}
 }

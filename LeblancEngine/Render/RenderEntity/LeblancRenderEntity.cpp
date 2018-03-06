@@ -1,5 +1,4 @@
 #include "LeblancEngine/Render/RenderEntity/LeblancRenderEntity.h"
-#include "LeblancEngine/Render/Resource/ResourceLoader/LeblancResourceLoader.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
@@ -21,8 +20,17 @@ void RenderEntity::release()
 		if (m_meshes[i])
 		{
 			m_meshes[i]->release();
+			delete m_meshes[i];
 		}
 	}
 
 	m_meshes.clear();
+}
+
+void RenderEntity::addMesh(Mesh* mesh)
+{
+	if (mesh)
+	{
+		m_meshes.push_back(mesh);
+	}
 }

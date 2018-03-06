@@ -207,7 +207,16 @@
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancMesh.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.cpp">
@@ -226,9 +235,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaders.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp">
@@ -268,14 +274,16 @@
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancMesh.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaders.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\ResourceLoader\LeblancResourceLoader.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.h" />
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.h" />

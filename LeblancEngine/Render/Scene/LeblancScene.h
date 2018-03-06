@@ -2,6 +2,8 @@
 #define LEBLANC_SCENE_H
 
 #include "LeblancEngine/Render/RenderEntity/LeblancRenderEntity.h"
+#include "LeblancEngine/Render/RenderEntity/LeblancMesh.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
 #include <vector>
 #include <map>
 using namespace std;
@@ -24,6 +26,6 @@ protected:
 	vector<RenderEntity*> m_render_entities;
 
 	// reference
-	map<Pass, Mesh*> m_pass_mesh_map;
+	map<Pass, vector<Mesh*>> m_pass_mesh_map;
 };
 #endif
