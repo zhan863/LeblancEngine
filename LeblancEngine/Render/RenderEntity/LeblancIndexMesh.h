@@ -15,5 +15,6 @@ public:
 	void load(const aiMesh* mesh);
 
 protected:
+	void setIndices(const uint32_t* indices, size_t index_count, size_t face_count);
 };
 #endif

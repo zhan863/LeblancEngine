@@ -82,6 +82,9 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Math\LeblancMath.cpp">
+      <Filter>LeblancEngine\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -177,6 +180,9 @@
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.h">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Math\LeblancMath.h">
+      <Filter>LeblancEngine\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -235,6 +241,9 @@
     </Filter>
     <Filter Include="ThirdParty\Effect">
       <UniqueIdentifier>{d0b4c132-e242-4bf1-b44d-d547375bff3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Math">
+      <UniqueIdentifier>{3273166e-edcd-499a-8cdd-347349543e61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
