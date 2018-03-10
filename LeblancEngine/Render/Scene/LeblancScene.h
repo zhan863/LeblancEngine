@@ -14,14 +14,14 @@ public:
 	Scene();
 	~Scene();
 
-	void release();
-
 	bool load(const char* file_name);
 
 	RenderEntity* getRenderEntity(int index);
 
 	size_t getRenderEntityCount() { return m_render_entities.size(); }
 protected:
+	void release();
+
 	// resource
 	vector<RenderEntity*> m_render_entities;
 

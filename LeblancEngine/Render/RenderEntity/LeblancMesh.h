@@ -10,11 +10,11 @@ class Mesh
 {
 public:
 	Mesh();
-	~Mesh();
-
-	void release();
+	virtual ~Mesh();
 
 protected:
+	void release();
+
 	void buildVertexBuffer();
 
 	void setVertexDeclaration();

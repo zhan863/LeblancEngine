@@ -1,6 +1,7 @@
 #include "LeblancEngine/Render/Scene/LeblancSceneManager.h"
 #include "LeblancEngine/Render/RenderEntity/LeblancIndexMesh.h"
 #include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
+#include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
 #include <assimp/Include/Importer.hpp>
 #include <assimp/Include/scene.h>
@@ -13,7 +14,7 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-
+	release();
 }
 
 bool Scene::load(const char* file_name)
@@ -68,11 +69,7 @@ void Scene::release()
 	// resource
 	for (int i = 0; i < m_render_entities.size(); i++)
 	{
-		if (m_render_entities[i])
-		{
-			m_render_entities[i]->release();
-			delete m_render_entities[i];
-		}
+		safe_delete(m_render_entities[i]);
 	}
 
 	m_render_entities.clear();

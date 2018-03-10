@@ -1,5 +1,8 @@
 #include "LeblancEngine/Render/RenderEntity/LeblancIndexMesh.h"
 #include "LeblancEngine/Math/LeblancMath.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
+#include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 
 IndexMesh::IndexMesh()
 {
@@ -8,10 +11,15 @@ IndexMesh::IndexMesh()
 
 IndexMesh::~IndexMesh()
 {
+	release();
 }
 
 void IndexMesh::release()
 {
+	safe_delete_array(m_index_buffer_data);
+	safe_delete(m_index_buffer);
+
+	m_index_count = 0;
 }
 
 void IndexMesh::load(const aiMesh* mesh)
@@ -64,10 +72,48 @@ void IndexMesh::load(const aiMesh* mesh)
 		setVertexCount(vertex_count);
 
 		setPrimitiveType(PrimitiveType::TriangleList);
+
+		// release all data created during creation
+		safe_delete_array(index_ptr);
+	}
+}
+
+void IndexMesh::createIndexBuffer(size_t index_count)
+{
+	IndexBufferDeclaration declaration(index_count);
+	if (m_index_buffer)
+	{
+		safe_delete(m_index_buffer);
+	}
+
+	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+	m_index_buffer = device->createIndexBuffer(&declaration);
+
+	fillIndexBuffer();
+}
+
+void IndexMesh::fillIndexBuffer()
+{
+	if (m_index_buffer)
+	{
+
 	}
 }
 
 void IndexMesh::setIndices(const uint32_t* indices, size_t index_count, size_t face_count)
 {
+	if (index_count > m_index_count)
+	{
+		safe_delete_array(m_index_buffer_data);
+		m_index_buffer_data = new uint32_t[index_count];
+		createIndexBuffer(index_count);
+	}
+	m_index_count = index_count;
 
+	if (m_index_buffer_data)
+		memcpy(m_index_buffer_data, indices, index_count * sizeof(uint32_t));
+	else
+		return;// log the memory error
+
+	fillIndexBuffer();
 }

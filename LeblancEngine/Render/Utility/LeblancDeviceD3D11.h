@@ -8,6 +8,8 @@
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
+#include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
+
 #include <vector>
 using namespace std;
 
@@ -19,8 +21,6 @@ public:
 	~DeviceD3D11();
 
 	void initialize(Window& window);
-
-	void release();
 
 	void present();
 
@@ -52,7 +52,15 @@ public:
 
 	ID3D11InputLayout* createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader);
 
+	// new create resource function
+	void createBuffer(const D3D11_BUFFER_DESC *desc, D3D11_SUBRESOURCE_DATA *initial_data, ID3D11Buffer **buffer);
+
+	IndexBufferD3D11* createIndexBuffer(const ResourceDeclaration* declaration);
+
 private:
+	void release();
+
+	// data
 	ID3D11Device* m_device = nullptr;
 	ID3D11DeviceContext* m_device_context = nullptr;
 	IDXGISwapChain* m_swap_chain = nullptr;

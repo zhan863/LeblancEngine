@@ -7,6 +7,7 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
+	release();
 }
 
 void Mesh::release()

@@ -7,6 +7,7 @@ StreamMesh::StreamMesh()
 
 StreamMesh::~StreamMesh()
 {
+	release();
 }
 
 void StreamMesh::release()

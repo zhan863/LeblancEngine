@@ -11,13 +11,12 @@ public:
 
 	void initialize();
 
-	void release();
-
 	void loadScene(const char* scene_file_name);
 
 	Scene* getSceneByIndex(int index);
 
 protected:
+	void release();
 
 	vector<Scene*> m_scenes;
 };

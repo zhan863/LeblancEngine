@@ -11,17 +11,18 @@ public:
 	~DeviceManager();
 	
 	void initialize(Window& window);
-	
-	void release();
 
-	DeviceD3D11& getCurrentDevice() { return m_device; }
+	DeviceD3D11* getCurrentDevice() { return m_device; }
 
 	void present();
 
 	ID3D11RenderTargetView* getBackBufferView();
 
 private:
-	DeviceD3D11 m_device;
+	void release();
+
+	// data
+	DeviceD3D11* m_device;
 };
 
 

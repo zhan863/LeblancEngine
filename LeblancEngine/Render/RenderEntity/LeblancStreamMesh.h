@@ -7,10 +7,9 @@ class StreamMesh : public Mesh
 {
 public:
 	StreamMesh();
-	~StreamMesh();
-
-	void release();
+	virtual ~StreamMesh();
 
 protected:
+	void release();
 };
 #endif

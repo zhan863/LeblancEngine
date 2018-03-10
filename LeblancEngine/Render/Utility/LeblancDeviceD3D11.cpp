@@ -315,3 +315,25 @@ ID3D11InputLayout* DeviceD3D11::createInputLayout(D3D11_INPUT_ELEMENT_DESC* inpu
 	m_device->CreateInputLayout(input_layout_desc, layout_desc_count, vertex_shader->getBlob()->GetBufferPointer(), vertex_shader->getBlob()->GetBufferSize(), &layout);
 	return layout;
 }
+
+
+// new create resource data
+void DeviceD3D11::createBuffer(const D3D11_BUFFER_DESC *desc, D3D11_SUBRESOURCE_DATA *initial_data, ID3D11Buffer **buffer)
+{
+	m_device->CreateBuffer(desc, initial_data, buffer);
+}
+
+IndexBufferD3D11* DeviceD3D11::createIndexBuffer(const ResourceDeclaration* declaration)
+{
+	IndexBufferD3D11* index_buffer = nullptr;
+	if (declaration)
+	{
+		if (const IndexBufferDeclaration* index_buffer_declaration = dynamic_cast<const IndexBufferDeclaration*>(declaration))
+		{
+			index_buffer = new IndexBufferD3D11(this);
+			index_buffer->initialize(index_buffer_declaration);
+		}
+	}
+
+	return index_buffer;
+}
