@@ -49,7 +49,7 @@ void IndexMesh::load(const aiMesh* mesh)
 			memcpy(position_ptr, mesh->mNormals, sizeof(float) * 3 * vertex_count);
 		}
 
-		if (mesh->HasTextureCoords())
+		if (mesh->HasTextureCoords(0))
 		{
 			for (int i = 0; i < vertex_count; i++)
 			{
@@ -96,7 +96,12 @@ void IndexMesh::fillIndexBuffer()
 {
 	if (m_index_buffer)
 	{
-
+		uint32_t* data_segment = static_cast<uint32_t*>(m_index_buffer->lock());
+		if (data_segment)
+		{
+			memcpy(data_segment, m_index_buffer_data, sizeof(uint32_t) * m_index_count);
+			m_index_buffer->unlock();
+		}
 	}
 }
 

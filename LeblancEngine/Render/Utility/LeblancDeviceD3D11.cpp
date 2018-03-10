@@ -127,7 +127,7 @@ Mesh1* DeviceD3D11::createMesh(vector<Vertex>& vertices, vector<UINT>& indices)
 	return p_mesh;
 }
 
-ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width, UINT height)
+ID3D11Resource* DeviceD3D11::createTexture(TextureTypes texture_type, UINT width, UINT height)
 {
 	if (!m_device)
 		return nullptr;
@@ -191,7 +191,7 @@ ID3D11Resource* DeviceD3D11::createTexture(TextureType texture_type, UINT width,
 	return nullptr;
 }
 
-ID3D11View* DeviceD3D11::createRenderTargetView(TextureType texture_type, UINT width, UINT height, ID3D11Resource* resource)
+ID3D11View* DeviceD3D11::createRenderTargetView(TextureTypes texture_type, UINT width, UINT height, ID3D11Resource* resource)
 {
 	if (texture_type == Depth_Stencil_Texture)
 	{

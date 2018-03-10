@@ -24,9 +24,9 @@ public:
 
 	void present();
 
-	ID3D11Resource* createTexture(TextureType texture_type, UINT width, UINT height);
+	ID3D11Resource* createTexture(TextureTypes texture_type, UINT width, UINT height);
 
-	ID3D11View* createRenderTargetView(TextureType texture_type, UINT width, UINT height, ID3D11Resource* resource);
+	ID3D11View* createRenderTargetView(TextureTypes texture_type, UINT width, UINT height, ID3D11Resource* resource);
 
 	ID3D11Device* getD3D11Device() { return m_device; }
 
@@ -56,6 +56,8 @@ public:
 	void createBuffer(const D3D11_BUFFER_DESC *desc, D3D11_SUBRESOURCE_DATA *initial_data, ID3D11Buffer **buffer);
 
 	IndexBufferD3D11* createIndexBuffer(const ResourceDeclaration* declaration);
+
+	ID3D11DeviceContext* getImmediateDeviceContext() { return m_device_context; }
 
 private:
 	void release();

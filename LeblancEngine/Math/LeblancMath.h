@@ -288,7 +288,7 @@ public:
 
 	Vector3<T> operator * (const Vector3<T>& scalar) const { return Vector3<T>(scalar.x*x, scalar.y*y, scalar.z*z); }
 
-	Vector3 < T operator * (T scalar) { return Vector3<T>(scalar*x, scalar*y, scalar*z); }
+	Vector3<T> operator * (T scalar) { return Vector3<T>(scalar*x, scalar*y, scalar*z); }
 
 	friend Vector3<T> operator * (T scalar, const Vector3<T>& a) { return Vector3<T>(scalar*a.x, scalar*a.y, scalar*a.z); }
 

@@ -170,7 +170,7 @@ namespace ShaderCompiler
 		LPCSTR ps,
 		Material& material)
 	{
-		compileVSFromFile(&material.m_vertex_shader, g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, vs, "vs_4_0");
-		compilePSFromFile(&material.m_pixel_shader, g_global_context.m_device_manager.getCurrentDevice().getD3D11Device(), material_file_name, ps, "ps_4_0");
+		compileVSFromFile(&material.m_vertex_shader, g_global_context.m_device_manager.getCurrentDevice()->getD3D11Device(), material_file_name, vs, "vs_4_0");
+		compilePSFromFile(&material.m_pixel_shader, g_global_context.m_device_manager.getCurrentDevice()->getD3D11Device(), material_file_name, ps, "ps_4_0");
 	}
 }

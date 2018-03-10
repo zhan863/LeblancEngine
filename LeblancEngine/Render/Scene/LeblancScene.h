@@ -3,7 +3,6 @@
 
 #include "LeblancEngine/Render/RenderEntity/LeblancRenderEntity.h"
 #include "LeblancEngine/Render/RenderEntity/LeblancMesh.h"
-#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
 #include <vector>
 #include <map>
 using namespace std;

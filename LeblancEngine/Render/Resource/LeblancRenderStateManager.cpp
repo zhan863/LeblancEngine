@@ -33,8 +33,8 @@ ID3D11InputLayout* RenderStateManager::getOrCreateInputLayout(InputLayoutEnum in
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		};
 
-		DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
-		m_input_layouts[input_layout_pos] = device.createInputLayout(positionLayout, 1, vertex_shader);
+		DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+		m_input_layouts[input_layout_pos] = device->createInputLayout(positionLayout, 1, vertex_shader);
 	}
 	else if (input_layout_enum == input_layout_pos_normal_uv)
 	{
@@ -45,8 +45,8 @@ ID3D11InputLayout* RenderStateManager::getOrCreateInputLayout(InputLayoutEnum in
 			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		};
 
-		DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
-		m_input_layouts[input_layout_pos_normal_uv] = device.createInputLayout(oneUVLayout, 3, vertex_shader);
+		DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+		m_input_layouts[input_layout_pos_normal_uv] = device->createInputLayout(oneUVLayout, 3, vertex_shader);
 	}
 	else if (input_layout_enum == input_layout_pos_normal_uv2)
 	{
@@ -58,8 +58,8 @@ ID3D11InputLayout* RenderStateManager::getOrCreateInputLayout(InputLayoutEnum in
 			{ "TEXCOORD", 1, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 		};
 
-		DeviceD3D11& device = g_global_context.m_device_manager.getCurrentDevice();
-		m_input_layouts[input_layout_pos_normal_uv2] = device.createInputLayout(twoUVLayout, 4, vertex_shader);
+		DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+		m_input_layouts[input_layout_pos_normal_uv2] = device->createInputLayout(twoUVLayout, 4, vertex_shader);
 	}
 
 	return m_input_layouts[input_layout_enum];;

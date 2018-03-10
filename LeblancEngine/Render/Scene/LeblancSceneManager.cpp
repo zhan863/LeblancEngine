@@ -42,8 +42,7 @@ void SceneManager::loadScene(const char* scene_file_name)
 			m_scenes.push_back(new_scene);
 		else
 		{
-			new_scene->release();
-			delete new_scene;
+			safe_delete(new_scene);
 		}
 	}
 }

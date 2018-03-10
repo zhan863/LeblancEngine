@@ -1,8 +1,7 @@
 #ifndef LEBLANC_RENDER_PLATFORM_DEFINE_D3D11_H
 #define LEBLANC_RENDER_PLATFORM_DEFINE_D3D11_H
 
-#include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
-
+#include "LeblancEngine/BasicInclude/LeblancPCH.h"
 // Resource delaration
 class ResourceDeclaration
 {
@@ -22,6 +21,7 @@ protected:
 	size_t m_index_count = 0;
 };
 
+class DeviceD3D11;
 // Resource
 class RenderResource
 {
@@ -32,7 +32,7 @@ public:
 	virtual void release() = 0;
 protected:
 	// reference
-	DeviceD3D11 * m_device = nullptr;
+	DeviceD3D11* m_device = nullptr;
 
 };
 
@@ -45,6 +45,10 @@ public:
 	void release();
 
 	void initialize(const IndexBufferDeclaration* delaration);
+
+	void* lock();
+
+	void unlock();
 
 protected:
 

@@ -3,7 +3,7 @@
 
 #include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 
-enum TextureType
+enum TextureTypes
 {
 	Texture_2D,
 	Depth_Stencil_Texture,

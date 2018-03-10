@@ -1,6 +1,5 @@
 #include "LeblancEngine/Render/Scene/LeblancSceneManager.h"
 #include "LeblancEngine/Render/RenderEntity/LeblancIndexMesh.h"
-#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
 #include <assimp/Include/Importer.hpp>

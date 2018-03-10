@@ -3,6 +3,7 @@
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterialManager.h"
+#include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
 RenderEntity::RenderEntity()
 {
@@ -17,11 +18,7 @@ void RenderEntity::release()
 {
 	for (UINT i = 0; i < m_meshes.size(); i++)
 	{
-		if (m_meshes[i])
-		{
-			m_meshes[i]->release();
-			delete m_meshes[i];
-		}
+		safe_delete(m_meshes[i]);
 	}
 
 	m_meshes.clear();

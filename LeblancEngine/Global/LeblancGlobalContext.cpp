@@ -24,10 +24,8 @@ void GlobalContext::initialize(Window& window)
 
 void GlobalContext::release()
 {
-	m_device_manager.release();
 	m_pipeline_manager.release();
 	m_resource_manager.release();
 	m_render_state_manager.release();
-	m_scene_manager.release();
 	m_material_manager.release();
 }

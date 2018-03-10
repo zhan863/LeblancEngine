@@ -1,4 +1,5 @@
 #include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 
 void IndexBufferD3D11::release()
 {
@@ -23,4 +24,24 @@ void IndexBufferD3D11::initialize(const IndexBufferDeclaration* declaration)
 		// Create the buffer with the device.
 		m_device->createBuffer(&buffer_desc, 0, &m_index_buffer);
 	}
+}
+
+void* IndexBufferD3D11::lock()
+{
+	ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+	if (device_context)
+	{
+		D3D11_MAPPED_SUBRESOURCE mapped_resource;
+
+		if (SUCCEEDED(device_context->Map(m_index_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped_resource)))
+		{
+			return mapped_resource.pData;
+		}
+	}
+
+	return nullptr;
+}
+
+void IndexBufferD3D11::unlock()
+{
 }
