@@ -1,5 +1,7 @@
 #include "LeblancEngine/Render/Resource/LeblancRenderStateManager.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
+#include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 
 RenderStateManager::RenderStateManager()
 {
@@ -18,49 +20,57 @@ void RenderStateManager::initialize()
 
 void RenderStateManager::release()
 {
-
+	for (int i = 0; i < m_vertex_declarations.size(); i++)
+	{
+		safe_delete(m_vertex_declarations[i]);
+	}
+	m_vertex_declarations.clear();
 }
 
-ID3D11InputLayout* RenderStateManager::getOrCreateInputLayout(InputLayoutEnum input_layout_enum, VertexShader* vertex_shader)
+VertexDeclarationD3D11* RenderStateManager::getOrCreateVertexDeclaration(const VertexLayoutDeclaration* layout_declaration)
 {
-	if (m_input_layouts[input_layout_enum])
-		return m_input_layouts[input_layout_enum];
+	if (!layout_declaration)
+		return nullptr;
 
-	if (input_layout_enum == input_layout_pos)
+	const std::vector<VertexElement>& vertex_elements = layout_declaration->elements();
+	for (int i = 0; i < m_vertex_declarations.size(); i++)
 	{
-		D3D11_INPUT_ELEMENT_DESC positionLayout[] =
+		const std::vector<VertexElement>& ref_vertex_elements = m_vertex_declarations[i]->elements();
+
+		if (vertex_elements.size() != ref_vertex_elements.size())
 		{
-			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		};
+			continue;
+		}
 
-		DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
-		m_input_layouts[input_layout_pos] = device->createInputLayout(positionLayout, 1, vertex_shader);
-	}
-	else if (input_layout_enum == input_layout_pos_normal_uv)
-	{
-		D3D11_INPUT_ELEMENT_DESC oneUVLayout[] =
+		bool is_same_declaration = true;
+
+		for (int j = 0; j < vertex_elements.size(); j++)
 		{
-			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		};
+			if (vertex_elements[j] != ref_vertex_elements[j])
+			{
+				is_same_declaration = false;
+				break;
+			}
+		}
 
-		DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
-		m_input_layouts[input_layout_pos_normal_uv] = device->createInputLayout(oneUVLayout, 3, vertex_shader);
+		if (is_same_declaration)
+		{
+			return m_vertex_declarations[i];
+		}
 	}
-	else if (input_layout_enum == input_layout_pos_normal_uv2)
+
+	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice(); 
+
+	VertexDeclarationD3D11* new_vertex_declaration = new VertexDeclarationD3D11(device);
+	if (new_vertex_declaration)
 	{
-		D3D11_INPUT_ELEMENT_DESC twoUVLayout[] =
-		{ 
-			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "TEXCOORD", 1, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-		};
-
-		DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
-		m_input_layouts[input_layout_pos_normal_uv2] = device->createInputLayout(twoUVLayout, 4, vertex_shader);
+		new_vertex_declaration->initialize(layout_declaration);
+		m_vertex_declarations.push_back(new_vertex_declaration);
+	}
+	else
+	{
+		//LOG(MEMORY ERROR);
 	}
 
-	return m_input_layouts[input_layout_enum];;
+	return new_vertex_declaration;
 }

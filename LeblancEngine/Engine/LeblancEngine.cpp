@@ -4,7 +4,7 @@
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
 // To do: replace these strings with another way of loading scene
-const char* scene_file = "Content/Scene/leblanc_test_scene.scene";
+const char* scene_file = "Content/Mesh/sphere.obj";
 
 Engine::Engine() : m_window(NULL, L"Leblanc Engine", WS_OVERLAPPEDWINDOW, WS_EX_APPWINDOW, 1280, 720)
 {

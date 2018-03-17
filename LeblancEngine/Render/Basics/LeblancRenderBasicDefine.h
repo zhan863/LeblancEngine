@@ -85,13 +85,13 @@ enum class AlphaFunction : UINT
 	InverseSource1Color = 17,
 	BlendSource1Alpha = 18,
 	BlendInverseSource1Alpha = 19,
-	BlendError = -1
+	BlendError = 20
 };
 
 
 enum class BlendPipelineType : UINT
 {
-	UnknownBlendPipelineType = -1,
+	UnknownBlendPipelineType = 4,
 	BlendOver = 0,
 	BlendModulate = 1,
 	BlendAlpha = 2,
@@ -118,7 +118,7 @@ enum class CompareFunction : UINT
 	Always = 8
 };
 
-enum class StencilOp : UINT
+enum StencilOp : UINT
 {
 	StencilKeep = 1,
 	StencilZero = 2,
@@ -190,25 +190,25 @@ enum class DeclarationType : UINT
 enum class DeclarationUsage : UINT
 {
 	POSITION = 0,
-	BLENDWEIGHT,   // 1
-	BLENDINDICES,  // 2
-	NORMAL,        // 3
-	PSIZE,         // 4
-	TEXCOORD,      // 5
-	TANGENT,       // 6
-	BINORMAL,      // 7
-	TESSFACTOR,    // 8
-	POSITIONT,     // 9
-	COLOR,         // 10
-	FOG,           // 11
-	DEPTH,         // 12
-	SAMPLE,        // 13
-	SEED,
-	SPEED,
-	RAND,
-	TYPE,
-	STATE,
-	OLDSTATE
+	BLENDWEIGHT = 1,   // 1
+	BLENDINDICES = 2,  // 2
+	NORMAL = 3,        // 3
+	PSIZE = 4,         // 4
+	TEXCOORD = 5,      // 5
+	TANGENT = 6,       // 6
+	BINORMAL = 7,      // 7
+	TESSFACTOR = 8,    // 8
+	POSITIONT = 9,     // 9
+	COLOR = 10,         // 10
+	FOG = 11,           // 11
+	DEPTH = 12,         // 12
+	SAMPLE = 13,        // 13
+	SEED = 14,
+	SPEED = 15,
+	RAND = 16,
+	TYPE = 17,
+	STATE = 18,
+	OLDSTATE = 19
 };
 
 enum class TextureFilter : UINT

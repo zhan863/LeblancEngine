@@ -28,8 +28,6 @@ public:
 
 	ID3D11View* createRenderTargetView(TextureTypes texture_type, UINT width, UINT height, ID3D11Resource* resource);
 
-	ID3D11Device* getD3D11Device() { return m_device; }
-
 	Mesh1* createMesh(vector<Vertex>& vertices, vector<UINT>& indices);
 
 	ID3D11RenderTargetView* getBackBufferView();
@@ -57,7 +55,11 @@ public:
 
 	IndexBufferD3D11* createIndexBuffer(const ResourceDeclaration* declaration);
 
+	VertexBufferD3D11* createVertexBuffer(const ResourceDeclaration* declaration);
+
 	ID3D11DeviceContext* getImmediateDeviceContext() { return m_device_context; }
+
+	ID3D11Device* getD3D11Device() { return m_device; }
 
 private:
 	void release();

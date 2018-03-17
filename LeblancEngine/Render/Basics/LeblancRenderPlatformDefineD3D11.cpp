@@ -1,6 +1,38 @@
 #include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderPlatformUtilityDefineD3D11.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
+#include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
+// Declaration data
+VertexLayoutDeclaration::VertexLayoutDeclaration(const std::vector<VertexElement>& vertex_elements)
+{
+	for (uint32_t i = 0; i < vertex_elements.size(); i++)
+	{
+		m_elements.push_back(VertexElement(vertex_elements[i]));
+	}
+}
+
+VertexLayoutDeclaration::VertexLayoutDeclaration(const VertexLayoutDeclaration& in)
+{
+	for (uint32_t i = 0; i < in.m_elements.size(); i++)
+	{
+		m_elements.push_back(VertexElement(in.m_elements[i]));
+	}
+};
+
+VertexLayoutDeclaration::~VertexLayoutDeclaration()
+{
+	m_elements.clear();
+}
+
+const std::vector<VertexElement>& VertexLayoutDeclaration::elements() const
+{
+	return m_elements;
+}
+
+// D3D11 data
+// Index buffer
 void IndexBufferD3D11::release()
 {
 	if (m_index_buffer)
@@ -15,10 +47,10 @@ void IndexBufferD3D11::initialize(const IndexBufferDeclaration* declaration)
 	{
 		// Fill in a buffer description.
 		D3D11_BUFFER_DESC buffer_desc;
-		buffer_desc.Usage = D3D11_USAGE_DEFAULT;
+		buffer_desc.Usage = D3D11_USAGE_DYNAMIC;
 		buffer_desc.ByteWidth = declaration->getIndexCount() * sizeof(uint32_t);
 		buffer_desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-		buffer_desc.CPUAccessFlags = 0;
+		buffer_desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		buffer_desc.MiscFlags = 0;
 
 		// Create the buffer with the device.
@@ -44,4 +76,251 @@ void* IndexBufferD3D11::lock()
 
 void IndexBufferD3D11::unlock()
 {
+}
+
+void VertexBufferD3D11::release()
+{
+	safe_Release(m_vertex_buffer);
+}
+
+bool VertexBufferD3D11::initialize(const VertexBufferDeclaration* data)
+{
+	if (data)
+	{
+		m_size_in_bytes = data->sizeInBytes();
+		m_stride = data->vertexStride();
+
+		D3D11_BUFFER_DESC bd;
+		memset(&bd, 0, sizeof(D3D11_BUFFER_DESC));
+		bd.Usage = D3D11_USAGE_DEFAULT;
+		bd.ByteWidth = m_size_in_bytes;
+		bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+		bd.MiscFlags = 0;
+		bd.CPUAccessFlags = 0;
+		bd.StructureByteStride = sizeof(float);
+
+		D3D11_SUBRESOURCE_DATA resource;
+		memset(&resource, 0, sizeof(D3D11_SUBRESOURCE_DATA));
+		resource.pSysMem = data->vertexPtr();
+		resource.SysMemPitch = data->vertexStride();
+
+		if (m_device)
+		{
+			ID3D11Device* d3d11_device = m_device->getD3D11Device();
+			if (d3d11_device)
+			{
+				if (SUCCEEDED(d3d11_device->CreateBuffer(&bd, 0, &m_vertex_buffer)))
+					return true;
+			}
+		}
+		return false;
+	}
+}
+
+void VertexDeclarationD3D11::release()
+{
+	// data
+	m_input_layout_declaration.clear();
+	m_input_layout->Release();
+}
+
+uint32_t VertexDeclarationD3D11::elementToSize(const BYTE& type)
+{
+	switch (type)
+	{
+	case (UINT)DeclarationType::FLOAT1:
+		return 1 * sizeof(float);
+	case (UINT)DeclarationType::FLOAT2:
+		return 2 * sizeof(float);
+	case (UINT)DeclarationType::FLOAT3:
+		return 3 * sizeof(float);
+	case (UINT)DeclarationType::FLOAT4:
+		return 4 * sizeof(float);
+	case (UINT)DeclarationType::UBYTE4:
+		return 4 * sizeof(uint8_t);
+	}
+	return 0;
+}
+
+uint32_t VertexDeclarationD3D11::vertexStride() const
+{
+	return m_vertex_stride;
+}
+
+void VertexDeclarationD3D11::initialize(const VertexLayoutDeclaration* declaration)
+{
+	const std::vector<VertexElement>& elements = declaration->elements();
+	if (elements.size() == 0)
+		return;
+
+	D3D11_INPUT_ELEMENT_DESC input_layout_desc[32];
+
+	for (int i = 0; i < elements.size(); i++)
+	{
+		m_input_layout_declaration.push_back(elements[i]);
+		D3D11_INPUT_ELEMENT_DESC element =
+		{ delcarationUsageToString(elements[i].usage()).c_str(),
+			elements[i].usageIndex(),
+			declarationTypeToFormat(elements[i].type()),
+			elements[i].streamIndex(),
+			elements[i].offset(),
+			D3D11_INPUT_PER_VERTEX_DATA,
+			0 };
+
+		input_layout_desc[i] = element;
+	}
+
+	VertexElement element = elements[elements.size() - 1];
+	m_vertex_stride = (element.offset() + VertexDeclarationD3D11::elementToSize(element.type()));
+	m_element_count = (uint32_t)(elements.size());
+}
+// Declaration
+// Vertex Element
+VertexElement::VertexElement()
+{
+
+}
+
+VertexElement::VertexElement(WORD offsetVal,
+	BYTE typeVal,
+	BYTE usageVal,
+	BYTE usageIndexVal,
+	BYTE streamIndexVal)
+{
+	m_offset = offsetVal;
+	m_type = typeVal;
+	m_usage = usageVal;
+	m_usageIndex = usageIndexVal;
+	m_streamIndex = streamIndexVal;
+}
+
+VertexElement::VertexElement(const VertexElement& element)
+{
+	m_offset = element.m_offset;
+	m_type = element.m_type;
+	m_usageIndex = element.m_usageIndex;
+	m_usage = element.m_usage;
+	m_streamIndex = element.m_streamIndex;
+}
+
+WORD VertexElement::offset() const
+{
+	return m_offset;
+}
+
+BYTE VertexElement::type() const
+{
+	return m_type;
+}
+
+BYTE VertexElement::usage() const
+{
+	return m_usage;
+}
+
+BYTE VertexElement::usageIndex() const
+{
+	return m_usageIndex;
+}
+
+BYTE VertexElement::streamIndex() const
+{
+	return m_streamIndex;
+}
+
+bool VertexElement::operator == (const VertexElement &src) const
+{
+	if (m_usageIndex != src.usageIndex())
+		return false;
+	if (m_usage != src.usage())
+		return false;
+	if (m_type != src.type())
+		return false;
+	if (m_offset != src.offset())
+		return false;
+
+	return true;
+}
+
+bool VertexElement::operator != (const VertexElement &src) const
+{
+	if (m_usageIndex != src.usageIndex())
+		return true;
+	if (m_usage != src.usage())
+		return true;
+	if (m_type != src.type())
+		return true;
+	if (m_offset != src.offset())
+		return true;
+
+	return false;
+}
+
+// VertexStream
+VertexStream::VertexStream(DeclarationUsage usage,
+	uint32_t usage_index,
+	uint32_t stride_arg,
+	uint32_t count_arg,
+	const float* stream_src) :
+	m_usage(usage),
+	m_usage_index(usage_index),
+	m_stream(nullptr),
+	m_count(count_arg),
+	m_stride(stride_arg)
+{
+	setStream(m_stride, m_count, stream_src);
+}
+
+VertexStream::~VertexStream()
+{
+	m_stride = 0;
+	m_count = 0;
+	
+	safe_delete_array(m_stream);
+}
+
+uint32_t VertexStream::id(const VertexElement& element)
+{
+	uint32_t id = (1 << (element.usage() + 16));
+	if (element.usageIndex() >= 0)
+	{
+		id |= (1 << (element.usage() + 1));
+	}
+
+	return id;
+}
+
+uint32_t VertexStream::id(const VertexStream& vertex_stream)
+{
+	uint32_t id = (1 << ((BYTE)vertex_stream.usage() + 16));
+
+	if (vertex_stream.usage_index() >= 0)
+	{
+		id |= (1 << ((vertex_stream.usage_index() + 1)));
+	}
+
+	return id;
+}
+
+void VertexStream::setStream(uint32_t stride_arg,
+	uint32_t count_arg,
+	const float* stream_src)
+{
+	m_stride = stride_arg;
+	m_count = count_arg;
+
+	if (size() > 0)
+	{
+		safe_delete_array(m_stream);
+		m_stream = new float[size()];
+		setStream(stream_src);
+	}
+}
+
+void VertexStream::setStream(const float* stream_src)
+{
+	if (m_stream)
+	{
+		memcpy(m_stream, stream_src, bufferSizeInBytes());
+	}
 }

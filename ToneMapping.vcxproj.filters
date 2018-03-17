@@ -88,6 +88,9 @@
     <ClCompile Include="LeblancEngine\Render\Basics\LeblancRenderPlatformDefineD3D11.cpp">
       <Filter>LeblancEngine\Render\Basics</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.cpp">
+      <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -191,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\BasicInclude\LeblancMemoryOperation.h">
       <Filter>LeblancEngine\BasicInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.h">
+      <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

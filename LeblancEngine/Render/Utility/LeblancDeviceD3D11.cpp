@@ -337,3 +337,19 @@ IndexBufferD3D11* DeviceD3D11::createIndexBuffer(const ResourceDeclaration* decl
 
 	return index_buffer;
 }
+
+VertexBufferD3D11* DeviceD3D11::createVertexBuffer(const ResourceDeclaration* declaration)
+{
+	VertexBufferD3D11* vertex_buffer = nullptr;
+
+	if (declaration)
+	{
+		if (const VertexBufferDeclaration* vertex_buffer_declaration = dynamic_cast<const VertexBufferDeclaration*>(declaration))
+		{
+			vertex_buffer = new VertexBufferD3D11(this);
+			vertex_buffer->initialize(vertex_buffer_declaration);
+		}
+	}
+
+	return vertex_buffer;
+}

@@ -2,14 +2,7 @@
 #define LEBLANC_RENDER_STATE_MANAGER_H
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
-
-enum InputLayoutEnum
-{
-	input_layout_pos_normal_uv,
-	input_layout_pos_normal_uv2,
-	input_layout_pos,
-	k_input_layout_count
-};
+#include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
 
 class RenderStateManager
 {
@@ -21,9 +14,9 @@ public:
 
 	void release();
 
-	ID3D11InputLayout* getOrCreateInputLayout(InputLayoutEnum input_layout_enum, VertexShader* vertex_shader);
+	VertexDeclarationD3D11* getOrCreateVertexDeclaration(const VertexLayoutDeclaration* layout_declaration);
 
 protected:
-	ID3D11InputLayout* m_input_layouts[InputLayoutEnum::k_input_layout_count] = { nullptr, nullptr, nullptr };
+	std::vector<VertexDeclarationD3D11*> m_vertex_declarations;
 };
 #endif

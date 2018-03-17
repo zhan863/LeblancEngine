@@ -46,7 +46,7 @@ void IndexMesh::load(const aiMesh* mesh)
 
 		if (mesh->HasNormals())
 		{
-			memcpy(position_ptr, mesh->mNormals, sizeof(float) * 3 * vertex_count);
+			memcpy(normal_ptr, mesh->mNormals, sizeof(float) * 3 * vertex_count);
 		}
 
 		if (mesh->HasTextureCoords(0))
@@ -73,8 +73,33 @@ void IndexMesh::load(const aiMesh* mesh)
 
 		setPrimitiveType(PrimitiveType::TriangleList);
 
+		// currently in Leblanc Engine, the vertex delcaration is fixed as Position, Normal and Texture coordinate.
+		vector<VertexElement> vertex_elements;
+		vertex_elements.push_back(VertexElement(0, (BYTE)DeclarationType::FLOAT3, (BYTE)DeclarationUsage::POSITION, 0, 0));
+		vertex_elements.push_back(VertexElement(12, (BYTE)DeclarationType::FLOAT3, (BYTE)DeclarationUsage::NORMAL, 0, 0));
+		vertex_elements.push_back(VertexElement(24, (BYTE)DeclarationType::FLOAT2, (BYTE)DeclarationUsage::TEXCOORD, 0, 0));
+
+		VertexLayoutDeclaration vertex_layout_declaration(vertex_elements);
+
+		VertexDeclarationD3D11* vertex_declaration = g_global_context.m_render_state_manager.getOrCreateVertexDeclaration(&vertex_layout_declaration);
+
+		setVertexDeclaration(vertex_declaration);
+
+		VertexStream* vertex_stream = new VertexStream(DeclarationUsage::POSITION, 0, 3, vertexCount(), (float*)position_ptr);
+		VertexStream* normal_stream = new VertexStream(DeclarationUsage::NORMAL, 0, 3, vertexCount(), (float*)normal_ptr);
+		VertexStream* texcoord_stream = new VertexStream(DeclarationUsage::TEXCOORD, 0, 2, vertexCount(), (float*)uv_ptr);
+
+		addStream(vertex_stream);
+		addStream(normal_stream); 
+		addStream(texcoord_stream);
+
+		createVertexBuffer();
+
 		// release all data created during creation
 		safe_delete_array(index_ptr);
+		safe_delete_array(position_ptr);
+		safe_delete_array(normal_ptr);
+		safe_delete_array(uv_ptr);
 	}
 }
 
