@@ -1,6 +1,7 @@
-#include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterialManager.h"
-#include "LeblancEngine/Render/Resource/Material/LeblancShaderCompile.h"
+#include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
+#include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 
 MaterialManager::MaterialManager()
 {
@@ -9,59 +10,58 @@ MaterialManager::MaterialManager()
 
 MaterialManager::~MaterialManager()
 {
-
+	release();
 }
 
 void MaterialManager::initialize()
 {
-	//loadShadowMapMaterial();
-	loadGBufferMaterial();
-	loadDeferredShadingMaterial();
-	//loadPostProcessingMaterial();
+	WIN32_FIND_DATA shader_file;
+	wstring path(L"Content\\Shader\\");
+	wstring partern(L"*.fx");
+	HANDLE h_find = FindFirstFileEx((path + L"\\" + partern).c_str(), 
+		FindExInfoStandard,   
+		&shader_file,                  
+		FindExSearchNameMatch, 
+		NULL,                  
+		0
+	);
+
+	if (h_find == INVALID_HANDLE_VALUE)
+	{
+		DWORD error = GetLastError();
+
+		if (error != ERROR_FILE_NOT_FOUND)
+		{
+			//LOG("Invalid File Handle, err code: " << error);
+			return;
+		}
+	}
+
+	vector<wstring> files;
+	if (h_find != INVALID_HANDLE_VALUE)
+	{
+		do
+		{
+			if (shader_file.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				continue;
+
+			files.push_back(path + shader_file.cFileName);
+
+		} while (FindNextFile(h_find, &shader_file));
+		FindClose(h_find);
+	}
+
+	for (int i = 0; i < files.size(); i++)
+	{
+		Shader* new_shader = new Shader(g_global_context.m_device_manager.getCurrentDevice());
+		new_shader->initialize(string(files[i].begin(), files[i].end()), "");
+		m_shaders.push_back(new_shader);
+	}
 }
 
 void MaterialManager::release()
 {
-	for (UINT i = 0; i < m_global_materials.size(); i++)
-	{
-		m_global_materials[i].release();
-	}
-}
-
-void MaterialManager::loadShadowMapMaterial()
-{
-	Material material;
-	compileMaterial(L"Content/Shader/shadow_map.hlsl", material, "VS", "PS");
-	m_global_materials.push_back(material);
-}
-
-void MaterialManager::loadGBufferMaterial()
-{
-	Material material;
-	compileMaterial(L"Content/Shader/gbuffer.hlsl", material, "VS", "PS");
-	m_global_materials.push_back(material);
-}
-
-void MaterialManager::loadDeferredShadingMaterial()
-{
-	Material material;
-	compileMaterial(L"Content/Shader/deferred.hlsl", material, "VS", "PS");
-	m_global_materials.push_back(material);
-}
-
-void MaterialManager::loadPostProcessingMaterial()
-{
-	Material material;
-	compileMaterial(L"Content/Shader/post_processing.hlsl", material, "VS", "PS");
-	m_global_materials.push_back(material);
-}
-
-void MaterialManager::compileMaterial(LPCWSTR material_file_name, Material& material, LPCSTR vs, LPCSTR ps)
-{
-	ShaderCompiler::compileMaterial(material_file_name, vs, ps, material);
-}
-
-Material* MaterialManager::getGlobalPassMaterial(Pass pass)
-{
-	return &m_global_materials[(UINT)pass];
+	for (int i = 0; i < m_shaders.size(); i++)
+		safe_release(m_shaders[i]);
+	m_shaders.clear();
 }

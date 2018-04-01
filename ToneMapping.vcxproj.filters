@@ -70,9 +70,6 @@
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaders.cpp">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.cpp">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
@@ -90,6 +87,15 @@
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.cpp">
       <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancTechnique.cpp">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancConstantBuffer.cpp">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.cpp">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +171,6 @@
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaders.h">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaderCompile.h">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderBasicDefine.h">
       <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
@@ -197,6 +200,24 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.h">
       <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\assimp\Include\cimport.h">
+      <Filter>ThirdParty\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\assimp\Include\Importer.hpp">
+      <Filter>ThirdParty\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\assimp\Include\scene.h">
+      <Filter>ThirdParty\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancTechnique.h">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancConstantBuffer.h">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.h">
+      <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +280,9 @@
     </Filter>
     <Filter Include="LeblancEngine\Math">
       <UniqueIdentifier>{3273166e-edcd-499a-8cdd-347349543e61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Assimp">
+      <UniqueIdentifier>{c8f45c60-f325-4504-8738-62f145d1af89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

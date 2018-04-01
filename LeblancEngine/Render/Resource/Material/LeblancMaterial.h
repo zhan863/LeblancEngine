@@ -2,12 +2,15 @@
 #define LEBLANC_MATERIAL_H
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
+#include <string>
 
-class Material
+using namespace std;
+
+class LeblancMaterial
 {
 public:
-	Material();
-	~Material();
+	LeblancMaterial();
+	~LeblancMaterial();
 
 	void initialize();
 
@@ -16,5 +19,24 @@ public:
 	VertexShader m_vertex_shader;
 	PixelShader m_pixel_shader;
 	ComputeShader m_compute_shader;
+};
+
+class Shader;
+class Technique;
+class Material
+{
+public:
+	Material();
+	~Material();
+
+	void release();
+
+	void initialize(string file_name);
+
+private:
+	// Reference
+	Shader * m_shader = nullptr;
+	Technique* m_technique = nullptr;
+
 };
 #endif
