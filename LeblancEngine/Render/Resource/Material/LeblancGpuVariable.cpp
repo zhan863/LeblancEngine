@@ -3,6 +3,24 @@
 
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
+GpuData::GpuData(size_t size, void* data) : m_size(size)
+{
+	m_data = new char[size];
+	memcpy(m_data, data, size);
+}
+
+GpuData::~GpuData()
+{
+	release();
+}
+
+void GpuData::release()
+{
+	char* data = static_cast<char*>(m_data);
+	safe_delete_array(data);
+	m_data = nullptr;
+}
+
 GpuVariable::GpuVariable(DeviceD3D11* device) : m_device(device)
 {
 

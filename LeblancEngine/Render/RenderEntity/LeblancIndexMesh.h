@@ -11,7 +11,9 @@ public:
 	IndexMesh();
 	~IndexMesh();
 
-	void load(const aiMesh* mesh);
+	void load(const aiMesh* mesh, const aiScene* scene);
+
+	bool loadFromFile(const char* file_name);
 
 protected:
 	void setIndices(const uint32_t* indices, size_t index_count, size_t face_count);

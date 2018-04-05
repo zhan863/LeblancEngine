@@ -4,6 +4,7 @@
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
+class IndexMesh;
 class GBuffer;
 
 class ResourceManager
@@ -22,6 +23,9 @@ public:
 
 protected:
 
-	GBuffer* gbuffer = nullptr;
+	// Data
+	GBuffer* m_gbuffer = nullptr;
+
+	IndexMesh* m_screen_quad = nullptr;
 };
 #endif

@@ -5,6 +5,18 @@
 #include <string>
 using namespace std;
 
+class GpuData
+{
+public:
+	GpuData(size_t size, void* data);
+	~GpuData();
+
+	void release();
+
+	size_t m_size = 0;
+	void* m_data = nullptr;
+};
+
 class DeviceD3D11;
 class ID3DX11Effect;
 class ID3DX11EffectVariable;

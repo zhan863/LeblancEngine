@@ -15,6 +15,7 @@ Mesh::~Mesh()
 void Mesh::release()
 {
 	safe_delete(m_vertex_buffer);
+	safe_delete(m_material);
 }
 
 void Mesh::createVertexBuffer()

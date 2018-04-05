@@ -7,6 +7,7 @@
 
 #include <assimp/Include/scene.h>
 
+class Material;
 class Mesh
 {
 public:
@@ -45,5 +46,7 @@ protected:
 
 	// reference
 	const VertexDeclarationD3D11* m_vertex_declaration = nullptr;
+
+	Material* m_material = nullptr;
 };
 #endif

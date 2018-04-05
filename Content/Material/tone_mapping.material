@@ -1,0 +1,8 @@
+<Material name="tone_mapping">
+   <Shader name="ToneMapping.fx"/>
+   <Technique name="toneMapping"/>
+   <Pass name="post_process"/>
+   <Parameters>
+   		<Parameter name="tone_mapping_color" type="Float4" value="1.0 1.0 0.0 1.0"/>
+   </Parameters>
+</Material>

@@ -180,6 +180,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LeblancEngine\Asset\LeblancAssetManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Asset\LeblancDataStream.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="LeblancEngine\BasicInclude\LeblancPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -276,8 +282,13 @@
     <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ThirdParty\pugi\pugixml.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LeblancEngine\Asset\LeblancAssetManager.h" />
+    <ClInclude Include="LeblancEngine\Asset\LeblancDataStream.h" />
     <ClInclude Include="LeblancEngine\BasicInclude\LeblancExceptions.h" />
     <ClInclude Include="LeblancEngine\BasicInclude\LeblancMemoryOperation.h" />
     <ClInclude Include="LeblancEngine\BasicInclude\LeblancPCH.h" />
@@ -318,6 +329,8 @@
     <ClInclude Include="ThirdParty\assimp\Include\scene.h" />
     <ClInclude Include="ThirdParty\Effect\Include\d3dx11effect.h" />
     <ClInclude Include="ThirdParty\Effect\Include\d3dxGlobal.h" />
+    <ClInclude Include="ThirdParty\pugi\pugiconfig.hpp" />
+    <ClInclude Include="ThirdParty\pugi\pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />

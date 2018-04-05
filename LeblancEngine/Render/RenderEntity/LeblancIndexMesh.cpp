@@ -4,6 +4,12 @@
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
+#include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
+
+#include <assimp/Include/Importer.hpp>
+#include <assimp/Include/scene.h>
+#include <assimp/Include/postprocess.h>
+
 IndexMesh::IndexMesh()
 {
 
@@ -22,10 +28,51 @@ void IndexMesh::release()
 	m_index_count = 0;
 }
 
-void IndexMesh::load(const aiMesh* mesh)
+bool IndexMesh::loadFromFile(const char* file_name)
+{
+	// To do: need to load the .scene file instead of the fbx file directly
+
+	Assimp::Importer importer;
+	uint32_t flags = aiProcess_CalcTangentSpace |
+		aiProcess_Triangulate |
+		aiProcess_PreTransformVertices |
+		aiProcess_FlipUVs;
+
+	// the ai scene here equals the entity and the sub mesh of it equals the mesh contained by the entity;
+	const aiScene* scene = importer.ReadFile(file_name, flags);
+
+	if (scene == nullptr)
+	{
+		//LOG("Failed to load scene " << meshFilePathName);
+		return false;
+	}
+
+	if (scene->mNumMeshes == 0)
+	{
+		//LOG("Failed to load any meshes " << meshFilePathName);
+		return false;
+	}
+
+	if (scene->HasMeshes() && scene->mNumMeshes == 1)
+	{
+		aiMesh* mesh = scene->mMeshes[0];
+		if (mesh)
+		{
+			load(mesh, scene);
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void IndexMesh::load(const aiMesh* mesh, const aiScene* scene)
 {
 	if (mesh)
 	{
+		release();
+
+		// load mesh
 		size_t vertex_count = mesh->mNumVertices;
 		size_t index_count = mesh->mNumFaces * 3;
 
@@ -100,6 +147,21 @@ void IndexMesh::load(const aiMesh* mesh)
 		safe_delete_array(position_ptr);
 		safe_delete_array(normal_ptr);
 		safe_delete_array(uv_ptr);
+
+		// load mesh material
+		if (scene->HasMaterials())
+		{
+			const aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+			m_material = new Material;
+
+			if (m_material)
+			{
+				aiString material_name;
+				material->Get("?mat.name", 0, 0, material_name);
+
+				m_material->initialize("Content\\Material\\tone_mapping.material");////material_name.C_Str());
+			}
+		}
 	}
 }
 

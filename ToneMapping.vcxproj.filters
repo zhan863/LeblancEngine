@@ -97,6 +97,15 @@
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.cpp">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdParty\pugi\pugixml.cpp">
+      <Filter>ThirdParty\pugi</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Asset\LeblancAssetManager.cpp">
+      <Filter>LeblancEngine\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Asset\LeblancDataStream.cpp">
+      <Filter>LeblancEngine\Asset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -219,6 +228,18 @@
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.h">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\pugi\pugiconfig.hpp">
+      <Filter>ThirdParty\pugi</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\pugi\pugixml.hpp">
+      <Filter>ThirdParty\pugi</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Asset\LeblancAssetManager.h">
+      <Filter>LeblancEngine\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Asset\LeblancDataStream.h">
+      <Filter>LeblancEngine\Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -283,6 +304,12 @@
     </Filter>
     <Filter Include="ThirdParty\Assimp">
       <UniqueIdentifier>{c8f45c60-f325-4504-8738-62f145d1af89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\pugi">
+      <UniqueIdentifier>{06d2adf1-503e-4ed7-9734-16bf16c6b67e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Asset">
+      <UniqueIdentifier>{7ca0f34a-4e79-4fde-932f-11f9b2ba232c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

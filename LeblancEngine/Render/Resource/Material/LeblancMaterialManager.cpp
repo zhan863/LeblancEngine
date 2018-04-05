@@ -55,13 +55,26 @@ void MaterialManager::initialize()
 	{
 		Shader* new_shader = new Shader(g_global_context.m_device_manager.getCurrentDevice());
 		new_shader->initialize(string(files[i].begin(), files[i].end()), "");
-		m_shaders.push_back(new_shader);
+		m_shaders.insert(make_pair(string(files[i].begin(), files[i].end()) ,new_shader));
 	}
 }
 
 void MaterialManager::release()
 {
-	for (int i = 0; i < m_shaders.size(); i++)
-		safe_release(m_shaders[i]);
+	for (map<string, Shader*>::iterator i = m_shaders.begin(); i != m_shaders.end(); i++)
+	{
+		safe_release(i->second);
+	}
 	m_shaders.clear();
+}
+
+Shader* MaterialManager::getShaderByFilePath(string filename)
+{
+	map<string, Shader*>::iterator i = m_shaders.find(filename);
+	if (i != m_shaders.end())
+	{
+		return i->second;
+	}
+
+	return nullptr;
 }

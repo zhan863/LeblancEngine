@@ -52,7 +52,7 @@ bool Scene::load(const char* file_name)
 				IndexMesh* index_mesh = new IndexMesh;
 				if (index_mesh)
 				{
-					index_mesh->load(mesh);
+					index_mesh->load(mesh, scene);
 				}
 
 				render_entity->addMesh(index_mesh);

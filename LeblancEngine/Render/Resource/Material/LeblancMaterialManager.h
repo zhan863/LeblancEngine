@@ -1,7 +1,7 @@
 #ifndef LEBLANC_MATERIAL_MANAGER_H
 #define LEBLANC_MATERIAL_MANAGER_H
 
-#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -17,8 +17,10 @@ public:
 
 	void release();
 
+	Shader* getShaderByFilePath(string filename);
+
 private:
 	// data
-	vector<Shader*> m_shaders;
+	map<string, Shader*> m_shaders;
 };
 #endif
