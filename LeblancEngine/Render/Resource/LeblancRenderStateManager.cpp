@@ -25,6 +25,12 @@ void RenderStateManager::release()
 		safe_delete(m_vertex_declarations[i]);
 	}
 	m_vertex_declarations.clear();
+
+	for each (auto iter in m_rasterizer_states)
+	{
+		safe_delete(iter.second);
+	}
+	m_rasterizer_states.clear();
 }
 
 VertexDeclarationD3D11* RenderStateManager::getOrCreateVertexDeclaration(const VertexLayoutDeclaration* layout_declaration)
@@ -73,4 +79,20 @@ VertexDeclarationD3D11* RenderStateManager::getOrCreateVertexDeclaration(const V
 	}
 
 	return new_vertex_declaration;
+}
+
+RasterizerStateD3D11* RenderStateManager::getOrCreateRasterizerState(RasterizerState rasterizer_state)
+{
+	auto iter = m_rasterizer_states.find(rasterizer_state);
+	if (iter != m_rasterizer_states.end())
+	{
+		return iter->second;
+	}
+
+	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+	RasterizerStateD3D11* new_rasterizer_state = new RasterizerStateD3D11(device);
+	new_rasterizer_state->initialize(rasterizer_state);
+
+	m_rasterizer_states.insert(make_pair(rasterizer_state, new_rasterizer_state));
+	return new_rasterizer_state;
 }

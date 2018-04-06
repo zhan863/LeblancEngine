@@ -3,10 +3,26 @@
 
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
-GpuData::GpuData(size_t size, void* data) : m_size(size)
+GpuData::GpuData(GpuDataType type, void* data, size_t count) : m_type(type)
 {
-	m_data = new char[size];
-	memcpy(m_data, data, size);
+	m_size = getGpuDataElementSize(type) * count;
+	m_data = new char[m_size];
+	m_count = count;
+	memcpy(m_data, data, m_size);
+}
+
+size_t GpuData::getGpuDataElementSize(GpuDataType type)
+{
+	static const size_t float_size = 16;
+	switch (type)
+	{
+	case GpuDataType::FLOAT: 
+	case GpuDataType::FLOAT_ARRAY: return float_size;
+	case GpuDataType::FLOAT4:
+	case GpuDataType::FLOAT4_ARRAY: return 4 * float_size;
+	case GpuDataType::MATRIX:
+	case GpuDataType::MATRIX_ARRAY: return 4 * 4 * float_size;
+	}
 }
 
 GpuData::~GpuData()

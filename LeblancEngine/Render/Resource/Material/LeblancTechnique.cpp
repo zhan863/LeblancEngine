@@ -23,10 +23,40 @@ void Technique::initialize(ID3DX11Effect* effect, int index)
 
 		m_technique_handle->GetDesc(&m_desc);
 		m_name = m_desc.Name;
+
+		for (int i = 0; i < m_desc.Passes; i++)
+		{
+			InputLayoutCacheD3D11* layout_cache = new InputLayoutCacheD3D11(m_device);
+			layout_cache->initialize(m_technique_handle, i);
+			m_input_layout_caches.push_back(layout_cache);
+		}
 	}
 }
 
 void Technique::release()
 {
 	safe_Release(m_technique_handle);
+}
+
+void Technique::bindInputLayout(int index, const VertexDeclarationD3D11* vertex_declaration)
+{
+	if (index >= 0 && index < m_input_layout_caches.size())
+	{
+		if (m_input_layout_caches[index])
+		{
+			m_input_layout_caches[index]->bindLayout(vertex_declaration);
+		}
+	}
+}
+
+void Technique::apply(int index)
+{
+	if (index >= 0)
+	{
+		ID3DX11EffectPass* pass = m_technique_handle->GetPassByIndex(index);
+		if (pass)
+		{
+			pass->Apply(0, m_device->getImmediateDeviceContext());
+		}
+	}
 }

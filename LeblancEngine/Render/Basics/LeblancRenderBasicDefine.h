@@ -99,13 +99,6 @@ enum class BlendPipelineType : UINT
 	// Others go here.
 };
 
-enum class CullMode : UINT
-{
-	CullNone,
-	CW,
-	CCW
-};
-
 enum class CompareFunction : UINT
 {
 	Never = 1,

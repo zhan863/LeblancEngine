@@ -94,57 +94,34 @@ void Shader::release()
 	safe_Release(m_effect_handle);
 }
 
-void Shader::setMatrix(string name, const float* matrix)
+Technique* Shader::getTechnique(string name)
 {
-	map<string, GpuVariable*>::iterator gpu_variable = m_gpu_variables.find(name);
-	if (gpu_variable != m_gpu_variables.end());
+	map<string, Technique*>::iterator technique = m_techniques.find(name);
+	if (technique != m_techniques.end())
 	{
-		gpu_variable->second->setMatrix(matrix);
+		return technique->second;
 	}
+
+	return nullptr;
 }
 
-void Shader::setVector(string name, const float* vector)
+void Shader::setGpuData(string name, const GpuData* gpu_data)
 {
-	map<string, GpuVariable*>::iterator gpu_variable = m_gpu_variables.find(name);
-	if (gpu_variable != m_gpu_variables.end());
-	{
-		gpu_variable->second->setVector(vector);
-	}
-}
+	if (!gpu_data)
+		return;
 
-void Shader::setScalar(string name, const float* value)
-{
 	map<string, GpuVariable*>::iterator gpu_variable = m_gpu_variables.find(name);
-	if (gpu_variable != m_gpu_variables.end());
+	if (gpu_variable != m_gpu_variables.end())
 	{
-		gpu_variable->second->setScalar(value);
-	}
-}
-
-void Shader::setMatrixArray(string name, const float* matrix, int count)
-{
-	map<string, GpuVariable*>::iterator gpu_variable = m_gpu_variables.find(name);
-	if (gpu_variable != m_gpu_variables.end());
-	{
-		gpu_variable->second->setMatrixArray(matrix, count);
-	}
-}
-
-void Shader::setVectorArray(string name, const float* vector, int count)
-{
-	map<string, GpuVariable*>::iterator gpu_variable = m_gpu_variables.find(name);
-	if (gpu_variable != m_gpu_variables.end());
-	{
-		gpu_variable->second->setVectorArray(vector, count);
-	}
-}
-
-void Shader::setScalarArray(string name, const float* value, int count)
-{
-	map<string, GpuVariable*>::iterator gpu_variable = m_gpu_variables.find(name);
-	if (gpu_variable != m_gpu_variables.end());
-	{
-		gpu_variable->second->setScalarArray(value, count);
+		switch(gpu_data->m_type)
+		{
+		case GpuDataType::FLOAT: gpu_variable->second->setScalar(static_cast<const float*>(gpu_data->m_data)); break;
+		case GpuDataType::FLOAT4: gpu_variable->second->setVector(static_cast<const float*>(gpu_data->m_data)); break;
+		case GpuDataType::MATRIX: gpu_variable->second->setMatrix(static_cast<const float*>(gpu_data->m_data)); break;
+		case GpuDataType::FLOAT_ARRAY: gpu_variable->second->setScalarArray(static_cast<const float*>(gpu_data->m_data), gpu_data->m_count); break;
+		case GpuDataType::FLOAT4_ARRAY: gpu_variable->second->setVectorArray(static_cast<const float*>(gpu_data->m_data), gpu_data->m_count); break;
+		case GpuDataType::MATRIX_ARRAY: gpu_variable->second->setMatrixArray(static_cast<const float*>(gpu_data->m_data), gpu_data->m_count); break;
+		}
 	}
 }
 

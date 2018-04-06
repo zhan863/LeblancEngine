@@ -19,6 +19,8 @@ public:
 
 	GBuffer* getGBuffer();
 
+	IndexMesh* getScreenQuad();
+
 	void createGBuffer(UINT width, UINT height);
 
 protected:

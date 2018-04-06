@@ -78,7 +78,7 @@ protected:
 
 
 
-
+class GpuData;
 class Technique;
 class GpuVariable;
 class ConstantBuffer;
@@ -98,13 +98,9 @@ public:
 	std::string getIncludeName() { return m_include_name; }
 	std::string getFileName() { return m_file_name; }
 
-	void setMatrix(string name, const float* matrix); 
-	void setVector(string name, const float* vector);
-	void setScalar(string name, const float* value);	
-	
-	void setMatrixArray(string name, const float* matrix, int count);
-	void setVectorArray(string name, const float* vector, int count);
-	void setScalarArray(string name, const float* value, int count);
+	void setGpuData(string name, const GpuData* gpu_data);
+
+	Technique* getTechnique(string name);
 
 private:
 	void enumerateVariables(D3DX11_EFFECT_DESC& desc);

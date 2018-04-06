@@ -1,5 +1,7 @@
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 #include "LeblancEngine/Render/Basics/LeblancGeometry.h"
+#include "LeblancEngine/Render/RenderEntity/LeblancIndexMesh.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 #include <vector>
 
 using namespace std;
@@ -287,13 +289,13 @@ void DeviceD3D11::setInputLayout(ID3D11InputLayout* input_layout)
 	m_device_context->IASetInputLayout(input_layout);
 }
 
-void DeviceD3D11::renderMesh(Mesh1* mesh)
+void DeviceD3D11::renderIndexMesh(IndexMesh* mesh)
 {
 	UINT offset = 0;
-	m_device_context->IASetVertexBuffers(0, 1, &mesh->m_vertex_buffer, &mesh->m_stride, &offset);
-	m_device_context->IASetIndexBuffer(mesh->m_index_buffer, DXGI_FORMAT_R32_UINT, 0);
-	m_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	m_device_context->DrawIndexed(mesh->m_index_size, 0, 0);
+	mesh->getVertexBuffer()->bind();
+	mesh->getIndexBuffer()->bind();
+	m_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	m_device_context->DrawIndexed(mesh->getIndexCount(), 0, 0);
 }
 
 void DeviceD3D11::setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT height)
@@ -309,13 +311,21 @@ void DeviceD3D11::setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT heigh
 	m_device_context->RSSetViewports(1, &view_port);
 }
 
+void DeviceD3D11::setRasterizerState(RasterizerState rasterizer_mode)
+{
+	RasterizerStateD3D11* rasterizer_state = g_global_context.m_render_state_manager.getOrCreateRasterizerState(rasterizer_mode);
+	if (rasterizer_state)
+	{
+		m_device_context->RSSetState(rasterizer_state->getRasterizerState());
+	}
+}
+
 ID3D11InputLayout* DeviceD3D11::createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader)
 {
 	ID3D11InputLayout* layout = nullptr;
 	m_device->CreateInputLayout(input_layout_desc, layout_desc_count, vertex_shader->getBlob()->GetBufferPointer(), vertex_shader->getBlob()->GetBufferSize(), &layout);
 	return layout;
 }
-
 
 // new create resource data
 void DeviceD3D11::createBuffer(const D3D11_BUFFER_DESC *desc, D3D11_SUBRESOURCE_DATA *initial_data, ID3D11Buffer **buffer)

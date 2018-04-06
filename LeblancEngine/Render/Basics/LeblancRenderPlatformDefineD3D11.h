@@ -3,6 +3,7 @@
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderPlatformIndependentDefine.h"
 // Resource delaration
 class ResourceDeclaration
 {
@@ -88,6 +89,8 @@ public:
 
 	void unlock();
 
+	void bind() const;
+
 protected:
 
 	// data
@@ -109,6 +112,8 @@ public:
 	virtual void setVertexDeclaration(const VertexDeclarationD3D11* decl) { m_vertex_declaration = decl; }
 
 	const VertexDeclarationD3D11* vertexDeclaration() const { return m_vertex_declaration; }
+
+	void bind() const;
 
 protected:
 	// reference
@@ -137,12 +142,32 @@ public:
 
 	uint32_t vertexStride() const;
 
+	uint32_t getElementCount() const { return m_element_count; }
+
+	const D3D11_INPUT_ELEMENT_DESC* getInputLayout() const { return m_input_layout; }
+
 protected:
 	// data
-	ID3D11InputLayout * m_input_layout = nullptr;
+	D3D11_INPUT_ELEMENT_DESC * m_input_layout = nullptr;
 	std::vector<VertexElement> m_input_layout_declaration;
 	uint32_t m_element_count;
 	uint32_t m_vertex_stride;
+};
+
+class RasterizerStateD3D11 : public RenderResource
+{
+public:
+	RasterizerStateD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	virtual ~RasterizerStateD3D11() { release(); }
+
+	virtual void release();
+
+	void initialize(RasterizerState rasterizer_state);
+
+	ID3D11RasterizerState* getRasterizerState() { return m_rasterizer_state; }
+protected:
+	// data
+	ID3D11RasterizerState* m_rasterizer_state = nullptr;
 };
 
 // Declaration data
@@ -207,5 +232,27 @@ private:
 	float*							m_stream;
 	DeclarationUsage				m_usage;
 	uint32_t						m_usage_index;
+};
+
+class InputLayoutCacheD3D11
+{
+public:
+	InputLayoutCacheD3D11(DeviceD3D11* device);
+	virtual ~InputLayoutCacheD3D11();
+
+	void							release();
+	void							initialize(ID3DX11EffectTechnique* technique, uint32_t passIndex);
+	bool							bindLayout(const VertexDeclarationD3D11* vertex_declaration) const;
+
+protected:
+	typedef std::map <const VertexDeclarationD3D11*, ID3D11InputLayout*> LayoutMap;
+	// data
+	mutable LayoutMap               m_layouts;
+	uint32_t                        m_pass_index = -1;
+	D3DX11_PASS_DESC                m_pass_desc;
+
+	// reference
+	ID3DX11EffectTechnique*         m_technique = nullptr;
+	DeviceD3D11*					m_device = nullptr;
 };
 #endif

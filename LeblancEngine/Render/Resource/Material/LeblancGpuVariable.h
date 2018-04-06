@@ -2,19 +2,24 @@
 #define LEBLANC_GPU_VARIABLES_H
 
 #include "ThirdParty/Effect/Include/d3dx11effect.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderPlatformIndependentDefine.h"
 #include <string>
 using namespace std;
 
 class GpuData
 {
 public:
-	GpuData(size_t size, void* data);
+	GpuData(GpuDataType type, void* data, size_t count = 1);
 	~GpuData();
+
+	static size_t getGpuDataElementSize(GpuDataType type);
 
 	void release();
 
 	size_t m_size = 0;
+	size_t m_count = 1;
 	void* m_data = nullptr;
+	GpuDataType m_type = GpuDataType::FLOAT4;
 };
 
 class DeviceD3D11;

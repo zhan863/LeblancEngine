@@ -3,6 +3,11 @@
 #include "LeblancEngine/Render/Utility/LeblancDeviceManager.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
+#include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
+#include "LeblancEngine/Render/Resource/Material/LeblancTechnique.h"
+#include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
+#include "LeblancEngine/Render/RenderEntity/LeblancIndexMesh.h"
+
 DeferredPipeline::DeferredPipeline()
 {
 
@@ -51,5 +56,17 @@ void DeferredPipeline::deferredShading(Texture2D* render_target, Scene& scene)
 
 void DeferredPipeline::postProcessing()
 {
-
+	IndexMesh* mesh = g_global_context.m_resource_manager.getScreenQuad();
+	Material* material = mesh->getMaterial();
+	material->setParameters();
+	Shader* shader = material->getShader();
+	Technique* technique = shader->getTechnique(material->getTechniqueName());
+	if (technique)
+	{
+		technique->bindInputLayout(0, mesh->getVertexDeclaration());
+		technique->apply(0);
+		g_global_context.m_device_manager.getCurrentDevice()->setRasterizerState(RasterizerState::NONE);
+		g_global_context.m_device_manager.getCurrentDevice()->setViewPort(0, 0, 1280, 720);
+		g_global_context.m_device_manager.getCurrentDevice()->renderIndexMesh(mesh);
+	}
 }

@@ -47,11 +47,6 @@ void Mesh::setPrimitiveType(PrimitiveType primitive_type)
 	m_primitive_type = primitive_type;
 }
 
-PrimitiveType Mesh::getPrimitiveType()
-{
-	return m_primitive_type;
-}
-
 void Mesh::setVertexDeclaration(const VertexDeclarationD3D11* declaration)
 {
 	m_vertex_declaration = declaration;

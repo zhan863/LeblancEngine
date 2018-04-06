@@ -298,6 +298,7 @@
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancGeometry.h" />
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderBasicDefine.h" />
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformDefineD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformIndependentDefine.h" />
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.h" />
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancWindow.h" />
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h" />

@@ -15,6 +15,10 @@ public:
 
 	bool loadFromFile(const char* file_name);
 
+	IndexBufferD3D11* getIndexBuffer() { return m_index_buffer; }
+
+	size_t getIndexCount() { return m_index_count; }
+
 protected:
 	void setIndices(const uint32_t* indices, size_t index_count, size_t face_count);
 

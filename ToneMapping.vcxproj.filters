@@ -240,6 +240,9 @@
     <ClInclude Include="LeblancEngine\Asset\LeblancDataStream.h">
       <Filter>LeblancEngine\Asset</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformIndependentDefine.h">
+      <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />

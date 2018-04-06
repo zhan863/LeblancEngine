@@ -74,7 +74,7 @@ void* StreamMesh::internalStreamPtr()
 
 	for (uint32_t i = 0; i < vertexCount(); i++)
 	{
-		for (uint32_t j = 0; j < declaration.size() - 1; j++)
+		for (uint32_t j = 0; j < declaration.size(); j++)
 		{
 			VertexElement element = declaration[j];
 			VertexStream* stream = 0;
@@ -105,7 +105,7 @@ void* StreamMesh::internalStreamPtr()
 			{
 				// can't find a stream for this element.
 				// warn user, and 0 the buffer for the stride size
-				uint32_t stride = VertexDeclarationD3D11::elementToSize(element.type());
+				uint32_t stride = VertexDeclarationD3D11::elementToSize(element.type()) / sizeof(float);
 				for (uint32_t k = 0; k < stride; k++)
 				{
 					*vb++ = 0;

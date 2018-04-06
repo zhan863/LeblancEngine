@@ -14,6 +14,14 @@ public:
 	Mesh();
 	virtual ~Mesh();
 
+	Material* getMaterial() { return m_material; }
+
+	const VertexBufferD3D11* getVertexBuffer() { return m_vertex_buffer; }
+
+	const VertexDeclarationD3D11* getVertexDeclaration() { return m_vertex_declaration; }
+
+	PrimitiveType getPrimitiveType() { return m_primitive_type; }
+
 protected:
 	void release();
 
@@ -28,8 +36,6 @@ protected:
 	size_t getVertexCount();
 
 	void setPrimitiveType(PrimitiveType primitive_type);
-
-	PrimitiveType getPrimitiveType();
 
 	void setVertexCount(uint32_t vertex_count) { m_vertex_count = vertex_count; }
 

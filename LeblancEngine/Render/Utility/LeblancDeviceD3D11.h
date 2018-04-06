@@ -9,10 +9,12 @@
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
 #include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
+#include "LeblancEngine/Render/Basics/LeblancRenderPlatformIndependentDefine.h"
 
 #include <vector>
 using namespace std;
 
+class IndexMesh;
 class DeviceD3D11
 {
 public:
@@ -44,9 +46,11 @@ public:
 
 	void setInputLayout(ID3D11InputLayout* input_layout);
 
-	void renderMesh(Mesh1* mesh);
+	void renderIndexMesh(IndexMesh* mesh);
 
 	void setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT height);
+
+	void setRasterizerState(RasterizerState cull_mode);
 
 	ID3D11InputLayout* createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader);
 

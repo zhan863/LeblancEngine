@@ -41,6 +41,12 @@ void IndexBufferD3D11::release()
 	}
 }
 
+void IndexBufferD3D11::bind() const
+{
+	ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+	device_context->IASetIndexBuffer(m_index_buffer, DXGI_FORMAT::DXGI_FORMAT_R32_UINT, 0);
+}
+
 void IndexBufferD3D11::initialize(const IndexBufferDeclaration* declaration)
 {
 	if (declaration)
@@ -76,11 +82,28 @@ void* IndexBufferD3D11::lock()
 
 void IndexBufferD3D11::unlock()
 {
+	ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+	if (device_context)
+	{
+		D3D11_MAPPED_SUBRESOURCE mapped_resource;
+
+		device_context->Unmap(m_index_buffer, 0);
+	}
 }
 
 void VertexBufferD3D11::release()
 {
 	safe_Release(m_vertex_buffer);
+}
+
+void VertexBufferD3D11::bind() const
+{
+	if (m_device)
+	{
+		ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+		UINT offset = 0;
+		device_context->IASetVertexBuffers(0, 1, &m_vertex_buffer, &m_stride, &offset);
+	}
 }
 
 bool VertexBufferD3D11::initialize(const VertexBufferDeclaration* data)
@@ -109,7 +132,7 @@ bool VertexBufferD3D11::initialize(const VertexBufferDeclaration* data)
 			ID3D11Device* d3d11_device = m_device->getD3D11Device();
 			if (d3d11_device)
 			{
-				if (SUCCEEDED(d3d11_device->CreateBuffer(&bd, 0, &m_vertex_buffer)))
+				if (SUCCEEDED(d3d11_device->CreateBuffer(&bd, &resource, &m_vertex_buffer)))
 					return true;
 			}
 		}
@@ -121,7 +144,8 @@ void VertexDeclarationD3D11::release()
 {
 	// data
 	m_input_layout_declaration.clear();
-	m_input_layout->Release();
+
+	safe_delete_array(m_input_layout);
 }
 
 uint32_t VertexDeclarationD3D11::elementToSize(const BYTE& type)
@@ -153,7 +177,7 @@ void VertexDeclarationD3D11::initialize(const VertexLayoutDeclaration* declarati
 	if (elements.size() == 0)
 		return;
 
-	D3D11_INPUT_ELEMENT_DESC input_layout_desc[32];
+	m_input_layout = new D3D11_INPUT_ELEMENT_DESC[elements.size()];
 
 	for (int i = 0; i < elements.size(); i++)
 	{
@@ -167,13 +191,32 @@ void VertexDeclarationD3D11::initialize(const VertexLayoutDeclaration* declarati
 			D3D11_INPUT_PER_VERTEX_DATA,
 			0 };
 
-		input_layout_desc[i] = element;
+		m_input_layout[i] = element;
 	}
 
 	VertexElement element = elements[elements.size() - 1];
 	m_vertex_stride = (element.offset() + VertexDeclarationD3D11::elementToSize(element.type()));
 	m_element_count = (uint32_t)(elements.size());
 }
+
+void RasterizerStateD3D11::release()
+{
+	safe_Release(m_rasterizer_state);
+}
+
+void RasterizerStateD3D11::initialize(RasterizerState rasterizer_state)
+{
+	release();
+
+	D3D11_RASTERIZER_DESC rasterizer_desc;
+	rasterizer_desc.CullMode = rasterizer_state == RasterizerState::NONE ? D3D11_CULL_NONE :
+		(rasterizer_state == RasterizerState::CW_FRONT ? D3D11_CULL_FRONT : D3D11_CULL_BACK);
+	rasterizer_desc.FillMode = D3D11_FILL_SOLID;
+	rasterizer_desc.ScissorEnable = false;
+	
+	m_device->getD3D11Device()->CreateRasterizerState(&rasterizer_desc, &m_rasterizer_state);
+}
+
 // Declaration
 // Vertex Element
 VertexElement::VertexElement()
@@ -323,4 +366,85 @@ void VertexStream::setStream(const float* stream_src)
 	{
 		memcpy(m_stream, stream_src, bufferSizeInBytes());
 	}
+}
+
+InputLayoutCacheD3D11::InputLayoutCacheD3D11(DeviceD3D11* device) :
+	m_device(device)
+{
+}
+
+InputLayoutCacheD3D11::~InputLayoutCacheD3D11()
+{
+	release();
+}
+
+void InputLayoutCacheD3D11::release()
+{
+	for (auto it = m_layouts.begin(); it != m_layouts.end(); it++)
+	{
+		ID3D11InputLayout* layout = it->second;
+		safe_Release(layout);
+	}
+
+	m_layouts.clear();
+}
+
+void InputLayoutCacheD3D11::initialize(ID3DX11EffectTechnique* technique, uint32_t pass_index)
+{
+	m_technique = technique;
+	m_pass_index = pass_index;
+
+	if (ID3DX11EffectPass* pass = m_technique->GetPassByIndex(pass_index))
+	{
+		pass->GetDesc(&m_pass_desc);
+	}
+}
+
+bool InputLayoutCacheD3D11::bindLayout(const VertexDeclarationD3D11* vertex_declaration) const
+{
+	if (!vertex_declaration)
+	{
+		//LOG("vertex declaration null");
+		return false;
+	}
+
+	auto it = m_layouts.find(vertex_declaration);
+
+	if (it == m_layouts.end())
+	{
+		ID3D11InputLayout* inputLayout = 0;
+		uint32_t elementCount = vertex_declaration->getElementCount();
+		const D3D11_INPUT_ELEMENT_DESC* input_desc = vertex_declaration->getInputLayout();
+
+		ID3D11Device* device = m_device->getD3D11Device();
+		if (device)
+		{
+			if (FAILED(device->CreateInputLayout(input_desc,
+				elementCount,
+				m_pass_desc.pIAInputSignature,
+				m_pass_desc.IAInputSignatureSize,
+				&inputLayout)))
+			{
+				//LOG("Failed to setup input layout");
+				return false;
+			}
+		}
+		else
+		{
+			//LOG("Failed to find device");
+			return false;
+		}
+
+		m_layouts.insert(std::make_pair(vertex_declaration, inputLayout));
+		it = m_layouts.find(vertex_declaration);
+	}
+
+	if (ID3D11InputLayout* layout = it->second)
+	{
+		ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+		if(device_context)
+			device_context->IASetInputLayout(layout);
+		return true;
+	}
+	return false;
 }

@@ -38,7 +38,7 @@ GpuData* Material::getGpuDataFromString(string type_name, string value)
 		Vector4f float4;
 		ss >> float4.x >> float4.y >> float4.z >> float4.w;
 
-		return new GpuData(k_float4_size, &float4);
+		return new GpuData(GpuDataType::FLOAT4, &float4);
 	}
 
 	return nullptr;
@@ -92,5 +92,16 @@ void Material::initialize(string file_name)
 	{
 		//THROW("Failed to load material " << file_name);
 		return;
+	}
+}
+
+void Material::setParameters()
+{
+	if (m_shader)
+	{
+		for each(auto paramter_iter in m_parameters)
+		{
+			m_shader->setGpuData(paramter_iter.first, paramter_iter.second);
+		}
 	}
 }

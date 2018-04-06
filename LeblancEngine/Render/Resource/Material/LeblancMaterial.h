@@ -20,6 +20,12 @@ public:
 
 	void initialize(string file_name);
 
+	void setParameters();
+
+	Shader* getShader() { return m_shader; }
+
+	string getTechniqueName() { return m_technique_name; }
+
 private:
 	GpuData * getGpuDataFromString(string type_name, string value);
 

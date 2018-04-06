@@ -47,3 +47,8 @@ GBuffer* ResourceManager::getGBuffer()
 {
 	return m_gbuffer;
 }
+
+IndexMesh* ResourceManager::getScreenQuad()
+{
+	return m_screen_quad;
+}

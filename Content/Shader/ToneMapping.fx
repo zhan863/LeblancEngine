@@ -1,4 +1,4 @@
-float4 tone_map_color;
+float4 tone_mapping_color;
 
 struct VS_INPUT
 {
@@ -24,7 +24,7 @@ VS_OUTPUT toneMappingVS(VS_INPUT input)
 
 float4 toneMappingPS(VS_OUTPUT IN) : SV_TARGET0
 {
-	return tone_map_color;
+	return tone_mapping_color;
 }
 
 technique11 toneMapping
