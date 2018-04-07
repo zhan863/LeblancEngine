@@ -58,9 +58,6 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Basics\LeblancGeometry.cpp">
-      <Filter>LeblancEngine\Render\Basics</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.cpp">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClCompile>
@@ -167,9 +164,6 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancGeometry.h">
-      <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.h">
       <Filter>LeblancEngine\Render\Resource\Material</Filter>

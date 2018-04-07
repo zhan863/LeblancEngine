@@ -1,5 +1,4 @@
 #include "LeblancEngine/Render/RenderEntity/LeblancRenderEntity.h"
-#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterialManager.h"

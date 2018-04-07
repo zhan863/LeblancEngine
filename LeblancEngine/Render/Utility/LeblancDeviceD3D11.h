@@ -5,7 +5,6 @@
 #include "LeblancEngine/Render/Resource/Texture/DepthStencilTexture.h"
 #include "LeblancEngine/Render/Resource/Texture/Texture2D.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
-#include "LeblancEngine/Render/Basics/LeblancGeometry.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 
 #include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
@@ -30,8 +29,6 @@ public:
 
 	ID3D11View* createRenderTargetView(TextureTypes texture_type, UINT width, UINT height, ID3D11Resource* resource);
 
-	Mesh1* createMesh(vector<Vertex>& vertices, vector<UINT>& indices);
-
 	ID3D11RenderTargetView* getBackBufferView();
 
 	bool initialized() { return m_device != nullptr; }
@@ -40,9 +37,6 @@ public:
 	void setRenderTargets(UINT num_targets, ID3D11RenderTargetView** render_targets, DepthStencilTexture* depth_stentil_texture);
 
 	void clearRenderTarget(ID3D11RenderTargetView* render_target);
-
-	void setVertexShader(VertexShader* vertex_shader);
-	void setPixelShader(PixelShader* pixel_shader);
 
 	void setInputLayout(ID3D11InputLayout* input_layout);
 
@@ -55,8 +49,6 @@ public:
 	void setDepthStencilState(DepthStencilState depth_stencil_mode);
 
 	void setBlendState(BlendState blend_mode);
-
-	ID3D11InputLayout* createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader);
 
 	// new create resource function
 	void createBuffer(const D3D11_BUFFER_DESC *desc, D3D11_SUBRESOURCE_DATA *initial_data, ID3D11Buffer **buffer);
