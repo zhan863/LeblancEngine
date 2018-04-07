@@ -213,8 +213,58 @@ void RasterizerStateD3D11::initialize(RasterizerState rasterizer_state)
 		(rasterizer_state == RasterizerState::CW_FRONT ? D3D11_CULL_FRONT : D3D11_CULL_BACK);
 	rasterizer_desc.FillMode = D3D11_FILL_SOLID;
 	rasterizer_desc.ScissorEnable = false;
+	rasterizer_desc.DepthBias = false;
+	rasterizer_desc.DepthBiasClamp = 0.0f;
+	rasterizer_desc.SlopeScaledDepthBias = 0;
+	rasterizer_desc.DepthClipEnable = true;
 	
 	m_device->getD3D11Device()->CreateRasterizerState(&rasterizer_desc, &m_rasterizer_state);
+}
+
+void DepthStencilStateD3D11::release()
+{
+	safe_Release(m_depth_stencil_state);
+}
+
+void DepthStencilStateD3D11::initialize(DepthStencilState depth_stencil_state)
+{
+	release();
+
+	D3D11_DEPTH_STENCIL_DESC depth_desc;
+	depth_desc.DepthEnable = false;
+	depth_desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+	depth_desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+	depth_desc.StencilEnable = false;
+
+	m_device->getD3D11Device()->CreateDepthStencilState(&depth_desc, &m_depth_stencil_state);
+}
+
+void BlendStateD3D11::release()
+{
+	safe_Release(m_blend_state);
+}
+
+void BlendStateD3D11::initialize(BlendState blend_mode)
+{
+	release();
+
+	D3D11_BLEND_DESC blend_desc;
+	blend_desc.AlphaToCoverageEnable = false;
+	blend_desc.IndependentBlendEnable = false;
+
+	for (int i = 0; i < 8; i++)
+	{
+		blend_desc.RenderTarget[i].BlendEnable = false;
+		blend_desc.RenderTarget[i].BlendOp = D3D11_BLEND_OP_ADD;
+		blend_desc.RenderTarget[i].SrcBlend = D3D11_BLEND_ONE;
+		blend_desc.RenderTarget[i].DestBlend = D3D11_BLEND_ONE;
+		blend_desc.RenderTarget[i].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		blend_desc.RenderTarget[i].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		blend_desc.RenderTarget[i].SrcBlendAlpha = D3D11_BLEND_ONE;
+		blend_desc.RenderTarget[i].DestBlendAlpha = D3D11_BLEND_ONE;
+	}
+
+	m_device->getD3D11Device()->CreateBlendState(&blend_desc, &m_blend_state);
 }
 
 // Declaration

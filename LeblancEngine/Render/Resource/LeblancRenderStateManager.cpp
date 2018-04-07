@@ -96,3 +96,35 @@ RasterizerStateD3D11* RenderStateManager::getOrCreateRasterizerState(RasterizerS
 	m_rasterizer_states.insert(make_pair(rasterizer_state, new_rasterizer_state));
 	return new_rasterizer_state;
 }
+
+DepthStencilStateD3D11* RenderStateManager::getOrCreateDepthStencilState(DepthStencilState depth_stencil_mode)
+{
+	auto iter = m_depth_stencil_states.find(depth_stencil_mode);
+	if (iter != m_depth_stencil_states.end())
+	{
+		return iter->second;
+	}
+
+	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+	DepthStencilStateD3D11* new_depth_stencil_state = new DepthStencilStateD3D11(device);
+	new_depth_stencil_state->initialize(depth_stencil_mode);
+
+	m_depth_stencil_states.insert(make_pair(depth_stencil_mode, new_depth_stencil_state));
+	return new_depth_stencil_state;
+}
+
+BlendStateD3D11* RenderStateManager::getOrCreateBlendState(BlendState blend_mode)
+{
+	auto iter = m_blend_states.find(blend_mode);
+	if (iter != m_blend_states.end())
+	{
+		return iter->second;
+	}
+
+	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+	BlendStateD3D11* new_blend_state = new BlendStateD3D11(device);
+	new_blend_state->initialize(blend_mode);
+
+	m_blend_states.insert(make_pair(blend_mode, new_blend_state));
+	return new_blend_state;
+}

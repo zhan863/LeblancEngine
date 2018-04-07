@@ -167,7 +167,39 @@ public:
 	ID3D11RasterizerState* getRasterizerState() { return m_rasterizer_state; }
 protected:
 	// data
-	ID3D11RasterizerState* m_rasterizer_state = nullptr;
+	ID3D11RasterizerState * m_rasterizer_state = nullptr;
+};
+
+class DepthStencilStateD3D11 : public RenderResource
+{
+public:
+	DepthStencilStateD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	virtual ~DepthStencilStateD3D11() { release(); }
+
+	virtual void release();
+
+	void initialize(DepthStencilState depth_stencil_state);
+
+	ID3D11DepthStencilState* getDepthStencilState() { return m_depth_stencil_state; }
+protected:
+	// data
+	ID3D11DepthStencilState * m_depth_stencil_state = nullptr;
+};
+
+class BlendStateD3D11 : public RenderResource
+{
+public:
+	BlendStateD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	virtual ~BlendStateD3D11() { release(); }
+
+	virtual void release();
+
+	void initialize(BlendState blend_mode);
+
+	ID3D11BlendState* getBlendState() { return m_blend_state; }
+protected:
+	// data
+	ID3D11BlendState * m_blend_state = nullptr;
 };
 
 // Declaration data

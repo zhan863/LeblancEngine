@@ -52,6 +52,10 @@ public:
 
 	void setRasterizerState(RasterizerState cull_mode);
 
+	void setDepthStencilState(DepthStencilState depth_stencil_mode);
+
+	void setBlendState(BlendState blend_mode);
+
 	ID3D11InputLayout* createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader);
 
 	// new create resource function

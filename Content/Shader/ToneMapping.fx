@@ -16,7 +16,7 @@ VS_OUTPUT toneMappingVS(VS_INPUT input)
 {
 	VS_OUTPUT OUT;
 
-	OUT.hPosition =  float4(input.position.xyz, 1.0);
+	OUT.hPosition =  float4(input.position.xy, 0, 1.0);
 	OUT.texcoord.xy = input.texcoord.xy;
 
 	return OUT;

@@ -320,6 +320,25 @@ void DeviceD3D11::setRasterizerState(RasterizerState rasterizer_mode)
 	}
 }
 
+void DeviceD3D11::setDepthStencilState(DepthStencilState depth_stencil_mode)
+{
+	DepthStencilStateD3D11* depth_stencil_state = g_global_context.m_render_state_manager.getOrCreateDepthStencilState(depth_stencil_mode);
+	if (depth_stencil_state)
+	{
+		m_device_context->OMSetDepthStencilState(depth_stencil_state->getDepthStencilState(), 0);
+	}
+}
+
+void DeviceD3D11::setBlendState(BlendState blend_mode)
+{
+	BlendStateD3D11* blend_state = g_global_context.m_render_state_manager.getOrCreateBlendState(blend_mode);
+	if (blend_state)
+	{
+		FLOAT blend_factor[4] = { 1, 1, 1, 1 };
+		m_device_context->OMSetBlendState(blend_state->getBlendState(), blend_factor, 0xffffffff);
+	}
+}
+
 ID3D11InputLayout* DeviceD3D11::createInputLayout(D3D11_INPUT_ELEMENT_DESC* input_layout_desc, UINT layout_desc_count, VertexShader* vertex_shader)
 {
 	ID3D11InputLayout* layout = nullptr;

@@ -66,6 +66,8 @@ void DeferredPipeline::postProcessing()
 		technique->bindInputLayout(0, mesh->getVertexDeclaration());
 		technique->apply(0);
 		g_global_context.m_device_manager.getCurrentDevice()->setRasterizerState(RasterizerState::NONE);
+		g_global_context.m_device_manager.getCurrentDevice()->setBlendState(BlendState::BLEND_OPAQUE);
+		g_global_context.m_device_manager.getCurrentDevice()->setDepthStencilState(DepthStencilState::ALL_PASS);
 		g_global_context.m_device_manager.getCurrentDevice()->setViewPort(0, 0, 1280, 720);
 		g_global_context.m_device_manager.getCurrentDevice()->renderIndexMesh(mesh);
 	}

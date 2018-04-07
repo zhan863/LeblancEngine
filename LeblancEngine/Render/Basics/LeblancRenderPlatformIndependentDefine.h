@@ -8,6 +8,16 @@ enum class RasterizerState : UINT
 	NONE = 2
 };
 
+enum class DepthStencilState : UINT
+{
+	ALL_PASS = 0
+};
+
+enum class BlendState : UINT
+{
+	BLEND_OPAQUE = 0
+};
+
 enum class GpuDataType : UINT 
 {
 	FLOAT = 0,
