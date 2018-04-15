@@ -7,6 +7,7 @@
 #include "LeblancEngine/Render/Resource/Material/LeblancTechnique.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancShaders.h"
 #include "LeblancEngine/Render/RenderEntity/LeblancIndexMesh.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceContextD3D11.h"
 
 DeferredPipeline::DeferredPipeline()
 {
@@ -65,10 +66,11 @@ void DeferredPipeline::postProcessing()
 	{
 		technique->bindInputLayout(0, mesh->getVertexDeclaration());
 		technique->apply(0);
-		g_global_context.m_device_manager.getCurrentDevice()->setRasterizerState(RasterizerState::NONE);
-		g_global_context.m_device_manager.getCurrentDevice()->setBlendState(BlendState::BLEND_OPAQUE);
-		g_global_context.m_device_manager.getCurrentDevice()->setDepthStencilState(DepthStencilState::ALL_PASS);
-		g_global_context.m_device_manager.getCurrentDevice()->setViewPort(0, 0, 1280, 720);
-		g_global_context.m_device_manager.getCurrentDevice()->renderIndexMesh(mesh);
+		DeviceContextD3D11* device_context = g_global_context.m_device_manager.getImmediateContext();
+		device_context->setRasterizerState(RasterizerState::NONE);
+		device_context->setBlendState(BlendState::BLEND_OPAQUE);
+		device_context->setDepthStencilState(DepthStencilState::ALL_PASS);
+		device_context->setViewPort(0, 0, 1280, 720);
+		device_context->renderIndexMesh(mesh);
 	}
 }

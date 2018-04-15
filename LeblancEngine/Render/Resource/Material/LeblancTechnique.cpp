@@ -1,9 +1,10 @@
 #include "LeblancEngine/Render/Resource/Material/LeblancTechnique.h"
-#include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceContextD3D11.h"
 
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
-Technique::Technique(DeviceD3D11* device) : m_device(device)
+Technique::Technique(DeviceD3D11* device, DeviceContextD3D11* device_context) : 
+	m_device(device), m_device_context(device_context)
 {
 
 }
@@ -26,7 +27,7 @@ void Technique::initialize(ID3DX11Effect* effect, int index)
 
 		for (int i = 0; i < m_desc.Passes; i++)
 		{
-			InputLayoutCacheD3D11* layout_cache = new InputLayoutCacheD3D11(m_device);
+			InputLayoutCacheD3D11* layout_cache = new InputLayoutCacheD3D11(m_device, m_device_context);
 			layout_cache->initialize(m_technique_handle, i);
 			m_input_layout_caches.push_back(layout_cache);
 		}
@@ -56,7 +57,7 @@ void Technique::apply(int index)
 		ID3DX11EffectPass* pass = m_technique_handle->GetPassByIndex(index);
 		if (pass)
 		{
-			pass->Apply(0, m_device->getImmediateDeviceContext());
+			pass->Apply(0, m_device_context->getHandle());
 		}
 	}
 }

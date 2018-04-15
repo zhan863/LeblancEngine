@@ -103,6 +103,9 @@
     <ClCompile Include="LeblancEngine\Asset\LeblancDataStream.cpp">
       <Filter>LeblancEngine\Asset</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.cpp">
+      <Filter>LeblancEngine\Render\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
@@ -236,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformIndependentDefine.h">
       <Filter>LeblancEngine\Render\Basics</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.h">
+      <Filter>LeblancEngine\Render\utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

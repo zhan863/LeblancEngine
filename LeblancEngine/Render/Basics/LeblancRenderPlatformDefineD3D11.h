@@ -61,24 +61,25 @@ private:
 };
 
 class DeviceD3D11;
+class DeviceContextD3D11;
 // Resource
 class RenderResource
 {
 public:
-	RenderResource(DeviceD3D11* device) : m_device(device) {}
+	RenderResource(DeviceD3D11* device, DeviceContextD3D11* device_context) : m_device(device), m_device_context(device_context) {}
 	virtual ~RenderResource() {}
 
 	virtual void release() = 0;
 protected:
 	// reference
-	DeviceD3D11* m_device = nullptr;
-
+	DeviceD3D11 * m_device = nullptr;
+	DeviceContextD3D11* m_device_context = nullptr;
 };
 
 class IndexBufferD3D11 : public RenderResource
 {
 public:
-	IndexBufferD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	IndexBufferD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context) : RenderResource(device, device_context) {}
 	virtual ~IndexBufferD3D11() { release(); }
 
 	virtual void release();
@@ -101,7 +102,7 @@ class VertexDeclarationD3D11;
 class VertexBufferD3D11 : public RenderResource
 {
 public:
-	VertexBufferD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	VertexBufferD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context) : RenderResource(device, device_context) {}
 
 	virtual ~VertexBufferD3D11() { release(); }
 
@@ -129,7 +130,7 @@ protected:
 class VertexDeclarationD3D11 : public RenderResource
 {
 public:
-	VertexDeclarationD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	VertexDeclarationD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context) : RenderResource(device, device_context) {}
 	virtual ~VertexDeclarationD3D11() { release(); }
 
 	virtual void release();
@@ -157,7 +158,7 @@ protected:
 class RasterizerStateD3D11 : public RenderResource
 {
 public:
-	RasterizerStateD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	RasterizerStateD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context) : RenderResource(device, device_context) {}
 	virtual ~RasterizerStateD3D11() { release(); }
 
 	virtual void release();
@@ -173,7 +174,7 @@ protected:
 class DepthStencilStateD3D11 : public RenderResource
 {
 public:
-	DepthStencilStateD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	DepthStencilStateD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context) : RenderResource(device, device_context) {}
 	virtual ~DepthStencilStateD3D11() { release(); }
 
 	virtual void release();
@@ -189,7 +190,7 @@ protected:
 class BlendStateD3D11 : public RenderResource
 {
 public:
-	BlendStateD3D11(DeviceD3D11* device) : RenderResource(device) {}
+	BlendStateD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context) : RenderResource(device, device_context) {}
 	virtual ~BlendStateD3D11() { release(); }
 
 	virtual void release();
@@ -269,7 +270,7 @@ private:
 class InputLayoutCacheD3D11
 {
 public:
-	InputLayoutCacheD3D11(DeviceD3D11* device);
+	InputLayoutCacheD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context);
 	virtual ~InputLayoutCacheD3D11();
 
 	void							release();
@@ -286,5 +287,6 @@ protected:
 	// reference
 	ID3DX11EffectTechnique*         m_technique = nullptr;
 	DeviceD3D11*					m_device = nullptr;
+	DeviceContextD3D11*				m_device_context = nullptr;
 };
 #endif

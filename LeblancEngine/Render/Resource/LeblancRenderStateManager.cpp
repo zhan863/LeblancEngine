@@ -65,9 +65,10 @@ VertexDeclarationD3D11* RenderStateManager::getOrCreateVertexDeclaration(const V
 		}
 	}
 
-	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice(); 
+	DeviceContextD3D11* device_context = g_global_context.m_device_manager.getImmediateContext();
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
 
-	VertexDeclarationD3D11* new_vertex_declaration = new VertexDeclarationD3D11(device);
+	VertexDeclarationD3D11* new_vertex_declaration = new VertexDeclarationD3D11(device, device_context);
 	if (new_vertex_declaration)
 	{
 		new_vertex_declaration->initialize(layout_declaration);
@@ -89,8 +90,9 @@ RasterizerStateD3D11* RenderStateManager::getOrCreateRasterizerState(RasterizerS
 		return iter->second;
 	}
 
-	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
-	RasterizerStateD3D11* new_rasterizer_state = new RasterizerStateD3D11(device);
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
+	DeviceContextD3D11* device_context = g_global_context.m_device_manager.getImmediateContext();
+	RasterizerStateD3D11* new_rasterizer_state = new RasterizerStateD3D11(device, device_context);
 	new_rasterizer_state->initialize(rasterizer_state);
 
 	m_rasterizer_states.insert(make_pair(rasterizer_state, new_rasterizer_state));
@@ -105,8 +107,9 @@ DepthStencilStateD3D11* RenderStateManager::getOrCreateDepthStencilState(DepthSt
 		return iter->second;
 	}
 
-	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
-	DepthStencilStateD3D11* new_depth_stencil_state = new DepthStencilStateD3D11(device);
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
+	DeviceContextD3D11* device_context = g_global_context.m_device_manager.getImmediateContext();
+	DepthStencilStateD3D11* new_depth_stencil_state = new DepthStencilStateD3D11(device, device_context);
 	new_depth_stencil_state->initialize(depth_stencil_mode);
 
 	m_depth_stencil_states.insert(make_pair(depth_stencil_mode, new_depth_stencil_state));
@@ -121,8 +124,9 @@ BlendStateD3D11* RenderStateManager::getOrCreateBlendState(BlendState blend_mode
 		return iter->second;
 	}
 
-	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
-	BlendStateD3D11* new_blend_state = new BlendStateD3D11(device);
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
+	DeviceContextD3D11* device_context = g_global_context.m_device_manager.getImmediateContext();
+	BlendStateD3D11* new_blend_state = new BlendStateD3D11(device, device_context);
 	new_blend_state->initialize(blend_mode);
 
 	m_blend_states.insert(make_pair(blend_mode, new_blend_state));

@@ -1,6 +1,7 @@
 #include "LeblancEngine/Render/RenderEntity/LeblancMesh.h"
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 
 Mesh::Mesh()
 {
@@ -25,7 +26,7 @@ void Mesh::createVertexBuffer()
 	void* vertex_data = internalStreamPtr();
 	VertexBufferDeclaration declaration = VertexBufferDeclaration(vertexBufferSize(), m_vertex_declaration->vertexStride(), vertex_data);
 
-	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
 
 	if(m_vertex_buffer = device->createVertexBuffer(&declaration))
 		m_vertex_buffer->setVertexDeclaration(m_vertex_declaration);

@@ -1,5 +1,6 @@
 #include "LeblancEngine/Render/Resource/Texture/Texture2D.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 
 Texture2D::Texture2D()
 {
@@ -16,7 +17,7 @@ bool Texture2D::initialize(UINT width, UINT height, BOOL is_render_target)
 	if (m_d3d11_texture2d)
 		return true;
 
-	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
 
 	m_d3d11_texture2d = static_cast<ID3D11Texture2D*>(device->createTexture(TextureTypes::Texture_2D, width, height));
 

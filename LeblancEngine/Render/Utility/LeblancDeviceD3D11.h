@@ -22,51 +22,21 @@ public:
 	~DeviceD3D11();
 
 	void initialize(Window& window);
-
 	void present();
-
 	ID3D11Resource* createTexture(TextureTypes texture_type, UINT width, UINT height);
-
 	ID3D11View* createRenderTargetView(TextureTypes texture_type, UINT width, UINT height, ID3D11Resource* resource);
-
 	ID3D11RenderTargetView* getBackBufferView();
-
-	bool initialized() { return m_device != nullptr; }
-
-	void setRenderTargets(UINT num_targets, Texture2D** render_targets, DepthStencilTexture* depth_stentil_texture);
-	void setRenderTargets(UINT num_targets, ID3D11RenderTargetView** render_targets, DepthStencilTexture* depth_stentil_texture);
-
-	void clearRenderTarget(ID3D11RenderTargetView* render_target);
-
-	void setInputLayout(ID3D11InputLayout* input_layout);
-
-	void renderIndexMesh(IndexMesh* mesh);
-
-	void setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT height);
-
-	void setRasterizerState(RasterizerState cull_mode);
-
-	void setDepthStencilState(DepthStencilState depth_stencil_mode);
-
-	void setBlendState(BlendState blend_mode);
-
 	// new create resource function
 	void createBuffer(const D3D11_BUFFER_DESC *desc, D3D11_SUBRESOURCE_DATA *initial_data, ID3D11Buffer **buffer);
-
 	IndexBufferD3D11* createIndexBuffer(const ResourceDeclaration* declaration);
-
 	VertexBufferD3D11* createVertexBuffer(const ResourceDeclaration* declaration);
-
-	ID3D11DeviceContext* getImmediateDeviceContext() { return m_device_context; }
-
-	ID3D11Device* getD3D11Device() { return m_device; }
+	ID3D11Device* getHandle() { return m_device; }
 
 private:
 	void release();
 
 	// data
 	ID3D11Device* m_device = nullptr;
-	ID3D11DeviceContext* m_device_context = nullptr;
 	IDXGISwapChain* m_swap_chain = nullptr;
 	ID3D11RenderTargetView* m_back_buffer_view = nullptr;
 };

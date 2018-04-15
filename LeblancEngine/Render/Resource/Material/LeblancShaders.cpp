@@ -3,12 +3,14 @@
 #include "LeblancEngine/Render/Resource/Material/LeblancConstantBuffer.h"
 #include "LeblancEngine/Render/Resource/Material/LeblancGpuVariable.h"
 
+#include "LeblancEngine/Render/Utility/LeblancDeviceContextD3D11.h"
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 #include "ThirdParty/Effect/Include/d3dx11effect.h"
 
-Shader::Shader(DeviceD3D11* device) : m_device(device)
+Shader::Shader(DeviceD3D11* device, DeviceContextD3D11* device_context) :
+	m_device(device), m_device_context(device_context)
 {
 
 }
@@ -28,7 +30,7 @@ void Shader::initialize(string file_name, string include_file_name)
 	std::wstring w_file_name = std::wstring(file_name.begin(), file_name.end());
 	std::wstring w_include_file_name = std::wstring(include_file_name.begin(), include_file_name.end());
 	ID3DBlob* error_message = nullptr;
-	if (SUCCEEDED(D3DX11CompileEffectFromFile(w_file_name.c_str(), nullptr, nullptr, D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY, 0, m_device->getD3D11Device(), &m_effect_handle, &error_message)))
+	if (SUCCEEDED(D3DX11CompileEffectFromFile(w_file_name.c_str(), nullptr, nullptr, D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY, 0, m_device->getHandle(), &m_effect_handle, &error_message)))
 	{
 		D3DX11_EFFECT_DESC desc;
 		if (SUCCEEDED(m_effect_handle->GetDesc(&desc)))
@@ -43,7 +45,7 @@ void Shader::enumerateTechniques(D3DX11_EFFECT_DESC& desc)
 {
 	for (int i = 0; i < desc.Techniques; i++)
 	{
-		Technique* technique = new Technique(m_device);
+		Technique* technique = new Technique(m_device, m_device_context);
 		technique->initialize(m_effect_handle, i);
 
 		m_techniques.insert(make_pair(technique->name(), technique));
@@ -54,7 +56,7 @@ void Shader::enumerateVariables(D3DX11_EFFECT_DESC& desc)
 {
 	for (int i = 0; i < desc.GlobalVariables; i++)
 	{
-		GpuVariable* gpu_variable = new GpuVariable(m_device);
+		GpuVariable* gpu_variable = new GpuVariable(m_device, m_device_context);
 		gpu_variable->initialize(m_effect_handle, i);
 
 		m_gpu_variables.insert(make_pair(gpu_variable->name(), gpu_variable));
@@ -62,7 +64,7 @@ void Shader::enumerateVariables(D3DX11_EFFECT_DESC& desc)
 
 	for (int i = 0; i < desc.ConstantBuffers; i++)
 	{
-		ConstantBuffer* constant_buffer = new ConstantBuffer(m_device);
+		ConstantBuffer* constant_buffer = new ConstantBuffer(m_device, m_device_context);
 		constant_buffer->initialize(m_effect_handle, i);
 
 		// The hack here, remove the globals from the constant buffer pool since it is used to store the instance data of shader.

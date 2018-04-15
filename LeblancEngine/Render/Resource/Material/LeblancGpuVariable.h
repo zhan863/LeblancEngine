@@ -22,13 +22,14 @@ public:
 	GpuDataType m_type = GpuDataType::FLOAT4;
 };
 
+class DeviceContextD3D11;
 class DeviceD3D11;
 class ID3DX11Effect;
 class ID3DX11EffectVariable;
 class GpuVariable
 {
 public:
-	GpuVariable(DeviceD3D11* device);
+	GpuVariable(DeviceD3D11* device, DeviceContextD3D11* device_context);
 	~GpuVariable();
 
 	void initialize(ID3DX11Effect* effect, int index);
@@ -53,6 +54,7 @@ private:
 	// data
 	ID3DX11EffectVariable * m_variable_handle = nullptr;
 	// reference
+	DeviceContextD3D11 * m_device_context = nullptr;
 	DeviceD3D11 * m_device = nullptr;
 	ID3DX11Effect* m_effect = nullptr;
 	string m_name;

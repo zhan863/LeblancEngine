@@ -2,6 +2,8 @@
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/Basics/LeblancWindow.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceContextD3D11.h"
 
 // To do: replace these strings with another way of loading scene
 const char* scene_file = "Content/Mesh/sphere.obj";
@@ -51,9 +53,14 @@ void Engine::update(float delta_time)
 void Engine::render(float delta_time)
 {
 	// Debug present code.
-	ID3D11RenderTargetView* back_buffer_view = g_global_context.m_device_manager.getBackBufferView();
-	g_global_context.m_device_manager.getCurrentDevice()->setRenderTargets(1, &back_buffer_view, nullptr);
-	g_global_context.m_device_manager.getCurrentDevice()->clearRenderTarget(back_buffer_view);
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
+	DeviceContextD3D11* device_context = g_global_context.m_device_manager.getImmediateContext();
+	if (device && device_context)
+	{
+		ID3D11RenderTargetView* back_buffer_view = device->getBackBufferView();
+		device_context->setRenderTargets(1, &back_buffer_view, nullptr);
+		device_context->clearRenderTarget(back_buffer_view);
+	}
 
 	// render the scene to a texture
 	g_global_context.m_pipeline_manager.render(RenderType::Deferred);
@@ -62,7 +69,8 @@ void Engine::render(float delta_time)
 void Engine::present()
 {
 	// d3d device present
-	g_global_context.m_device_manager.present();
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
+	device->present();
 }
 
 void Engine::run()

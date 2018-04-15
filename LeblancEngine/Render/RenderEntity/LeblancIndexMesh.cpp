@@ -5,6 +5,7 @@
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 
 #include "LeblancEngine/Render/Resource/Material/LeblancMaterial.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 
 #include <assimp/Include/Importer.hpp>
 #include <assimp/Include/scene.h>
@@ -173,7 +174,7 @@ void IndexMesh::createIndexBuffer(size_t index_count)
 		safe_delete(m_index_buffer);
 	}
 
-	DeviceD3D11* device = g_global_context.m_device_manager.getCurrentDevice();
+	DeviceD3D11* device = g_global_context.m_device_manager.getDevice();
 	m_index_buffer = device->createIndexBuffer(&declaration);
 
 	fillIndexBuffer();

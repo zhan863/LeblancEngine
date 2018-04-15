@@ -273,6 +273,9 @@
     <ClCompile Include="LeblancEngine\Render\Scene\LeblancSceneManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -319,6 +322,7 @@
     <ClInclude Include="LeblancEngine\Render\Resource\Texture\Texture2D.h" />
     <ClInclude Include="LeblancEngine\Render\Scene\LeblancScene.h" />
     <ClInclude Include="LeblancEngine\Render\Scene\LeblancSceneManager.h" />
+    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.h" />
     <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.h" />
     <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceManager.h" />
     <ClInclude Include="ThirdParty\assimp\Include\cimport.h" />

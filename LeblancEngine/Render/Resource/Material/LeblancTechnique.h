@@ -5,6 +5,7 @@
 #include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
 using namespace std;
 
+class DeviceContextD3D11;
 class DeviceD3D11;
 class ID3DX11EffectTechnique;
 class ID3DX11Effect;
@@ -13,7 +14,7 @@ class VertexDeclarationD3D11;
 class Technique
 {
 public:
-	Technique(DeviceD3D11* device);
+	Technique(DeviceD3D11* device, DeviceContextD3D11* device_context);
 	~Technique();
 
 	void initialize(ID3DX11Effect* effect, int index);
@@ -32,7 +33,8 @@ private:
 	vector<InputLayoutCacheD3D11*> m_input_layout_caches;
 
 	// reference
-	DeviceD3D11 * m_device = nullptr;
+	DeviceContextD3D11* m_device_context = nullptr;
+	DeviceD3D11* m_device = nullptr;
 	string m_name;
 	D3DX11_TECHNIQUE_DESC m_desc;
 };

@@ -53,7 +53,7 @@ void MaterialManager::initialize()
 
 	for (int i = 0; i < files.size(); i++)
 	{
-		Shader* new_shader = new Shader(g_global_context.m_device_manager.getCurrentDevice());
+		Shader* new_shader = new Shader(g_global_context.m_device_manager.getDevice(), g_global_context.m_device_manager.getImmediateContext());
 		new_shader->initialize(string(files[i].begin(), files[i].end()), "");
 		m_shaders.insert(make_pair(string(files[i].begin(), files[i].end()) ,new_shader));
 	}

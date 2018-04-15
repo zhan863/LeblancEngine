@@ -2,7 +2,9 @@
 #include "LeblancEngine/Render/Basics/LeblancRenderPlatformUtilityDefineD3D11.h"
 #include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceContextD3D11.h"
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
+#include "LeblancEngine/Global/LeblancGlobalContext.h"
 
 // Declaration data
 VertexLayoutDeclaration::VertexLayoutDeclaration(const std::vector<VertexElement>& vertex_elements)
@@ -43,7 +45,7 @@ void IndexBufferD3D11::release()
 
 void IndexBufferD3D11::bind() const
 {
-	ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+	ID3D11DeviceContext* device_context = m_device_context->getHandle();
 	device_context->IASetIndexBuffer(m_index_buffer, DXGI_FORMAT::DXGI_FORMAT_R32_UINT, 0);
 }
 
@@ -66,7 +68,7 @@ void IndexBufferD3D11::initialize(const IndexBufferDeclaration* declaration)
 
 void* IndexBufferD3D11::lock()
 {
-	ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+	ID3D11DeviceContext* device_context = m_device_context->getHandle();
 	if (device_context)
 	{
 		D3D11_MAPPED_SUBRESOURCE mapped_resource;
@@ -82,7 +84,7 @@ void* IndexBufferD3D11::lock()
 
 void IndexBufferD3D11::unlock()
 {
-	ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+	ID3D11DeviceContext* device_context = m_device_context->getHandle();
 	if (device_context)
 	{
 		D3D11_MAPPED_SUBRESOURCE mapped_resource;
@@ -98,9 +100,9 @@ void VertexBufferD3D11::release()
 
 void VertexBufferD3D11::bind() const
 {
-	if (m_device)
+	ID3D11DeviceContext* device_context = m_device_context->getHandle();
+	if (device_context)
 	{
-		ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
 		UINT offset = 0;
 		device_context->IASetVertexBuffers(0, 1, &m_vertex_buffer, &m_stride, &offset);
 	}
@@ -129,7 +131,7 @@ bool VertexBufferD3D11::initialize(const VertexBufferDeclaration* data)
 
 		if (m_device)
 		{
-			ID3D11Device* d3d11_device = m_device->getD3D11Device();
+			ID3D11Device* d3d11_device = m_device->getHandle();
 			if (d3d11_device)
 			{
 				if (SUCCEEDED(d3d11_device->CreateBuffer(&bd, &resource, &m_vertex_buffer)))
@@ -218,7 +220,7 @@ void RasterizerStateD3D11::initialize(RasterizerState rasterizer_state)
 	rasterizer_desc.SlopeScaledDepthBias = 0;
 	rasterizer_desc.DepthClipEnable = true;
 	
-	m_device->getD3D11Device()->CreateRasterizerState(&rasterizer_desc, &m_rasterizer_state);
+	m_device->getHandle()->CreateRasterizerState(&rasterizer_desc, &m_rasterizer_state);
 }
 
 void DepthStencilStateD3D11::release()
@@ -236,7 +238,7 @@ void DepthStencilStateD3D11::initialize(DepthStencilState depth_stencil_state)
 	depth_desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 	depth_desc.StencilEnable = false;
 
-	m_device->getD3D11Device()->CreateDepthStencilState(&depth_desc, &m_depth_stencil_state);
+	m_device->getHandle()->CreateDepthStencilState(&depth_desc, &m_depth_stencil_state);
 }
 
 void BlendStateD3D11::release()
@@ -264,7 +266,7 @@ void BlendStateD3D11::initialize(BlendState blend_mode)
 		blend_desc.RenderTarget[i].DestBlendAlpha = D3D11_BLEND_ONE;
 	}
 
-	m_device->getD3D11Device()->CreateBlendState(&blend_desc, &m_blend_state);
+	m_device->getHandle()->CreateBlendState(&blend_desc, &m_blend_state);
 }
 
 // Declaration
@@ -418,8 +420,9 @@ void VertexStream::setStream(const float* stream_src)
 	}
 }
 
-InputLayoutCacheD3D11::InputLayoutCacheD3D11(DeviceD3D11* device) :
-	m_device(device)
+InputLayoutCacheD3D11::InputLayoutCacheD3D11(DeviceD3D11* device, DeviceContextD3D11* device_context) :
+	m_device(device),
+	m_device_context(device_context)
 {
 }
 
@@ -466,7 +469,7 @@ bool InputLayoutCacheD3D11::bindLayout(const VertexDeclarationD3D11* vertex_decl
 		uint32_t elementCount = vertex_declaration->getElementCount();
 		const D3D11_INPUT_ELEMENT_DESC* input_desc = vertex_declaration->getInputLayout();
 
-		ID3D11Device* device = m_device->getD3D11Device();
+		ID3D11Device* device = m_device->getHandle();
 		if (device)
 		{
 			if (FAILED(device->CreateInputLayout(input_desc,
@@ -491,7 +494,7 @@ bool InputLayoutCacheD3D11::bindLayout(const VertexDeclarationD3D11* vertex_decl
 
 	if (ID3D11InputLayout* layout = it->second)
 	{
-		ID3D11DeviceContext* device_context = m_device->getImmediateDeviceContext();
+		ID3D11DeviceContext* device_context = m_device_context->getHandle();
 		if(device_context)
 			device_context->IASetInputLayout(layout);
 		return true;

@@ -1,10 +1,11 @@
 #include "LeblancEngine/Render/Utility/LeblancDeviceD3D11.h"
 #include "LeblancEngine/Render/RenderEntity/LeblancIndexMesh.h"
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
+#include "LeblancEngine/Render/Utility/LeblancDeviceContextD3D11.h"
+#include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 #include <vector>
 
 using namespace std;
-
 const static UINT k_max_render_target_view = 8;
 
 DeviceD3D11::DeviceD3D11()
@@ -49,14 +50,20 @@ void DeviceD3D11::initialize(Window& window)
 	flags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
+	ID3D11DeviceContext* device_context = nullptr;
+
 	HRESULT hr = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, flags,
-		NULL, 0, D3D11_SDK_VERSION, &desc, &m_swap_chain, &m_device, NULL, &m_device_context);
+		NULL, 0, D3D11_SDK_VERSION, &desc, &m_swap_chain, &m_device, NULL, &device_context);
 
 	if (m_swap_chain && hr == S_OK)
 	{
 		ID3D11Texture2D* back_buffer = nullptr;
 		m_swap_chain->GetBuffer(0, __uuidof(back_buffer), reinterpret_cast<void**>(&back_buffer));
 		m_device->CreateRenderTargetView(back_buffer, nullptr, &m_back_buffer_view);
+
+		DeviceContextD3D11* immediate_device_context = new DeviceContextD3D11(this);
+		immediate_device_context->setHandle(device_context);
+		g_global_context.m_device_manager.registerImmediateContext(immediate_device_context);
 	}
 }
 
@@ -166,103 +173,9 @@ void DeviceD3D11::present()
 
 void DeviceD3D11::release()
 {
-	if (m_device_context)
-	{
-		m_device_context->Release();
-		m_device_context = nullptr;
-	}
-
-	if (m_device)
-	{
-		m_device->Release();
-		m_device = nullptr;
-	}
-
-	if (m_swap_chain)
-	{
-		m_swap_chain->Release();
-		m_swap_chain = nullptr;
-	}
-}
-
-void DeviceD3D11::setRenderTargets(UINT num_targets, Texture2D** render_targets, DepthStencilTexture* depth_stentil_texture)
-{
-	ID3D11DepthStencilView* depth_stencil_view = depth_stentil_texture ? (ID3D11DepthStencilView*)depth_stentil_texture->getRenderTargetView() : nullptr;
-	ID3D11RenderTargetView* render_target_views[k_max_render_target_view] = { nullptr };
-	for (UINT i = 0; i < num_targets; i++)
-	{
-		render_target_views[i] = (ID3D11RenderTargetView*)render_targets[i]->getRenderTargetView();
-	}
-
-	m_device_context->OMSetRenderTargets(num_targets, render_target_views, depth_stencil_view);
-}
-
-
-void DeviceD3D11::setRenderTargets(UINT num_targets, ID3D11RenderTargetView** render_targets, DepthStencilTexture* depth_stentil_texture)
-{
-	ID3D11DepthStencilView* depth_stencil_view = depth_stentil_texture ? (ID3D11DepthStencilView*)depth_stentil_texture->getRenderTargetView() : nullptr;
-	m_device_context->OMSetRenderTargets(num_targets, render_targets, depth_stencil_view);
-}
-
-void DeviceD3D11::clearRenderTarget(ID3D11RenderTargetView* render_target)
-{
-	float red[4] = { 1.0, 0.0 ,0.0, 1.0 };
-	m_device_context->ClearRenderTargetView(render_target, red);
-}
-
-void DeviceD3D11::setInputLayout(ID3D11InputLayout* input_layout)
-{
-	m_device_context->IASetInputLayout(input_layout);
-}
-
-void DeviceD3D11::renderIndexMesh(IndexMesh* mesh)
-{
-	UINT offset = 0;
-	mesh->getVertexBuffer()->bind();
-	mesh->getIndexBuffer()->bind();
-	m_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	m_device_context->DrawIndexed(mesh->getIndexCount(), 0, 0);
-}
-
-void DeviceD3D11::setViewPort(FLOAT left_x, FLOAT tp_y, FLOAT width, FLOAT height)
-{
-	D3D11_VIEWPORT view_port;
-	view_port.TopLeftX = left_x;
-	view_port.TopLeftY = tp_y;
-	view_port.Width = width;
-	view_port.Height = height;
-	view_port.MinDepth = 0;
-	view_port.MaxDepth = 1;
-
-	m_device_context->RSSetViewports(1, &view_port);
-}
-
-void DeviceD3D11::setRasterizerState(RasterizerState rasterizer_mode)
-{
-	RasterizerStateD3D11* rasterizer_state = g_global_context.m_render_state_manager.getOrCreateRasterizerState(rasterizer_mode);
-	if (rasterizer_state)
-	{
-		m_device_context->RSSetState(rasterizer_state->getRasterizerState());
-	}
-}
-
-void DeviceD3D11::setDepthStencilState(DepthStencilState depth_stencil_mode)
-{
-	DepthStencilStateD3D11* depth_stencil_state = g_global_context.m_render_state_manager.getOrCreateDepthStencilState(depth_stencil_mode);
-	if (depth_stencil_state)
-	{
-		m_device_context->OMSetDepthStencilState(depth_stencil_state->getDepthStencilState(), 0);
-	}
-}
-
-void DeviceD3D11::setBlendState(BlendState blend_mode)
-{
-	BlendStateD3D11* blend_state = g_global_context.m_render_state_manager.getOrCreateBlendState(blend_mode);
-	if (blend_state)
-	{
-		FLOAT blend_factor[4] = { 1, 1, 1, 1 };
-		m_device_context->OMSetBlendState(blend_state->getBlendState(), blend_factor, 0xffffffff);
-	}
+	safe_Release(m_swap_chain);
+	safe_Release(m_back_buffer_view);
+	safe_Release(m_device);
 }
 
 // new create resource data
@@ -278,7 +191,7 @@ IndexBufferD3D11* DeviceD3D11::createIndexBuffer(const ResourceDeclaration* decl
 	{
 		if (const IndexBufferDeclaration* index_buffer_declaration = dynamic_cast<const IndexBufferDeclaration*>(declaration))
 		{
-			index_buffer = new IndexBufferD3D11(this);
+			index_buffer = new IndexBufferD3D11(this, g_global_context.m_device_manager.getImmediateContext());
 			index_buffer->initialize(index_buffer_declaration);
 		}
 	}
@@ -294,7 +207,7 @@ VertexBufferD3D11* DeviceD3D11::createVertexBuffer(const ResourceDeclaration* de
 	{
 		if (const VertexBufferDeclaration* vertex_buffer_declaration = dynamic_cast<const VertexBufferDeclaration*>(declaration))
 		{
-			vertex_buffer = new VertexBufferD3D11(this);
+			vertex_buffer = new VertexBufferD3D11(this, g_global_context.m_device_manager.getImmediateContext());
 			vertex_buffer->initialize(vertex_buffer_declaration);
 		}
 	}

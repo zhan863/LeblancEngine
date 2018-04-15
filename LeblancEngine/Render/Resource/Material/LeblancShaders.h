@@ -9,11 +9,12 @@ class GpuData;
 class Technique;
 class GpuVariable;
 class ConstantBuffer;
+class DeviceContextD3D11;
 class DeviceD3D11;
 class Shader
 {
 public:
-	Shader(DeviceD3D11* device);
+	Shader(DeviceD3D11* device, DeviceContextD3D11* device_context);
 	~Shader();
 
 	void release();
@@ -44,6 +45,7 @@ private:
 	std::string m_file_name;
 	std::string m_include_name;
 
+	DeviceContextD3D11* m_device_context = nullptr;
 	DeviceD3D11* m_device = nullptr;
 };
 #endif

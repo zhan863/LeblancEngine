@@ -3,7 +3,8 @@
 
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
-ConstantBuffer::ConstantBuffer(DeviceD3D11* device) : m_device(device)
+ConstantBuffer::ConstantBuffer(DeviceD3D11* device, DeviceContextD3D11* device_context) :
+	m_device(device), m_device_context(device_context)
 {
 
 }
