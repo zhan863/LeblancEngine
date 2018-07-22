@@ -124,7 +124,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>PCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -201,13 +201,58 @@
     <ClCompile Include="LeblancEngine\Math\LeblancMath.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Basics\LeblancRenderPlatformDefineD3D11.cpp">
+    <ClCompile Include="LeblancEngine\Render\Buffer\D3D11\LeblancBufferD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.cpp">
+    <ClCompile Include="LeblancEngine\Render\Buffer\LeblancBuffer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Basics\LeblancWindow.cpp">
+    <ClCompile Include="LeblancEngine\Render\Defines\D3D11\LeblancRenderUtilityD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceContextD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\LeblancDevice.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\LeblancDeviceContext.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\LeblancDeviceManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancConstantBufferD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancGpuVariableD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancShadersD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancTechniqueD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancConstantBuffer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancGpuVariable.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancMaterial.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancMaterialManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancShaders.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancTechnique.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.cpp">
@@ -231,40 +276,10 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.cpp">
+    <ClCompile Include="LeblancEngine\Render\RenderState\D3D11\LeblancRenderStateD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancConstantBuffer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaders.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancTechnique.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Texture\Texture2D.cpp">
+    <ClCompile Include="LeblancEngine\Render\RenderState\LeblancRenderStateManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Scene\LeblancScene.cpp">
@@ -273,13 +288,37 @@
     <ClCompile Include="LeblancEngine\Render\Scene\LeblancSceneManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.cpp">
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancBackBufferSurfaceD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.cpp">
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancDepthSurfaceD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceManager.cpp">
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancRenderTargetD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancSurfaceD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancTextureD3D11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancDepthSurface.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancFrameBuffer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancSurface.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancTexture.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancTextureParameters.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Window\LeblancWindow.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ThirdParty\pugi\pugixml.cpp">
@@ -295,12 +334,26 @@
     <ClInclude Include="LeblancEngine\Engine\LeblancEngine.h" />
     <ClInclude Include="LeblancEngine\Global\LeblancGlobalContext.h" />
     <ClInclude Include="LeblancEngine\Math\LeblancMath.h" />
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderBasicDefine.h" />
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformDefineD3D11.h" />
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformIndependentDefine.h" />
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.h" />
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancWindow.h" />
+    <ClInclude Include="LeblancEngine\Render\Buffer\D3D11\LeblancBufferD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Buffer\LeblancBuffer.h" />
+    <ClInclude Include="LeblancEngine\Render\Defines\D3D11\LeblancRenderUtilityD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Defines\LeblancRenderBasicDefine.h" />
+    <ClInclude Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceContextD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Device\LeblancDevice.h" />
+    <ClInclude Include="LeblancEngine\Render\Device\LeblancDeviceContext.h" />
+    <ClInclude Include="LeblancEngine\Render\Device\LeblancDeviceManager.h" />
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancConstantBufferD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancGpuVariableD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancShadersD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancTechniqueD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancConstantBuffer.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancGpuVariable.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancMaterial.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancMaterialManager.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancShaders.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancTechnique.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.h" />
@@ -308,23 +361,22 @@
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancMesh.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancConstantBuffer.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaders.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancTechnique.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.h" />
-    <ClInclude Include="LeblancEngine\Render\Resource\Texture\Texture2D.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderState\D3D11\LeblancRenderStateD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderState.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderStateManager.h" />
     <ClInclude Include="LeblancEngine\Render\Scene\LeblancScene.h" />
     <ClInclude Include="LeblancEngine\Render\Scene\LeblancSceneManager.h" />
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.h" />
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.h" />
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceManager.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancBackBufferSurfaceD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancDepthSurfaceD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancRenderTargetD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancSurfaceD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancTextureD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancDepthSurface.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancFrameBuffer.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancSurface.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancTexture.h" />
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancTextureParameters.h" />
+    <ClInclude Include="LeblancEngine\Render\Window\LeblancWindow.h" />
     <ClInclude Include="ThirdParty\assimp\Include\cimport.h" />
     <ClInclude Include="ThirdParty\assimp\Include\Importer.hpp" />
     <ClInclude Include="ThirdParty\assimp\Include\scene.h" />

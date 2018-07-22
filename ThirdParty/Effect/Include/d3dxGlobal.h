@@ -76,9 +76,9 @@ using namespace D3DX11Debug;
 #define D3DX11FLTASSIGN(a,b)    { *reinterpret_cast< UINT32* >(&(a)) = *reinterpret_cast< UINT32* >(&(b)); }
 
 // Preferred data alignment -- must be a power of 2!
-static const uint32_t c_DataAlignment = sizeof(UINT_PTR);
+static const unsigned int c_DataAlignment = sizeof(UINT_PTR);
 
-inline uint32_t AlignToPowerOf2(uint32_t Value, uint32_t Alignment)
+inline unsigned int AlignToPowerOf2(unsigned int Value, unsigned int Alignment)
 {
     assert((Alignment & (Alignment - 1)) == 0);
     // to align to 2^N, add 2^N - 1 and AND with all but lowest N bits set
@@ -108,7 +108,7 @@ class CMemoryStream
 public:
     HRESULT SetData(_In_reads_bytes_(size) const void *pData, _In_ size_t size);
 
-    HRESULT Read(_Out_ uint32_t *pUint);
+    HRESULT Read(_Out_ unsigned int *pUint);
     HRESULT Read(_Outptr_result_buffer_(size) void **ppData, _In_ size_t size);
     HRESULT Read(_Outptr_ LPCSTR *ppString);
 
@@ -151,20 +151,20 @@ protected:
 #endif // _DEBUG
 
     uint8_t    *m_pData;
-    uint32_t    m_MaxSize;
-    uint32_t    m_CurSize;
+    unsigned int    m_MaxSize;
+    unsigned int    m_CurSize;
 
     HRESULT Grow()
     {
         return Reserve(m_CurSize + 1);
     }
 
-    HRESULT Reserve(_In_ uint32_t DesiredSize)
+    HRESULT Reserve(_In_ unsigned int DesiredSize)
     {
         if (DesiredSize > m_MaxSize)
         {
             uint8_t *pNewData;
-            uint32_t newSize = std::max(m_MaxSize * 2, DesiredSize);
+            unsigned int newSize = std::max(m_MaxSize * 2, DesiredSize);
 
             if (newSize < 16)
                 newSize = 16;
@@ -290,7 +290,7 @@ lExit:
         return new((T*)m_pData + (m_CurSize ++)) T;
     }
 
-    T* AddRange(_In_ uint32_t count)
+    T* AddRange(_In_ unsigned int count)
     {
         if (m_CurSize + count < m_CurSize)
         {
@@ -321,7 +321,7 @@ lExit:
         return S_OK;
     }
 
-    HRESULT AddRange(_In_reads_(count) const T *pVar, _In_ uint32_t count)
+    HRESULT AddRange(_In_reads_(count) const T *pVar, _In_ unsigned int count)
     {
         if (m_CurSize + count < m_CurSize)
         {
@@ -338,7 +338,7 @@ lExit:
         return S_OK;
     }
 
-    HRESULT Insert(_In_ const T& var, _In_ uint32_t index)
+    HRESULT Insert(_In_ const T& var, _In_ unsigned int index)
     {
         assert(index < m_CurSize);
         
@@ -352,7 +352,7 @@ lExit:
         return S_OK;
     }
 
-    HRESULT InsertRange(_In_reads_(count) const T *pVar, _In_ uint32_t index, _In_ uint32_t count)
+    HRESULT InsertRange(_In_reads_(count) const T *pVar, _In_ unsigned int index, _In_ unsigned int count)
     {
         assert(index < m_CurSize);
         
@@ -379,7 +379,7 @@ lExit:
     }
 
     // Deletes element at index and shifts all other values down
-    void Delete(_In_ uint32_t index)
+    void Delete(_In_ unsigned int index)
     {
         assert(index < m_CurSize);
 
@@ -388,7 +388,7 @@ lExit:
     }
 
     // Deletes element at index and moves the last element into its place
-    void QuickDelete(_In_ uint32_t index)
+    void QuickDelete(_In_ unsigned int index)
     {
         assert(index < m_CurSize);
 
@@ -396,7 +396,7 @@ lExit:
         memcpy((T*)m_pData + index, (T*)m_pData + m_CurSize, sizeof(T));
     }
 
-    inline uint32_t GetSize() const
+    inline unsigned int GetSize() const
     {
         return m_CurSize;
     }
@@ -406,7 +406,7 @@ lExit:
         return (T*)m_pData;
     }
 
-    uint32_t FindIndexOf(_In_ const void *pEntry) const
+    unsigned int FindIndexOf(_In_ const void *pEntry) const
     {
         for (size_t i = 0; i < m_CurSize; ++ i)
         {   
@@ -457,7 +457,7 @@ public:
         m_hLastError = S_OK;
     }
 
-    void Delete(_In_ uint32_t index)
+    void Delete(_In_ unsigned int index)
     {
         assert(index < m_CurSize);
 
@@ -468,8 +468,8 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////
-// Checked uint32_t, uint64_t
-// Use CheckedNumber only with uint32_t and uint64_t
+// Checked unsigned int, uint64_t
+// Use CheckedNumber only with unsigned int and uint64_t
 //////////////////////////////////////////////////////////////////////////
 template <class T, T MaxValue> class CheckedNumber
 {
@@ -543,7 +543,7 @@ public:
     {
         if (!m_bValid)
         {
-            *pValue = uint32_t(-1);
+            *pValue = unsigned int(-1);
             return E_FAIL;
         }
 
@@ -552,7 +552,7 @@ public:
     }
 };
 
-typedef CheckedNumber<uint32_t, _UI32_MAX> CCheckedDword;
+typedef CheckedNumber<unsigned int, _UI32_MAX> CCheckedDword;
 typedef CheckedNumber<uint64_t, _UI64_MAX> CCheckedDword64;
 
 
@@ -563,8 +563,8 @@ typedef CheckedNumber<uint64_t, _UI64_MAX> CCheckedDword64;
 class CDataBlock
 {
 protected:
-    uint32_t    m_size;
-    uint32_t    m_maxSize;
+    unsigned int    m_size;
+    unsigned int    m_maxSize;
     uint8_t     *m_pData;
     CDataBlock  *m_pNext;
 
@@ -572,11 +572,11 @@ protected:
 
 public:
     // AddData appends an existing use buffer to the data block
-    HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ uint32_t bufferSize, _Outptr_ CDataBlock **ppBlock);
+    HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ unsigned int bufferSize, _Outptr_ CDataBlock **ppBlock);
 
     // Allocate reserves bufferSize bytes of contiguous memory and returns a pointer to the user
     _Success_(return != nullptr)
-    void*   Allocate(_In_ uint32_t bufferSize, _Outptr_ CDataBlock **ppBlock);
+    void*   Allocate(_In_ unsigned int bufferSize, _Outptr_ CDataBlock **ppBlock);
 
     void    EnableAlignment();
 
@@ -592,25 +592,25 @@ class CDataBlockStore
 protected:
     CDataBlock  *m_pFirst;
     CDataBlock  *m_pLast;
-    uint32_t    m_Size;
-    uint32_t    m_Offset;           // m_Offset gets added to offsets returned from AddData & AddString. Use this to set a global for the entire string block
+    unsigned int    m_Size;
+    unsigned int    m_Offset;           // m_Offset gets added to offsets returned from AddData & AddString. Use this to set a global for the entire string block
     bool        m_IsAligned;        // Whether or not to align the data to c_DataAlignment
 
 public:
 #if _DEBUG
-    uint32_t    m_cAllocations;
+    unsigned int    m_cAllocations;
 #endif
 
 public:
-    HRESULT AddString(_In_z_ LPCSTR pString, _Inout_ uint32_t *pOffset);
+    HRESULT AddString(_In_z_ LPCSTR pString, _Inout_ unsigned int *pOffset);
         // Writes a null-terminated string to buffer
 
-    HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ uint32_t bufferSize, _Inout_ uint32_t *pOffset);
+    HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ unsigned int bufferSize, _Inout_ unsigned int *pOffset);
         // Writes data block to buffer
 
     // Memory allocator support
-    void*   Allocate(_In_ uint32_t bufferSize);
-    uint32_t GetSize();
+    void*   Allocate(_In_ unsigned int bufferSize);
+    unsigned int GetSize();
     void    EnableAlignment();
 
     CDataBlockStore();
@@ -626,7 +626,7 @@ inline void* __cdecl operator new(_In_ size_t s, _In_ CDataBlockStore &pAllocato
 #ifdef _M_X64
     assert( s <= 0xffffffff );
 #endif
-    return pAllocator.Allocate( (uint32_t)s );
+    return pAllocator.Allocate( (unsigned int)s );
 }
 
 inline void __cdecl operator delete(_In_opt_ void* p, _In_ CDataBlockStore &pAllocator)
@@ -653,19 +653,19 @@ inline void __cdecl operator delete(_In_opt_ void* p, _In_ CDataBlockStore &pAll
     c -= a; c -= b; c ^= (b>>15); \
 }
 
-static uint32_t ComputeHash(_In_reads_bytes_(cbToHash) const uint8_t *pb, _In_ uint32_t cbToHash)
+static unsigned int ComputeHash(_In_reads_bytes_(cbToHash) const uint8_t *pb, _In_ unsigned int cbToHash)
 {
-    uint32_t cbLeft = cbToHash;
+    unsigned int cbLeft = cbToHash;
 
-    uint32_t a;
-    uint32_t b;
+    unsigned int a;
+    unsigned int b;
     a = b = 0x9e3779b9; // the golden ratio; an arbitrary value
 
-    uint32_t c = 0;
+    unsigned int c = 0;
 
     while (cbLeft >= 12)
     {
-        const uint32_t *pdw = reinterpret_cast<const uint32_t *>(pb);
+        const unsigned int *pdw = reinterpret_cast<const unsigned int *>(pb);
 
         a += pdw[0];
         b += pdw[1];
@@ -680,17 +680,17 @@ static uint32_t ComputeHash(_In_reads_bytes_(cbToHash) const uint8_t *pb, _In_ u
 
     switch(cbLeft) // all the case statements fall through
     {
-    case 11: c+=((uint32_t) pb[10] << 24);
-    case 10: c+=((uint32_t) pb[9]  << 16);
-    case 9 : c+=((uint32_t) pb[8]  <<  8);
+    case 11: c+=((unsigned int) pb[10] << 24);
+    case 10: c+=((unsigned int) pb[9]  << 16);
+    case 9 : c+=((unsigned int) pb[8]  <<  8);
         // the first byte of c is reserved for the length
-    case 8 : b+=((uint32_t) pb[7]  << 24);
-    case 7 : b+=((uint32_t) pb[6]  << 16);
-    case 6 : b+=((uint32_t) pb[5]  <<  8);
+    case 8 : b+=((unsigned int) pb[7]  << 24);
+    case 7 : b+=((unsigned int) pb[6]  << 16);
+    case 6 : b+=((unsigned int) pb[5]  <<  8);
     case 5 : b+=pb[4];
-    case 4 : a+=((uint32_t) pb[3]  << 24);
-    case 3 : a+=((uint32_t) pb[2]  << 16);
-    case 2 : a+=((uint32_t) pb[1]  <<  8);
+    case 4 : a+=((unsigned int) pb[3]  << 24);
+    case 3 : a+=((unsigned int) pb[2]  << 16);
+    case 2 : a+=((unsigned int) pb[1]  <<  8);
     case 1 : a+=pb[0];
     }
 
@@ -699,14 +699,14 @@ static uint32_t ComputeHash(_In_reads_bytes_(cbToHash) const uint8_t *pb, _In_ u
     return c;
 }
 
-static uint32_t ComputeHashLower(_In_reads_bytes_(cbToHash) const uint8_t *pb, _In_ uint32_t cbToHash)
+static unsigned int ComputeHashLower(_In_reads_bytes_(cbToHash) const uint8_t *pb, _In_ unsigned int cbToHash)
 {
-    uint32_t cbLeft = cbToHash;
+    unsigned int cbLeft = cbToHash;
 
-    uint32_t a;
-    uint32_t b;
+    unsigned int a;
+    unsigned int b;
     a = b = 0x9e3779b9; // the golden ratio; an arbitrary value
-    uint32_t c = 0;
+    unsigned int c = 0;
 
     while (cbLeft >= 12)
     {
@@ -714,7 +714,7 @@ static uint32_t ComputeHashLower(_In_reads_bytes_(cbToHash) const uint8_t *pb, _
         for( size_t i = 0; i < 12; i++ )
             pbT[i] = (uint8_t)tolower(pb[i]);
 
-        uint32_t *pdw = reinterpret_cast<uint32_t *>(pbT);
+        unsigned int *pdw = reinterpret_cast<unsigned int *>(pbT);
 
         a += pdw[0];
         b += pdw[1];
@@ -733,17 +733,17 @@ static uint32_t ComputeHashLower(_In_reads_bytes_(cbToHash) const uint8_t *pb, _
 
     switch(cbLeft) // all the case statements fall through
     {
-    case 11: c+=((uint32_t) pbT[10] << 24);
-    case 10: c+=((uint32_t) pbT[9]  << 16);
-    case 9 : c+=((uint32_t) pbT[8]  <<  8);
+    case 11: c+=((unsigned int) pbT[10] << 24);
+    case 10: c+=((unsigned int) pbT[9]  << 16);
+    case 9 : c+=((unsigned int) pbT[8]  <<  8);
         // the first byte of c is reserved for the length
-    case 8 : b+=((uint32_t) pbT[7]  << 24);
-    case 7 : b+=((uint32_t) pbT[6]  << 16);
-    case 6 : b+=((uint32_t) pbT[5]  <<  8);
+    case 8 : b+=((unsigned int) pbT[7]  << 24);
+    case 7 : b+=((unsigned int) pbT[6]  << 16);
+    case 6 : b+=((unsigned int) pbT[5]  <<  8);
     case 5 : b+=pbT[4];
-    case 4 : a+=((uint32_t) pbT[3]  << 24);
-    case 3 : a+=((uint32_t) pbT[2]  << 16);
-    case 2 : a+=((uint32_t) pbT[1]  <<  8);
+    case 4 : a+=((unsigned int) pbT[3]  << 24);
+    case 3 : a+=((unsigned int) pbT[2]  << 16);
+    case 2 : a+=((unsigned int) pbT[1]  <<  8);
     case 1 : a+=pbT[0];
     }
 
@@ -752,9 +752,9 @@ static uint32_t ComputeHashLower(_In_reads_bytes_(cbToHash) const uint8_t *pb, _
     return c;
 }
 
-static uint32_t ComputeHash(_In_z_ LPCSTR pString)
+static unsigned int ComputeHash(_In_z_ LPCSTR pString)
 {
-    return ComputeHash(reinterpret_cast<const uint8_t*>(pString), (uint32_t)strlen(pString));
+    return ComputeHash(reinterpret_cast<const uint8_t*>(pString), (unsigned int)strlen(pString));
 }
 
 
@@ -763,7 +763,7 @@ static uint32_t ComputeHash(_In_z_ LPCSTR pString)
 // 4) each is roughly in between two powers of 2;
 //    (2^n hash table sizes are VERY BAD; they effectively truncate your
 //     precision down to the n least significant bits of the hash)
-static const uint32_t c_PrimeSizes[] = 
+static const unsigned int c_PrimeSizes[] = 
 {
     11,
     23,
@@ -802,15 +802,15 @@ protected:
 
     struct SHashEntry
     {
-        uint32_t    Hash;
+        unsigned int    Hash;
         T           Data;
         SHashEntry  *pNext;
     };
 
     // Array of hash entries
     SHashEntry  **m_rgpHashEntries;
-    uint32_t    m_NumHashSlots;
-    uint32_t    m_NumEntries;
+    unsigned int    m_NumHashSlots;
+    unsigned int    m_NumEntries;
     bool        m_bOwnHashEntryArray;
 
 public:
@@ -830,7 +830,7 @@ public:
             return pHashEntry->Data;
         }
 
-        uint32_t GetHash()
+        unsigned int GetHash()
         {
             assert(pHashEntry != 0);
             _Analysis_assume_(pHashEntry != 0);
@@ -846,8 +846,8 @@ public:
     {
         HRESULT hr = S_OK;
         SHashEntry **rgpNewHashEntries = nullptr;
-        uint32_t valuesMigrated = 0;
-        uint32_t actualSize;
+        unsigned int valuesMigrated = 0;
+        unsigned int actualSize;
 
         Cleanup();
 
@@ -861,7 +861,7 @@ public:
         pOther->GetFirstEntry(&iter);
         while (!pOther->PastEnd(&iter))
         {
-            uint32_t index = iter.GetHash() % actualSize;
+            unsigned int index = iter.GetHash() % actualSize;
 
             // we need to advance to the next element
             // before we seize control of this element and move
@@ -930,7 +930,7 @@ public:
         Cleanup();
     }
 
-    static uint32_t GetNextHashTableSize(_In_ uint32_t DesiredSize)
+    static unsigned int GetNextHashTableSize(_In_ unsigned int DesiredSize)
     {
         // figure out the next logical size to use
         for (size_t i = 0; i < _countof(c_PrimeSizes); ++i )
@@ -947,15 +947,15 @@ public:
     // O(n) function
     // Grows to the next suitable size (based off of the prime number table)
     // DesiredSize is merely a suggestion
-    HRESULT Grow(_In_ uint32_t DesiredSize,
-                 _In_ uint32_t ProvidedArraySize = 0,
+    HRESULT Grow(_In_ unsigned int DesiredSize,
+                 _In_ unsigned int ProvidedArraySize = 0,
                  _In_reads_opt_(ProvidedArraySize) void** ProvidedArray = nullptr,
                  _In_ bool OwnProvidedArray = false)
     {
         HRESULT hr = S_OK;
         SHashEntry **rgpNewHashEntries = nullptr;
-        uint32_t valuesMigrated = 0;
-        uint32_t actualSize;
+        unsigned int valuesMigrated = 0;
+        unsigned int actualSize;
 
         VB( DesiredSize > m_NumHashSlots );
 
@@ -980,7 +980,7 @@ public:
         GetFirstEntry(&iter);
         while (!PastEnd(&iter))
         {
-            uint32_t index = iter.GetHash() % actualSize;
+            unsigned int index = iter.GetHash() % actualSize;
 
             // we need to advance to the next element
             // before we seize control of this element and move
@@ -1029,13 +1029,13 @@ lExit:
         
         float variance = 0.0f;
         float mean = (float)m_NumEntries / (float)m_NumHashSlots;
-        uint32_t unusedSlots = 0;
+        unsigned int unusedSlots = 0;
 
         DPF(0, "Hash table slots: %d, Entries in table: %d", m_NumHashSlots, m_NumEntries);
 
         for (size_t i = 0; i < m_NumHashSlots; ++ i)
         {
-            uint32_t entries = 0;
+            unsigned int entries = 0;
             SHashEntry *pCurrentEntry = m_rgpHashEntries[i];
 
             while (nullptr != pCurrentEntry)
@@ -1081,11 +1081,11 @@ lExit:
 #endif // _DEBUG
 
     // S_OK if element is found, E_FAIL otherwise
-    HRESULT FindValueWithHash(_In_ T Data, _In_ uint32_t Hash, _Out_ CIterator *pIterator)
+    HRESULT FindValueWithHash(_In_ T Data, _In_ unsigned int Hash, _Out_ CIterator *pIterator)
     {
         assert(m_NumHashSlots > 0);
 
-        uint32_t index = Hash % m_NumHashSlots;
+        unsigned int index = Hash % m_NumHashSlots;
         SHashEntry *pEntry = m_rgpHashEntries[index];
         while (nullptr != pEntry)
         {
@@ -1101,11 +1101,11 @@ lExit:
     }
 
     // S_OK if element is found, E_FAIL otherwise
-    HRESULT FindFirstMatchingValue(_In_ uint32_t Hash, _Out_ CIterator *pIterator)
+    HRESULT FindFirstMatchingValue(_In_ unsigned int Hash, _Out_ CIterator *pIterator)
     {
         assert(m_NumHashSlots > 0);
 
-        uint32_t index = Hash % m_NumHashSlots;
+        unsigned int index = Hash % m_NumHashSlots;
         SHashEntry *pEntry = m_rgpHashEntries[index];
         while (nullptr != pEntry)
         {
@@ -1121,14 +1121,14 @@ lExit:
     }
 
     // Adds data at the specified hash slot without checking for existence
-    HRESULT AddValueWithHash(_In_ T Data, _In_ uint32_t Hash)
+    HRESULT AddValueWithHash(_In_ T Data, _In_ unsigned int Hash)
     {
         HRESULT hr = S_OK;
 
         assert(m_NumHashSlots > 0);
 
         SHashEntry *pHashEntry;
-        uint32_t index = Hash % m_NumHashSlots;
+        unsigned int index = Hash % m_NumHashSlots;
 
         VN( pHashEntry = new SHashEntry );
         pHashEntry->pNext = m_rgpHashEntries[index];
@@ -1259,7 +1259,7 @@ public:
     }
 
     // Adds data at the specified hash slot without checking for existence
-    HRESULT AddValueWithHash(_In_ T Data, _In_ uint32_t Hash)
+    HRESULT AddValueWithHash(_In_ T Data, _In_ unsigned int Hash)
     {
         HRESULT hr = S_OK;
 
@@ -1268,7 +1268,7 @@ public:
         assert(m_NumHashSlots > 0);
 
         SHashEntry *pHashEntry;
-        uint32_t index = Hash % m_NumHashSlots;
+        unsigned int index = Hash % m_NumHashSlots;
 
         VN( pHashEntry = new(*m_pPrivateHeap) SHashEntry );
         pHashEntry->pNext = m_rgpHashEntries[index];

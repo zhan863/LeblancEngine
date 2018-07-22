@@ -1,16 +1,19 @@
 #include "LeblancEngine/Render/Pipeline/LeblancRenderPipeline.h"
 
-RenderPipeline::RenderPipeline()
+namespace Leblanc
 {
+	RenderPipeline::RenderPipeline()
+	{
 
-}
+	}
 
-RenderPipeline::~RenderPipeline()
-{
+	RenderPipeline::~RenderPipeline()
+	{
 
-}
+	}
 
-void RenderPipeline::initialize()
-{
+	void RenderPipeline::initialize()
+	{
 
+	}
 }

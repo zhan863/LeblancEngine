@@ -1,32 +1,35 @@
 #ifndef LEBLANC_ENGINE_H
 #define LEBLANC_ENGINE_H
 
-#include "LeblancEngine/Render/Basics/LeblancWindow.h"
+#include "LeblancEngine/Render/Window/LeblancWindow.h"
 
-class Engine
+namespace Leblanc
 {
-public:
-	Engine();
+	class Engine
+	{
+	public:
+		Engine();
 
-	~Engine();
+		~Engine();
 
-	void run();
+		void run();
 
-private:
-	void initialize();
+	private:
+		void initialize();
 
-	void prepare();
+		void prepare();
 
-	void clear();
+		void clear();
 
-	void update(float delta_time);
+		void update(float delta_time);
 
-	void render(float delta_time);
+		void render(float delta_time);
 
-	void present();
+		void present();
 
-private:
-	Window m_window;
-};
+	private:
+		Window m_window;
+	};
+}
 
 #endif

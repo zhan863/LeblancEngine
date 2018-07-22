@@ -2,57 +2,60 @@
 #define LEBLANC_MESH_H
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
-#include "LeblancEngine/Render/Basics/LeblancRenderBasicDefine.h"
-#include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
+#include "LeblancEngine/Render/Defines/LeblancRenderBasicDefine.h"
 
-#include <assimp/Include/scene.h>
-
-class Material;
-class Mesh
+namespace Leblanc
 {
-public:
-	Mesh();
-	virtual ~Mesh();
+	class Material;
+	class IVertexBuffer;
+	class IVertexDeclaration;
 
-	Material* getMaterial() { return m_material; }
+	class Mesh
+	{
+	public:
+		Mesh();
+		virtual ~Mesh();
 
-	const VertexBufferD3D11* getVertexBuffer() { return m_vertex_buffer; }
+		Material* getMaterial() { return m_material; }
 
-	const VertexDeclarationD3D11* getVertexDeclaration() { return m_vertex_declaration; }
+		const IVertexBuffer* getVertexBuffer() { return m_vertex_buffer; }
 
-	PrimitiveType getPrimitiveType() { return m_primitive_type; }
+		const IVertexDeclaration* getVertexDeclaration() { return m_vertex_declaration; }
 
-protected:
-	void release();
+		PrimitiveType getPrimitiveType() { return m_primitive_type; }
 
-	void createVertexBuffer();
+	protected:
+		void release();
 
-	virtual void* internalStreamPtr() = 0;
+		void createVertexBuffer();
 
-	void setVertexDeclaration(const VertexDeclarationD3D11* declaration);
+		virtual void* internalStreamPtr() = 0;
 
-	void setVertexCount(size_t vertex_count);
+		void setVertexDeclaration(IVertexDeclaration* declaration);
 
-	size_t getVertexCount();
+		void setVertexCount(size_t vertex_count);
 
-	void setPrimitiveType(PrimitiveType primitive_type);
+		size_t getVertexCount();
 
-	void setVertexCount(uint32_t vertex_count) { m_vertex_count = vertex_count; }
+		void setPrimitiveType(PrimitiveType primitive_type);
 
-	uint32_t vertexCount() { return m_vertex_count; }
+		void setVertexCount(unsigned int vertex_count) { m_vertex_count = vertex_count; }
 
-	uint32_t vertexBufferSize();
+		unsigned int vertexCount() { return m_vertex_count; }
 
-	// data
-	size_t m_vertex_count = 0;
+		unsigned int vertexBufferSize();
 
-	PrimitiveType m_primitive_type = PrimitiveType::TriangleList;
+		// data
+		size_t m_vertex_count = 0;
 
-	VertexBufferD3D11* m_vertex_buffer = nullptr;
+		PrimitiveType m_primitive_type = PrimitiveType::TriangleList;
 
-	// reference
-	const VertexDeclarationD3D11* m_vertex_declaration = nullptr;
+		IVertexBuffer* m_vertex_buffer = nullptr;
 
-	Material* m_material = nullptr;
-};
+		// reference
+		IVertexDeclaration* m_vertex_declaration = nullptr;
+
+		Material* m_material = nullptr;
+	};
+}
 #endif

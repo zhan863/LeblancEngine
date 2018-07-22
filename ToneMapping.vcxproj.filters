@@ -1,38 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.cpp">
-      <Filter>LeblancEngine\Render\Resource\TextureOrganizer</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.cpp">
-      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Texture\Texture2D.cpp">
-      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.cpp">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.cpp">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\LeblancResourceManager.cpp">
-      <Filter>LeblancEngine\Render\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.cpp">
-      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.cpp">
-      <Filter>LeblancEngine\Render\utility</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Global\LeblancGlobalContext.cpp">
       <Filter>LeblancEngine\Global</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceManager.cpp">
-      <Filter>LeblancEngine\Render\utility</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Basics\LeblancWindow.cpp">
-      <Filter>LeblancEngine\Render\Basics</Filter>
     </ClCompile>
     <ClCompile Include="LeblancEngine\BasicInclude\LeblancPCH.cpp">
       <Filter>LeblancEngine\BasicInclude</Filter>
@@ -42,9 +18,6 @@
     </ClCompile>
     <ClCompile Include="LeblancEngine\Main\LeblancMain.cpp">
       <Filter>LeblancEngine\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.cpp">
-      <Filter>LeblancEngine\Render\Resource</Filter>
     </ClCompile>
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.cpp">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
@@ -58,15 +31,6 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.cpp">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.cpp">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancShaders.cpp">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.cpp">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
     </ClCompile>
@@ -79,21 +43,6 @@
     <ClCompile Include="LeblancEngine\Math\LeblancMath.cpp">
       <Filter>LeblancEngine\Math</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Basics\LeblancRenderPlatformDefineD3D11.cpp">
-      <Filter>LeblancEngine\Render\Basics</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.cpp">
-      <Filter>LeblancEngine\Render\Basics</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancTechnique.cpp">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancConstantBuffer.cpp">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.cpp">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClCompile>
     <ClCompile Include="ThirdParty\pugi\pugixml.cpp">
       <Filter>ThirdParty\pugi</Filter>
     </ClCompile>
@@ -103,46 +52,112 @@
     <ClCompile Include="LeblancEngine\Asset\LeblancDataStream.cpp">
       <Filter>LeblancEngine\Asset</Filter>
     </ClCompile>
-    <ClCompile Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.cpp">
-      <Filter>LeblancEngine\Render\utility</Filter>
+    <ClCompile Include="LeblancEngine\Render\Device\LeblancDevice.cpp">
+      <Filter>LeblancEngine\Render\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\LeblancDeviceContext.cpp">
+      <Filter>LeblancEngine\Render\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\LeblancDeviceManager.cpp">
+      <Filter>LeblancEngine\Render\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceContextD3D11.cpp">
+      <Filter>LeblancEngine\Render\Device\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceD3D11.cpp">
+      <Filter>LeblancEngine\Render\Device\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderState\D3D11\LeblancRenderStateD3D11.cpp">
+      <Filter>LeblancEngine\Render\RenderState\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Buffer\D3D11\LeblancBufferD3D11.cpp">
+      <Filter>LeblancEngine\Render\Buffer\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Window\LeblancWindow.cpp">
+      <Filter>LeblancEngine\Render\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Buffer\LeblancBuffer.cpp">
+      <Filter>LeblancEngine\Render\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderState\LeblancRenderStateManager.cpp">
+      <Filter>LeblancEngine\Render\RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancMaterial.cpp">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancMaterialManager.cpp">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancShaders.cpp">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancTechnique.cpp">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancConstantBuffer.cpp">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancGpuVariable.cpp">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancShadersD3D11.cpp">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancTechniqueD3D11.cpp">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancGpuVariableD3D11.cpp">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancConstantBufferD3D11.cpp">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancTexture.cpp">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancTextureParameters.cpp">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancFrameBuffer.cpp">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancSurface.cpp">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancSurfaceD3D11.cpp">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancTextureD3D11.cpp">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancDepthSurfaceD3D11.cpp">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancRenderTargetD3D11.cpp">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Defines\D3D11\LeblancRenderUtilityD3D11.cpp">
+      <Filter>LeblancEngine\Render\Defines\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\LeblancDepthSurface.cpp">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancBackBufferSurfaceD3D11.cpp">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LeblancEngine\Render\Resource\TextureOrgainizer\LeblancGBuffer.h">
-      <Filter>LeblancEngine\Render\Resource\TextureOrganizer</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Texture\LeblancTexture.h">
-      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Texture\Texture2D.h">
-      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\LeblancResourceManager.h">
-      <Filter>LeblancEngine\Render\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Texture\DepthStencilTexture.h">
-      <Filter>LeblancEngine\Render\Resource\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h">
       <Filter>LeblancEngine\Render\Include</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceD3D11.h">
-      <Filter>LeblancEngine\Render\utility</Filter>
-    </ClInclude>
     <ClInclude Include="LeblancEngine\Global\LeblancGlobalContext.h">
       <Filter>LeblancEngine\Global</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceManager.h">
-      <Filter>LeblancEngine\Render\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancWindow.h">
-      <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\BasicInclude\LeblancExceptions.h">
       <Filter>LeblancEngine\BasicInclude</Filter>
@@ -152,9 +167,6 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Engine\LeblancEngine.h">
       <Filter>LeblancEngine\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\LeblancRenderStateManager.h">
-      <Filter>LeblancEngine\Render\Resource</Filter>
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.h">
       <Filter>LeblancEngine\Render\Pipeline</Filter>
@@ -167,18 +179,6 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h">
       <Filter>LeblancEngine\Render\RenderEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterial.h">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancMaterialManager.h">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancShaders.h">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderBasicDefine.h">
-      <Filter>LeblancEngine\Render\Basics</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Effect\Include\d3dx11effect.h">
       <Filter>ThirdParty\Effect</Filter>
@@ -198,32 +198,8 @@
     <ClInclude Include="LeblancEngine\Math\LeblancMath.h">
       <Filter>LeblancEngine\Math</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformDefineD3D11.h">
-      <Filter>LeblancEngine\Render\Basics</Filter>
-    </ClInclude>
     <ClInclude Include="LeblancEngine\BasicInclude\LeblancMemoryOperation.h">
       <Filter>LeblancEngine\BasicInclude</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformUtilityDefineD3D11.h">
-      <Filter>LeblancEngine\Render\Basics</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\assimp\Include\cimport.h">
-      <Filter>ThirdParty\Assimp</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\assimp\Include\Importer.hpp">
-      <Filter>ThirdParty\Assimp</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\assimp\Include\scene.h">
-      <Filter>ThirdParty\Assimp</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancTechnique.h">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancConstantBuffer.h">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Resource\Material\LeblancGpuVariable.h">
-      <Filter>LeblancEngine\Render\Resource\Material</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\pugi\pugiconfig.hpp">
       <Filter>ThirdParty\pugi</Filter>
@@ -237,11 +213,113 @@
     <ClInclude Include="LeblancEngine\Asset\LeblancDataStream.h">
       <Filter>LeblancEngine\Asset</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Basics\LeblancRenderPlatformIndependentDefine.h">
-      <Filter>LeblancEngine\Render\Basics</Filter>
+    <ClInclude Include="LeblancEngine\Render\Device\LeblancDevice.h">
+      <Filter>LeblancEngine\Render\Device</Filter>
     </ClInclude>
-    <ClInclude Include="LeblancEngine\Render\Utility\LeblancDeviceContextD3D11.h">
-      <Filter>LeblancEngine\Render\utility</Filter>
+    <ClInclude Include="LeblancEngine\Render\Device\LeblancDeviceContext.h">
+      <Filter>LeblancEngine\Render\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Device\LeblancDeviceManager.h">
+      <Filter>LeblancEngine\Render\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceContextD3D11.h">
+      <Filter>LeblancEngine\Render\Device\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Device\D3D11\LeblancDeviceD3D11.h">
+      <Filter>LeblancEngine\Render\Device\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderState.h">
+      <Filter>LeblancEngine\Render\RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderState\D3D11\LeblancRenderStateD3D11.h">
+      <Filter>LeblancEngine\Render\RenderState\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Buffer\D3D11\LeblancBufferD3D11.h">
+      <Filter>LeblancEngine\Render\Buffer\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Buffer\LeblancBuffer.h">
+      <Filter>LeblancEngine\Render\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Defines\LeblancRenderBasicDefine.h">
+      <Filter>LeblancEngine\Render\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Window\LeblancWindow.h">
+      <Filter>LeblancEngine\Render\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderStateManager.h">
+      <Filter>LeblancEngine\Render\RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancMaterial.h">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancMaterialManager.h">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancShaders.h">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancTechnique.h">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancConstantBuffer.h">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancGpuVariable.h">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancShadersD3D11.h">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancTechniqueD3D11.h">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancGpuVariableD3D11.h">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancConstantBufferD3D11.h">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancTexture.h">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancTextureParameters.h">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancFrameBuffer.h">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancSurface.h">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancSurfaceD3D11.h">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancTextureD3D11.h">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancDepthSurfaceD3D11.h">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancRenderTargetD3D11.h">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Defines\D3D11\LeblancRenderUtilityD3D11.h">
+      <Filter>LeblancEngine\Render\Defines\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\LeblancDepthSurface.h">
+      <Filter>LeblancEngine\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Texture\D3D11\LeblancBackBufferSurfaceD3D11.h">
+      <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\assimp\Include\scene.h">
+      <Filter>ThirdParty\Assimp\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\assimp\Include\cimport.h">
+      <Filter>ThirdParty\Assimp\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\assimp\Include\Importer.hpp">
+      <Filter>ThirdParty\Assimp\Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -254,26 +332,11 @@
     <Filter Include="LeblancEngine\Render">
       <UniqueIdentifier>{2c8719d7-92bf-4f81-907e-355ec8d5f18d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LeblancEngine\Render\Resource">
-      <UniqueIdentifier>{d928eecc-fd3a-4494-9c27-67063a99a482}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LeblancEngine\Render\Pipeline">
       <UniqueIdentifier>{38b5b3ee-3591-4dd7-8945-76f37b4f16a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LeblancEngine\Render\Resource\Texture">
-      <UniqueIdentifier>{78064a51-7316-4fa4-94fd-3f1b93b94d4b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LeblancEngine\Render\Resource\TextureOrganizer">
-      <UniqueIdentifier>{f7949a53-0159-4724-b5c5-84ca07f0f11a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LeblancEngine\Render\Include">
       <UniqueIdentifier>{208c8acd-7a24-4aa0-b6c5-18b5f821402d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LeblancEngine\Render\utility">
-      <UniqueIdentifier>{5e32ee64-375e-4193-b162-ffd5af056f66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LeblancEngine\Render\Basics">
-      <UniqueIdentifier>{d64f7824-47d0-4f48-ab00-3319f3a01639}</UniqueIdentifier>
     </Filter>
     <Filter Include="LeblancEngine\BasicInclude">
       <UniqueIdentifier>{0296d3da-b9e3-478b-86ed-f22bac5f4bd5}</UniqueIdentifier>
@@ -293,9 +356,6 @@
     <Filter Include="LeblancEngine\Render\RenderEntity">
       <UniqueIdentifier>{448f1725-cce5-4b5b-b132-5a795989ed0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LeblancEngine\Render\Resource\Material">
-      <UniqueIdentifier>{4355b3bb-ecef-4ef5-abc1-4dde5e5c92ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{a07208d9-fba7-42f4-bff2-28bbfb3fc325}</UniqueIdentifier>
     </Filter>
@@ -313,6 +373,48 @@
     </Filter>
     <Filter Include="LeblancEngine\Asset">
       <UniqueIdentifier>{7ca0f34a-4e79-4fde-932f-11f9b2ba232c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Device">
+      <UniqueIdentifier>{4a1e5da1-7f68-4f0f-9c66-b09ad67c7b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Device\D3D11">
+      <UniqueIdentifier>{101f2945-873f-4ea9-a010-b0b0cafedee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\RenderState">
+      <UniqueIdentifier>{622f5129-eb86-444b-89ec-b5328e6e906e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\RenderState\D3D11">
+      <UniqueIdentifier>{36452b18-b7b6-422f-b865-bf5cdae879c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Buffer">
+      <UniqueIdentifier>{7b7aeb5b-dab5-4ea0-a594-30d1584dd04f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Buffer\D3D11">
+      <UniqueIdentifier>{37cc3023-f92f-477c-8cf4-e22fb4942f7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Defines">
+      <UniqueIdentifier>{8560be5d-0c0d-47e9-9cee-33121bb0bdee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Window">
+      <UniqueIdentifier>{e3fdb543-342c-4da3-be86-1a5c0ab8643f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Material">
+      <UniqueIdentifier>{9882ec11-268e-4ca9-85b0-551054557d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Material\D3D11">
+      <UniqueIdentifier>{ae754c05-3308-4d3d-8ce5-be4f357b61fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Texture">
+      <UniqueIdentifier>{69681617-0884-46b7-9a18-9a5cf0c2dbee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Texture\D3D11">
+      <UniqueIdentifier>{3c2f0bc8-b3ce-4b34-881b-8a5ddcaf73f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\Defines\D3D11">
+      <UniqueIdentifier>{916fd3cc-469a-46b1-bbb4-d4bb9730a692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Assimp\Include">
+      <UniqueIdentifier>{7016d74b-cfb8-4ce1-9887-51e9d568f3f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

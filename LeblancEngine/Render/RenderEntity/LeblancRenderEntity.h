@@ -6,27 +6,30 @@
 
 #include <vector>
 
-using namespace std;
-class RenderEntity
+namespace Leblanc
 {
-public:
-	RenderEntity();
-	~RenderEntity();
-
-	void release();
-
-	void addMesh(Mesh* mesh);
-
-	void setTransform(XMFLOAT4X4 transform)
+	using namespace std;
+	class RenderEntity
 	{
-		m_transform = transform;
-	}
+	public:
+		RenderEntity();
+		~RenderEntity();
 
-protected:
-	// resource
-	vector<Mesh*> m_meshes;
+		void release();
 
-	// object data
-	XMFLOAT4X4 m_transform;
-};
+		void addMesh(Mesh* mesh);
+
+		void setTransform(XMFLOAT4X4 transform)
+		{
+			m_transform = transform;
+		}
+
+	protected:
+		// resource
+		vector<Mesh*> m_meshes;
+
+		// object data
+		XMFLOAT4X4 m_transform;
+	};
+}
 #endif

@@ -2,26 +2,31 @@
 #define LEBLANC_Deferred_PIPELINE_H
 
 #include "LeblancEngine/Render/Pipeline/LeblancRenderPipeline.h"
-#include "LeblancEngine/Render/Resource/Texture/Texture2D.h"
 
-class DeferredPipeline : public RenderPipeline
+namespace Leblanc
 {
-public:
-	DeferredPipeline();
+	class ITexture;
+	class IndexMesh;
+	class DeferredPipeline : public RenderPipeline
+	{
+	public:
+		DeferredPipeline();
 
-	~DeferredPipeline();
+		~DeferredPipeline();
 
-	void initialize();
+		void initialize();
 
-	void render(Texture2D* render_target, Scene& scene);
+		void render(ITexture* render_target, Scene* scene);
 
-protected:
-	void generateGBuffer();
+	protected:
+		void generateGBuffer();
 
-	void deferredShading(Texture2D* render_target, Scene& scene);
+		void deferredShading(ITexture* render_target, Scene* scene);
 
-	void postProcessing();
-};
+		void postProcessing();
 
+		IndexMesh* m_test_mesh = nullptr;
+	};
+}
 
 #endif

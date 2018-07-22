@@ -3,34 +3,42 @@
 
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
 #include "LeblancEngine/Render/RenderEntity/LeblancStreamMesh.h"
-#include "LeblancEngine/Render/Basics/LeblancRenderPlatformDefineD3D11.h"
 
-class IndexMesh : public StreamMesh
+#include <assimp/Include/Importer.hpp>
+#include <assimp/Include/scene.h>
+#include <assimp/Include/postprocess.h>
+
+namespace Leblanc
 {
-public:
-	IndexMesh();
-	~IndexMesh();
+	class IIndexBuffer;
 
-	void load(const aiMesh* mesh, const aiScene* scene);
+	class IndexMesh : public StreamMesh
+	{
+	public:
+		IndexMesh();
+		~IndexMesh();
 
-	bool loadFromFile(const char* file_name);
+		void load(const aiMesh* mesh, const aiScene* scene);
 
-	IndexBufferD3D11* getIndexBuffer() { return m_index_buffer; }
+		bool loadFromFile(const char* file_name);
 
-	size_t getIndexCount() { return m_index_count; }
+		IIndexBuffer* getIndexBuffer() { return m_index_buffer; }
 
-protected:
-	void setIndices(const uint32_t* indices, size_t index_count, size_t face_count);
+		size_t getIndexCount() { return m_index_count; }
 
-	void createIndexBuffer(size_t index_count);
+	protected:
+		void setIndices(const unsigned int* indices, size_t index_count, size_t face_count);
 
-	void fillIndexBuffer();
+		void createIndexBuffer(size_t index_count);
 
-	void release();
+		void fillIndexBuffer();
 
-	//data
-	uint32_t* m_index_buffer_data = nullptr;
-	size_t m_index_count = 0;
-	IndexBufferD3D11* m_index_buffer = nullptr;
-};
+		void release();
+
+		//data
+		unsigned int* m_index_buffer_data = nullptr;
+		size_t m_index_count = 0;
+		IIndexBuffer* m_index_buffer = nullptr;
+	};
+}
 #endif

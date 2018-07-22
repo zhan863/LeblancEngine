@@ -3,16 +3,19 @@
 
 #include "ThirdParty/pugi/pugixml.hpp"
 
-class DataStream;
-class AssetManager
+namespace Leblanc
 {
-public:
-	AssetManager();
-	~AssetManager();
+	class DataStream;
+	class AssetManager
+	{
+	public:
+		AssetManager();
+		~AssetManager();
 
-	static AssetManager* assetManager();
-	static bool			 fileExists(const std::string& filename);
-	DataStream*			 openStream(const std::string& streamPathName);
-	pugi::xml_document*  openXmlDocument(const std::string& resourcePathName);
-};
+		static AssetManager* assetManager();
+		static bool			 fileExists(const std::string& filename);
+		DataStream*			 openStream(const std::string& streamPathName);
+		pugi::xml_document*  openXmlDocument(const std::string& resourcePathName);
+	};
+}
 #endif

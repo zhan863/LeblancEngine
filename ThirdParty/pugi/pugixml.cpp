@@ -148,7 +148,7 @@ namespace pugi
 
 	typedef unsigned __int8 uint8_t;
 	typedef unsigned __int16 uint16_t;
-	typedef unsigned __int32 uint32_t;
+	typedef unsigned __int32 unsigned int;
 }
 #else
 #	include <stdint.h>
@@ -465,7 +465,7 @@ PUGI__NS_BEGIN
 	#ifdef PUGIXML_COMPACT
 		char_t* compact_string_base;
 		void* compact_shared_parent;
-		uint32_t* compact_page_marker;
+		unsigned int* compact_page_marker;
 	#endif
 	};
 
@@ -533,7 +533,7 @@ PUGI__NS_BEGIN
 	#ifdef PUGIXML_COMPACT
 		void* allocate_object(size_t size, xml_memory_page*& out_page)
 		{
-			void* result = allocate_memory(size + sizeof(uint32_t), out_page);
+			void* result = allocate_memory(size + sizeof(unsigned int), out_page);
 			if (!result) return 0;
 
 			// adjust for marker
@@ -542,21 +542,21 @@ PUGI__NS_BEGIN
 			if (PUGI__UNLIKELY(static_cast<uintptr_t>(offset) >= 256 * xml_memory_block_alignment))
 			{
 				// insert new marker
-				uint32_t* marker = static_cast<uint32_t*>(result);
+				unsigned int* marker = static_cast<unsigned int*>(result);
 
-				*marker = static_cast<uint32_t>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
+				*marker = static_cast<unsigned int>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
 				out_page->compact_page_marker = marker;
 
 				// since we don't reuse the page space until we reallocate it, we can just pretend that we freed the marker block
 				// this will make sure deallocate_memory correctly tracks the size
-				out_page->freed_size += sizeof(uint32_t);
+				out_page->freed_size += sizeof(unsigned int);
 
 				return marker + 1;
 			}
 			else
 			{
-				// roll back uint32_t part
-				_busy_size -= sizeof(uint32_t);
+				// roll back unsigned int part
+				_busy_size -= sizeof(unsigned int);
 
 				return result;
 			}
@@ -759,7 +759,7 @@ PUGI__NS_BEGIN
 		{
 			// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 			const char* page_marker = reinterpret_cast<const char*>(this) - (_page << compact_alignment_log2);
-			const char* page = page_marker - *reinterpret_cast<const uint32_t*>(static_cast<const void*>(page_marker));
+			const char* page = page_marker - *reinterpret_cast<const unsigned int*>(static_cast<const void*>(page_marker));
 
 			return const_cast<xml_memory_page*>(reinterpret_cast<const xml_memory_page*>(static_cast<const void*>(page)));
 		}
@@ -1418,7 +1418,7 @@ PUGI__NS_BEGIN
 		return static_cast<uint16_t>(((value & 0xff) << 8) | (value >> 8));
 	}
 
-	inline uint32_t endian_swap(uint32_t value)
+	inline unsigned int endian_swap(unsigned int value)
 	{
 		return ((value & 0xff) << 24) | ((value & 0xff00) << 8) | ((value & 0xff0000) >> 8) | (value >> 24);
 	}
@@ -1427,7 +1427,7 @@ PUGI__NS_BEGIN
 	{
 		typedef size_t value_type;
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, unsigned int ch)
 		{
 			// U+0000..U+007F
 			if (ch < 0x80) return result + 1;
@@ -1437,7 +1437,7 @@ PUGI__NS_BEGIN
 			else return result + 3;
 		}
 
-		static value_type high(value_type result, uint32_t)
+		static value_type high(value_type result, unsigned int)
 		{
 			// U+10000..U+10FFFF
 			return result + 4;
@@ -1448,7 +1448,7 @@ PUGI__NS_BEGIN
 	{
 		typedef uint8_t* value_type;
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, unsigned int ch)
 		{
 			// U+0000..U+007F
 			if (ch < 0x80)
@@ -1473,7 +1473,7 @@ PUGI__NS_BEGIN
 			}
 		}
 
-		static value_type high(value_type result, uint32_t ch)
+		static value_type high(value_type result, unsigned int ch)
 		{
 			// U+10000..U+10FFFF
 			result[0] = static_cast<uint8_t>(0xF0 | (ch >> 18));
@@ -1483,7 +1483,7 @@ PUGI__NS_BEGIN
 			return result + 4;
 		}
 
-		static value_type any(value_type result, uint32_t ch)
+		static value_type any(value_type result, unsigned int ch)
 		{
 			return (ch < 0x10000) ? low(result, ch) : high(result, ch);
 		}
@@ -1493,12 +1493,12 @@ PUGI__NS_BEGIN
 	{
 		typedef size_t value_type;
 
-		static value_type low(value_type result, uint32_t)
+		static value_type low(value_type result, unsigned int)
 		{
 			return result + 1;
 		}
 
-		static value_type high(value_type result, uint32_t)
+		static value_type high(value_type result, unsigned int)
 		{
 			return result + 2;
 		}
@@ -1508,17 +1508,17 @@ PUGI__NS_BEGIN
 	{
 		typedef uint16_t* value_type;
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, unsigned int ch)
 		{
 			*result = static_cast<uint16_t>(ch);
 
 			return result + 1;
 		}
 
-		static value_type high(value_type result, uint32_t ch)
+		static value_type high(value_type result, unsigned int ch)
 		{
-			uint32_t msh = static_cast<uint32_t>(ch - 0x10000) >> 10;
-			uint32_t lsh = static_cast<uint32_t>(ch - 0x10000) & 0x3ff;
+			unsigned int msh = static_cast<unsigned int>(ch - 0x10000) >> 10;
+			unsigned int lsh = static_cast<unsigned int>(ch - 0x10000) & 0x3ff;
 
 			result[0] = static_cast<uint16_t>(0xD800 + msh);
 			result[1] = static_cast<uint16_t>(0xDC00 + lsh);
@@ -1526,7 +1526,7 @@ PUGI__NS_BEGIN
 			return result + 2;
 		}
 
-		static value_type any(value_type result, uint32_t ch)
+		static value_type any(value_type result, unsigned int ch)
 		{
 			return (ch < 0x10000) ? low(result, ch) : high(result, ch);
 		}
@@ -1536,12 +1536,12 @@ PUGI__NS_BEGIN
 	{
 		typedef size_t value_type;
 
-		static value_type low(value_type result, uint32_t)
+		static value_type low(value_type result, unsigned int)
 		{
 			return result + 1;
 		}
 
-		static value_type high(value_type result, uint32_t)
+		static value_type high(value_type result, unsigned int)
 		{
 			return result + 1;
 		}
@@ -1549,23 +1549,23 @@ PUGI__NS_BEGIN
 
 	struct utf32_writer
 	{
-		typedef uint32_t* value_type;
+		typedef unsigned int* value_type;
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, unsigned int ch)
 		{
 			*result = ch;
 
 			return result + 1;
 		}
 
-		static value_type high(value_type result, uint32_t ch)
+		static value_type high(value_type result, unsigned int ch)
 		{
 			*result = ch;
 
 			return result + 1;
 		}
 
-		static value_type any(value_type result, uint32_t ch)
+		static value_type any(value_type result, unsigned int ch)
 		{
 			*result = ch;
 
@@ -1577,14 +1577,14 @@ PUGI__NS_BEGIN
 	{
 		typedef uint8_t* value_type;
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, unsigned int ch)
 		{
 			*result = static_cast<uint8_t>(ch > 255 ? '?' : ch);
 
 			return result + 1;
 		}
 
-		static value_type high(value_type result, uint32_t ch)
+		static value_type high(value_type result, unsigned int ch)
 		{
 			(void)ch;
 
@@ -1617,7 +1617,7 @@ PUGI__NS_BEGIN
 					if ((reinterpret_cast<uintptr_t>(data) & 3) == 0)
 					{
 						// round-trip through void* to silence 'cast increases required alignment of target type' warnings
-						while (size >= 4 && (*static_cast<const uint32_t*>(static_cast<const void*>(data)) & 0x80808080) == 0)
+						while (size >= 4 && (*static_cast<const unsigned int*>(static_cast<const void*>(data)) & 0x80808080) == 0)
 						{
 							result = Traits::low(result, data[0]);
 							result = Traits::low(result, data[1]);
@@ -1715,13 +1715,13 @@ PUGI__NS_BEGIN
 
 	template <typename opt_swap> struct utf32_decoder
 	{
-		typedef uint32_t type;
+		typedef unsigned int type;
 
-		template <typename Traits> static inline typename Traits::value_type process(const uint32_t* data, size_t size, typename Traits::value_type result, Traits)
+		template <typename Traits> static inline typename Traits::value_type process(const unsigned int* data, size_t size, typename Traits::value_type result, Traits)
 		{
 			while (size)
 			{
-				uint32_t lead = opt_swap::value ? endian_swap(*data) : *data;
+				unsigned int lead = opt_swap::value ? endian_swap(*data) : *data;
 
 				// U+0000..U+FFFF
 				if (lead < 0x10000)
@@ -1772,7 +1772,7 @@ PUGI__NS_BEGIN
 
 	template <> struct wchar_selector<4>
 	{
-		typedef uint32_t type;
+		typedef unsigned int type;
 		typedef utf32_counter counter;
 		typedef utf32_writer writer;
 		typedef utf32_decoder<opt_false> decoder;
@@ -3589,7 +3589,7 @@ PUGI__NS_BEGIN
 		return (sizeof(wchar_t) == 2 && static_cast<unsigned int>(static_cast<uint16_t>(data[length - 1]) - 0xD800) < 0x400) ? length - 1 : length;
 	}
 
-	PUGI__FN size_t convert_buffer_output(char_t* r_char, uint8_t* r_u8, uint16_t* r_u16, uint32_t* r_u32, const char_t* data, size_t length, xml_encoding encoding)
+	PUGI__FN size_t convert_buffer_output(char_t* r_char, uint8_t* r_u8, uint16_t* r_u16, unsigned int* r_u32, const char_t* data, size_t length, xml_encoding encoding)
 	{
 		// only endian-swapping is required
 		if (need_endian_swap_utf(encoding, get_wchar_encoding()))
@@ -3643,7 +3643,7 @@ PUGI__NS_BEGIN
 		return length;
 	}
 
-	PUGI__FN size_t convert_buffer_output(char_t* /* r_char */, uint8_t* r_u8, uint16_t* r_u16, uint32_t* r_u32, const char_t* data, size_t length, xml_encoding encoding)
+	PUGI__FN size_t convert_buffer_output(char_t* /* r_char */, uint8_t* r_u8, uint16_t* r_u16, unsigned int* r_u32, const char_t* data, size_t length, xml_encoding encoding)
 	{
 		if (encoding == encoding_utf16_be || encoding == encoding_utf16_le)
 		{
@@ -3872,7 +3872,7 @@ PUGI__NS_BEGIN
 		{
 			uint8_t data_u8[4 * bufcapacity];
 			uint16_t data_u16[2 * bufcapacity];
-			uint32_t data_u32[bufcapacity];
+			unsigned int data_u32[bufcapacity];
 			char_t data_char[bufcapacity];
 		} scratch;
 
@@ -6827,7 +6827,7 @@ namespace pugi
 		assert(!_root);
 
 	#ifdef PUGIXML_COMPACT
-		const size_t page_offset = sizeof(uint32_t);
+		const size_t page_offset = sizeof(unsigned int);
 	#else
 		const size_t page_offset = 0;
 	#endif
@@ -6844,7 +6844,7 @@ namespace pugi
 		// setup first page marker
 	#ifdef PUGIXML_COMPACT
 		// round-trip through void* to avoid 'cast increases required alignment of target type' warning
-		page->compact_page_marker = reinterpret_cast<uint32_t*>(static_cast<void*>(reinterpret_cast<char*>(page) + sizeof(impl::xml_memory_page)));
+		page->compact_page_marker = reinterpret_cast<unsigned int*>(static_cast<void*>(reinterpret_cast<char*>(page) + sizeof(impl::xml_memory_page)));
 		*page->compact_page_marker = sizeof(impl::xml_memory_page);
 	#endif
 
@@ -7978,8 +7978,8 @@ PUGI__NS_BEGIN
 	PUGI__FN double gen_nan()
 	{
 	#if defined(__STDC_IEC_559__) || ((FLT_RADIX - 0 == 2) && (FLT_MAX_EXP - 0 == 128) && (FLT_MANT_DIG - 0 == 24))
-		PUGI__STATIC_ASSERT(sizeof(float) == sizeof(uint32_t));
-		typedef uint32_t UI; // BCC5 workaround
+		PUGI__STATIC_ASSERT(sizeof(float) == sizeof(unsigned int));
+		typedef unsigned int UI; // BCC5 workaround
 		union { float f; UI i; } u;
 		u.i = 0x7fc00000;
 		return u.f;

@@ -3,21 +3,24 @@
 
 #include "LeblancEngine/Render/Scene/LeblancScene.h"
 
-class SceneManager
+namespace Leblanc
 {
-public:
-	SceneManager();
-	~SceneManager();
+	class SceneManager
+	{
+	public:
+		SceneManager();
+		~SceneManager();
 
-	void initialize();
+		void initialize();
 
-	void loadScene(const char* scene_file_name);
+		void loadScene(const char* scene_file_name);
 
-	Scene* getSceneByIndex(int index);
+		Scene* getSceneByIndex(int index);
 
-protected:
-	void release();
+	protected:
+		void release();
 
-	vector<Scene*> m_scenes;
-};
+		vector<Scene*> m_scenes;
+	};
+}
 #endif

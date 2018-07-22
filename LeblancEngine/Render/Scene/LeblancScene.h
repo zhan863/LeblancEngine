@@ -6,25 +6,29 @@
 #include <vector>
 #include <map>
 using namespace std;
+using namespace Leblanc;
 
-class Scene
+namespace Leblanc
 {
-public:
-	Scene();
-	~Scene();
+	class Scene
+	{
+	public:
+		Scene();
+		~Scene();
 
-	bool load(const char* file_name);
+		bool load(const char* file_name);
 
-	RenderEntity* getRenderEntity(int index);
+		RenderEntity* getRenderEntity(int index);
 
-	size_t getRenderEntityCount() { return m_render_entities.size(); }
-protected:
-	void release();
+		size_t getRenderEntityCount() { return m_render_entities.size(); }
+	protected:
+		void release();
 
-	// resource
-	vector<RenderEntity*> m_render_entities;
+		// resource
+		vector<RenderEntity*> m_render_entities;
 
-	// reference
-	map<Pass, vector<Mesh*>> m_pass_mesh_map;
-};
+		// reference
+		map<Pass, vector<Mesh*>> m_pass_mesh_map;
+	};
+}
 #endif
