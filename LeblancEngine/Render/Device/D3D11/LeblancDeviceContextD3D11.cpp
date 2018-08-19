@@ -35,21 +35,14 @@ namespace Leblanc
 		ID3D11RenderTargetView* rtv[MAX_RENDER_TARGETS];
 		memset(&rtv[0], 0, sizeof(ID3D11RenderTargetView*) * MAX_RENDER_TARGETS);
 
-		ID3D11UnorderedAccessView * uav[MAX_RENDER_TARGETS];
-		memset(&uav[0], 0, sizeof(ID3D11UnorderedAccessView*) * MAX_RENDER_TARGETS);
-
 		// unbind all shader resources
 		ID3D11ShaderResourceView * const p_srv[16] = { nullptr };
 		m_device_context->PSSetShaderResources(0, 16, p_srv);
 
 		UINT initial_count[D3D11_PS_CS_UAV_REGISTER_COUNT] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-		m_device_context->OMSetRenderTargetsAndUnorderedAccessViews(MAX_RENDER_TARGETS,
-			&rtv[0],
-			nullptr,
-			MAX_RENDER_TARGETS,
-			MAX_RENDER_TARGETS,
-			&uav[0],
-			initial_count);
+		m_device_context->OMSetRenderTargets(MAX_RENDER_TARGETS,
+			rtv,
+			nullptr);
 
 		m_current_target_count = 0;
 		for (int i = 0; i < MAX_RENDER_TARGETS; i++)
@@ -78,13 +71,9 @@ namespace Leblanc
 			}
 		}
 
-		m_device_context->OMSetRenderTargetsAndUnorderedAccessViews(m_current_target_count,
+		m_device_context->OMSetRenderTargets(m_current_target_count,
 			&rtv[0],
-			depth_view,
-			m_current_target_count,/* start uav slot*/
-			MAX_RENDER_TARGETS,
-			&uav[0],
-			initial_count);
+			depth_view);
 	}
 
 	void DeviceContextD3D11::clearSurface(ISurface* surface, float* color) const

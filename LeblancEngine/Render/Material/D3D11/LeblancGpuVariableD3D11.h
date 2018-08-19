@@ -32,11 +32,10 @@ namespace Leblanc
 	protected:
 		void release();
 
-		// data
-		ID3DX11EffectVariable * m_variable_handle = nullptr;
 		// reference
 		ID3DX11Effect* m_effect = nullptr;
 		D3DX11_EFFECT_VARIABLE_DESC m_desc;
+		ID3DX11EffectVariable * m_variable_handle = nullptr;
 	};
 }
 #endif

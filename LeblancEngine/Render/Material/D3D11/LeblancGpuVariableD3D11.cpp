@@ -1,5 +1,4 @@
 #include "LeblancEngine/Render/Material/D3D11/LeblancGpuVariableD3D11.h"
-
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
 
 namespace Leblanc
@@ -30,7 +29,6 @@ namespace Leblanc
 
 	void GpuVariableD3D11::release()
 	{
-		safe_Release(m_variable_handle);
 	}
 
 	void GpuVariableD3D11::setMatrix(const float* matrix)

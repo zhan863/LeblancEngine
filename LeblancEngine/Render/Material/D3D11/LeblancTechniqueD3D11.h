@@ -31,11 +31,11 @@ namespace Leblanc
 		void release();
 
 		// data
-		ID3DX11EffectTechnique * m_technique_handle = nullptr;
 		vector<InputLayoutCacheD3D11*> m_input_layout_caches;
 
 		// reference
-		D3DX11_TECHNIQUE_DESC m_desc;
+		D3DX11_TECHNIQUE_DESC m_desc; 
+		ID3DX11EffectTechnique * m_technique_handle = nullptr;
 	};
 }
 #endif

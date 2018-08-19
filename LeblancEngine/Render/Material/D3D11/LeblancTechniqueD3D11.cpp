@@ -21,7 +21,12 @@ namespace Leblanc
 
 	void TechniqueD3D11::release()
 	{
-		safe_Release(m_technique_handle);
+		for (int i = 0; i < m_input_layout_caches.size(); i++)
+		{
+			safe_delete(m_input_layout_caches[i]);
+		}
+
+		m_input_layout_caches.clear();
 	}
 
 	void TechniqueD3D11::initialize(ID3DX11Effect* effect, int index)
