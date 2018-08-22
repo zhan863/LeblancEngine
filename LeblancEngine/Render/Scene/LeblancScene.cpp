@@ -58,7 +58,7 @@ namespace Leblanc
 					}
 
 					render_entity->addMesh(index_mesh);
-					m_pass_mesh_map[Pass::DeferredShading].push_back(index_mesh);
+					m_pass_mesh_map["gbuffer"].push_back(index_mesh);
 				}
 			}
 			m_render_entities.push_back(render_entity);
@@ -87,5 +87,17 @@ namespace Leblanc
 		}
 
 		return nullptr;
+	}
+
+	const vector<Mesh*>& Scene::meshForPass(string pass_name) const
+	{
+		auto iter = m_pass_mesh_map.find(pass_name);
+		if (iter != m_pass_mesh_map.end())
+		{
+			return iter->second;
+		}
+
+		static std::vector<Mesh*> nullSet;
+		return nullSet;
 	}
 }

@@ -33,7 +33,7 @@ namespace Leblanc
 
 		void setGpuData(string name, const GpuData* gpu_data);
 
-		ITechnique* getTechnique(string name);
+		ITechnique* getTechnique(string name) const;
 
 	protected:
 		void release();

@@ -22,9 +22,9 @@ namespace Leblanc
 
 		bool loadFromFile(const char* file_name);
 
-		IIndexBuffer* getIndexBuffer() { return m_index_buffer; }
+		IIndexBuffer* getIndexBuffer() const { return m_index_buffer; }
 
-		size_t getIndexCount() { return m_index_count; }
+		size_t getIndexCount() const { return m_index_count; }
 
 	protected:
 		void setIndices(const unsigned int* indices, size_t index_count, size_t face_count);

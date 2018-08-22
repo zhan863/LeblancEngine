@@ -42,9 +42,9 @@ namespace Leblanc
 		m_global_constant_buffers.clear();
 	}
 
-	ITechnique* IShader::getTechnique(string name)
+	ITechnique* IShader::getTechnique(string name) const
 	{
-		map<string, ITechnique*>::iterator technique = m_techniques.find(name);
+		map<string, ITechnique*>::const_iterator technique = m_techniques.find(name);
 		if (technique != m_techniques.end())
 		{
 			return technique->second;

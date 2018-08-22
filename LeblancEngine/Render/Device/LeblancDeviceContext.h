@@ -22,7 +22,7 @@ namespace Leblanc
 
 		virtual void* getHandle() = 0;
 
-		virtual void renderIndexMesh(IndexMesh* mesh) = 0;
+		virtual void renderIndexMesh(const IndexMesh* mesh) = 0;
 
 		virtual void setViewPort(int left_x, int top_y, int width, int height) = 0;
 		virtual void setRasterizerState(RasterizerState cull_mode) = 0;

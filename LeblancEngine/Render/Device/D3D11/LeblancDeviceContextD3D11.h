@@ -21,7 +21,7 @@ namespace Leblanc
 
 		void setHandle(ID3D11DeviceContext* handle) { m_device_context = handle; }
 
-		virtual void renderIndexMesh(IndexMesh* mesh);
+		virtual void renderIndexMesh(const IndexMesh* mesh);
 
 		virtual void setViewPort(int left_x, int top_y, int width, int height);
 		virtual void setRasterizerState(RasterizerState cull_mode);

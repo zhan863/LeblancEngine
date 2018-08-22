@@ -5,6 +5,7 @@
 #include "LeblancEngine/Render/RenderEntity/LeblancMesh.h"
 #include <vector>
 #include <map>
+#include <string>
 using namespace std;
 using namespace Leblanc;
 
@@ -21,6 +22,8 @@ namespace Leblanc
 		RenderEntity* getRenderEntity(int index);
 
 		size_t getRenderEntityCount() { return m_render_entities.size(); }
+
+		const vector<Mesh*>& meshForPass(string pass_name) const;
 	protected:
 		void release();
 
@@ -28,7 +31,7 @@ namespace Leblanc
 		vector<RenderEntity*> m_render_entities;
 
 		// reference
-		map<Pass, vector<Mesh*>> m_pass_mesh_map;
+		map<string, vector<Mesh*>> m_pass_mesh_map;
 	};
 }
 #endif

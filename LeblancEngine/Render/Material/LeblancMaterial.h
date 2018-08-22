@@ -22,11 +22,11 @@ namespace Leblanc
 
 		void initialize(string file_name);
 
-		void setParameters();
+		void setParameters() const;
 
 		IShader* getShader() { return m_shader; }
 
-		string getTechniqueName() { return m_technique_name; }
+		string getTechniqueName() const { return m_technique_name; }
 
 	private:
 		GpuData * getGpuDataFromString(string type_name, string value);

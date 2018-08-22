@@ -19,7 +19,7 @@ namespace Leblanc
 		release();
 
 		D3D11_RASTERIZER_DESC rasterizer_desc;
-		rasterizer_desc.CullMode = *rasterizer_state == RasterizerState::NONE ? D3D11_CULL_NONE :
+		rasterizer_desc.CullMode = *rasterizer_state == RasterizerState::NO_CULL ? D3D11_CULL_NONE :
 			(*rasterizer_state == RasterizerState::CW_FRONT ? D3D11_CULL_FRONT : D3D11_CULL_BACK);
 		rasterizer_desc.FillMode = D3D11_FILL_SOLID;
 		rasterizer_desc.ScissorEnable = false;

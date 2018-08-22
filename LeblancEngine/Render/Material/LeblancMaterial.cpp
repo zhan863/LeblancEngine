@@ -97,7 +97,7 @@ namespace Leblanc
 		}
 	}
 
-	void Material::setParameters()
+	void Material::setParameters() const
 	{
 		if (m_shader)
 		{

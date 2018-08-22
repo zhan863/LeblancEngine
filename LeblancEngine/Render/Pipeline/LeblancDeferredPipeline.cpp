@@ -11,6 +11,8 @@
 
 #include "LeblancEngine/Render/Texture/LeblancTexture.h"
 
+#include "LeblancEngine/Render/RenderPass/MeshPass/LeblancGBufferPass.h"
+
 namespace Leblanc
 {
 	DeferredPipeline::DeferredPipeline()
@@ -27,6 +29,8 @@ namespace Leblanc
 	{
 		m_test_mesh = new IndexMesh();
 		m_test_mesh->loadFromFile("Content\\Mesh\\Basic\\quad.fbx");
+
+		g_global_context.m_scene_manager.loadScene("Content\\Mesh\\Basic\\quad.fbx");
 	}
 
 	void DeferredPipeline::render(ITexture* render_target, Scene* scene)
@@ -40,7 +44,9 @@ namespace Leblanc
 
 	void DeferredPipeline::generateGBuffer()
 	{
-
+		GBufferPass pass;
+		pass.setScene(g_global_context.m_scene_manager.getSceneByIndex(0));
+		pass.render();
 	}
 
 	void DeferredPipeline::deferredShading(ITexture* render_target, Scene* scene)
@@ -62,21 +68,21 @@ namespace Leblanc
 
 	void DeferredPipeline::postProcessing()
 	{
-		IndexMesh* mesh = m_test_mesh;// g_global_context.m_scene_manager.getSceneByIndex(0);
-		Material* material = mesh->getMaterial();
-		material->setParameters();
-		IShader* shader = material->getShader();
-		ITechnique* technique = shader->getTechnique(material->getTechniqueName());
-		if (technique)
-		{
-			technique->bindInputLayout(0, mesh->getVertexDeclaration());
-			technique->apply(0);
-			IDeviceContext* device_context = g_global_context.m_device_manager.getImmediateContext();
-			device_context->setRasterizerState(RasterizerState::NONE);
-			device_context->setBlendState(BlendState::BLEND_OPAQUE);
-			device_context->setDepthStencilState(DepthStencilState::ALL_PASS);
-			device_context->setViewPort(0, 0, 1280, 720);
-			device_context->renderIndexMesh(mesh);
-		}
+		//IndexMesh* mesh = m_test_mesh;// g_global_context.m_scene_manager.getSceneByIndex(0);
+		//Material* material = mesh->getMaterial();
+		//material->setParameters();
+		//IShader* shader = material->getShader();
+		//ITechnique* technique = shader->getTechnique(material->getTechniqueName());
+		//if (technique)
+		//{
+		//	technique->bindInputLayout(0, mesh->getVertexDeclaration());
+		//	technique->apply(0);
+		//	IDeviceContext* device_context = g_global_context.m_device_manager.getImmediateContext();
+		//	device_context->setRasterizerState(RasterizerState::NO_CULL);
+		//	device_context->setBlendState(BlendState::BLEND_OPAQUE);
+		//	device_context->setDepthStencilState(DepthStencilState::DEPTH_LESS_WRITE_STENCIL_PASS);
+		//	device_context->setViewPort(0, 0, 1280, 720);
+		//	device_context->renderIndexMesh(mesh);
+		//}
 	}
 }

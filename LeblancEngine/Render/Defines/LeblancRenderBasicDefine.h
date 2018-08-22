@@ -228,31 +228,25 @@ namespace Leblanc
 		CLEAR_STENCIL = (int)0x00000004l,
 	};
 
-	enum Pass
-	{
-		GBuffer,
-		DeferredShading,
-		SingleForward,
-		Transparent,
-		DepthOnly
-	};
-
 	// State Enum
 	enum RasterizerState
 	{
 		CW_FRONT = 0,
 		CW_BACK = 1,
-		NONE = 2
+		NO_CULL = 2
 	};
 
 	enum DepthStencilState
 	{
-		ALL_PASS = 0
+		DEPTH_LESS_WRITE_STENCIL_PASS = 0,
+		DEPTH_LESS_STENCIL_PASS = 1
 	};
 
 	enum BlendState
 	{
-		BLEND_OPAQUE = 0
+		BLEND_OPAQUE = 0,
+		BLEND_ADDITIVE = 1,
+		BLEND_TRANSPARENT = 2
 	};
 
 	enum TextureTypes

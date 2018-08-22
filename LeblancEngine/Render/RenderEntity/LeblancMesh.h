@@ -18,9 +18,9 @@ namespace Leblanc
 
 		Material* getMaterial() { return m_material; }
 
-		const IVertexBuffer* getVertexBuffer() { return m_vertex_buffer; }
+		const IVertexBuffer* getVertexBuffer() const { return m_vertex_buffer; }
 
-		const IVertexDeclaration* getVertexDeclaration() { return m_vertex_declaration; }
+		const IVertexDeclaration* getVertexDeclaration() const { return m_vertex_declaration; }
 
 		PrimitiveType getPrimitiveType() { return m_primitive_type; }
 

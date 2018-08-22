@@ -213,7 +213,7 @@ namespace Leblanc
 		}
 	}
 
-	void DeviceContextD3D11::renderIndexMesh(IndexMesh* mesh)
+	void DeviceContextD3D11::renderIndexMesh(const IndexMesh* mesh)
 	{
 		UINT offset = 0;
 		mesh->getVertexBuffer()->bind();
