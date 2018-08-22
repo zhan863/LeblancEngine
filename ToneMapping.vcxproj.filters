@@ -145,6 +145,33 @@
     <ClCompile Include="LeblancEngine\Render\Texture\D3D11\LeblancBackBufferSurfaceD3D11.cpp">
       <Filter>LeblancEngine\Render\Texture\D3D11</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\LeblancRenderPass.cpp">
+      <Filter>LeblancEngine\Render\RenderPass</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderState\LeblancRenderPipelineState.cpp">
+      <Filter>LeblancEngine\Render\RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancGBufferPass.cpp">
+      <Filter>LeblancEngine\Render\RenderPass\MeshPass</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancDeferredShadingPass.cpp">
+      <Filter>LeblancEngine\Render\RenderPass\ScreenSpacePass</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancPostProcessingPass.cpp">
+      <Filter>LeblancEngine\Render\RenderPass\ScreenSpacePass</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancShadowMaskPass.cpp">
+      <Filter>LeblancEngine\Render\RenderPass\ScreenSpacePass</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancShadowDepthPass.cpp">
+      <Filter>LeblancEngine\Render\RenderPass\MeshPass</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancMeshRenderPass.cpp">
+      <Filter>LeblancEngine\Render\RenderPass\MeshPass</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderCommand\LeblancRenderCommand.cpp">
+      <Filter>LeblancEngine\Render\RenderCommand</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h">
@@ -321,6 +348,33 @@
     <ClInclude Include="ThirdParty\assimp\Include\Importer.hpp">
       <Filter>ThirdParty\Assimp\Include</Filter>
     </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\LeblancRenderPass.h">
+      <Filter>LeblancEngine\Render\RenderPass</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderPipelineState.h">
+      <Filter>LeblancEngine\Render\RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancGBufferPass.h">
+      <Filter>LeblancEngine\Render\RenderPass\MeshPass</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancDeferredShadingPass.h">
+      <Filter>LeblancEngine\Render\RenderPass\ScreenSpacePass</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancPostProcessingPass.h">
+      <Filter>LeblancEngine\Render\RenderPass\ScreenSpacePass</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancShadowMaskPass.h">
+      <Filter>LeblancEngine\Render\RenderPass\ScreenSpacePass</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancShadowDepthPass.h">
+      <Filter>LeblancEngine\Render\RenderPass\MeshPass</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancMeshRenderPass.h">
+      <Filter>LeblancEngine\Render\RenderPass\MeshPass</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderCommand\LeblancRenderCommand.h">
+      <Filter>LeblancEngine\Render\RenderCommand</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ToneMapping.rc" />
@@ -418,6 +472,15 @@
     </Filter>
     <Filter Include="LeblancEngine\Render\RenderPass">
       <UniqueIdentifier>{23bd42e1-98c0-411a-9a0b-53680fb6f2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\RenderPass\MeshPass">
+      <UniqueIdentifier>{8e81422a-6169-4643-8898-34a8fdbb7f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\RenderPass\ScreenSpacePass">
+      <UniqueIdentifier>{83389a19-ef1b-464e-82ed-b1ca5195d502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeblancEngine\Render\RenderCommand">
+      <UniqueIdentifier>{98bd9d20-0a1d-488b-a079-b40ee0efa10f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

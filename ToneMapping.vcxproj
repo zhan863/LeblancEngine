@@ -264,6 +264,7 @@
     <ClCompile Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderCommand\LeblancRenderCommand.cpp" />
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -276,9 +277,25 @@
     <ClCompile Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\LeblancRenderPass.cpp" />
+    <ClCompile Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancGBufferPass.cpp" />
+    <ClCompile Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancMeshRenderPass.cpp" />
+    <ClCompile Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancShadowDepthPass.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancDeferredShadingPass.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancPostProcessingPass.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancShadowMaskPass.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="LeblancEngine\Render\RenderState\D3D11\LeblancRenderStateD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\RenderState\LeblancRenderPipelineState.cpp" />
     <ClCompile Include="LeblancEngine\Render\RenderState\LeblancRenderStateManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -357,11 +374,28 @@
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancPipelineManager.h" />
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancRenderPipeline.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderCommand\LeblancRenderCommand.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancIndexMesh.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancMesh.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancRenderEntity.h" />
     <ClInclude Include="LeblancEngine\Render\RenderEntity\LeblancStreamMesh.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderPass\LeblancRenderPass.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancGBufferPass.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancMeshRenderPass.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderPass\MeshPass\LeblancShadowDepthPass.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancDeferredShadingPass.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancPostProcessingPass.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\RenderPass\ScreenSpacePass\LeblancShadowMaskPass.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="LeblancEngine\Render\RenderState\D3D11\LeblancRenderStateD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderPipelineState.h" />
     <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderState.h" />
     <ClInclude Include="LeblancEngine\Render\RenderState\LeblancRenderStateManager.h" />
     <ClInclude Include="LeblancEngine\Render\Scene\LeblancScene.h" />
