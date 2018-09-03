@@ -16,7 +16,7 @@ namespace Leblanc
 		virtual ~ShaderD3D11();
 
 		void release();
-		void initialize(string file_name, string include_file_name);
+		void initialize(string file_name);
 
 	protected:
 		void enumerateVariables(D3DX11_EFFECT_DESC& desc);

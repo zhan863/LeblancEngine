@@ -46,6 +46,8 @@ namespace Leblanc
 
 		virtual void* getHandle() { return m_device; }
 
+		virtual ConstantBuffer* createConstantBuffer(int slot_index, size_t buffer_size);
+
 		// playform dependent
 		void createRasterizerState(D3D11_RASTERIZER_DESC* desc, ID3D11RasterizerState** state);
 		void createBlendState(D3D11_BLEND_DESC* desc, ID3D11BlendState** state);

@@ -3,6 +3,7 @@
 
 #include "LeblancEngine/Render/Device/LeblancDeviceContext.h"
 #include "LeblancEngine/Render/Defines/LeblancRenderBasicDefine.h"
+#include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 #define MAX_RENDER_TARGETS 8
 
 struct ID3D11DeviceContext;
@@ -38,6 +39,20 @@ namespace Leblanc
 
 		virtual void bindFrameBuffer(const FrameBuffer* frame_buffer);
 		virtual void bindNullFrameBuffer();
+
+		template <ShaderFrequency shader_frequency>
+		void setConstantBuffer(int slot_index, ID3D11Buffer*& constant_buffer)
+		{
+			switch (shader_frequency)
+			{
+			case SF_Vertex:		m_device_context->VSSetConstantBuffers(slot_index, 1, &constant_buffer); break;
+			case SF_Hull:		m_device_context->HSSetConstantBuffers(slot_index, 1, &constant_buffer); break;
+			case SF_Domain:		m_device_context->DSSetConstantBuffers(slot_index, 1, &constant_buffer); break;
+			case SF_Geometry:	m_device_context->GSSetConstantBuffers(slot_index, 1, &constant_buffer); break;
+			case SF_Pixel:		m_device_context->PSSetConstantBuffers(slot_index, 1, &constant_buffer); break;
+			case SF_Compute:	m_device_context->CSSetConstantBuffers(slot_index, 1, &constant_buffer); break;
+			}
+		}
 
 	private:
 		void release();

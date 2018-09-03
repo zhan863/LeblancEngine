@@ -21,12 +21,10 @@ namespace Leblanc
 		m_pipeline_manager.initialize();
 		m_render_state_manager.initialize();
 		m_scene_manager.initialize();
+		m_global_cb_manager.initialize();
 	}
 
 	void GlobalContext::release()
 	{
-		m_pipeline_manager.release();
-		m_render_state_manager.release();
-		m_material_manager.release();
 	}
 }

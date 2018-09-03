@@ -4,6 +4,9 @@
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 #include "LeblancEngine/Render/Device/LeblancDevice.h"
 
+#include <filesystem>
+namespace fs = std::experimental::filesystem;
+
 namespace Leblanc
 {
 	MaterialManager::MaterialManager()
@@ -20,38 +23,18 @@ namespace Leblanc
 	{
 		WIN32_FIND_DATA shader_file;
 		wstring path(L"Content\\Shader\\");
-		wstring partern(L"*.fx");
-		HANDLE h_find = FindFirstFileEx((path + L"\\" + partern).c_str(),
-			FindExInfoStandard,
-			&shader_file,
-			FindExSearchNameMatch,
-			NULL,
-			0
-		);
 
-		if (h_find == INVALID_HANDLE_VALUE)
-		{
-			DWORD error = GetLastError();
+		if (!fs::exists(path) || !fs::is_directory(path)) return;
 
-			if (error != ERROR_FILE_NOT_FOUND)
-			{
-				//LOG("Invalid File Handle, err code: " << error);
-				return;
-			}
-		}
+		fs::recursive_directory_iterator it(path);
+		fs::recursive_directory_iterator endit;
 
 		vector<wstring> files;
-		if (h_find != INVALID_HANDLE_VALUE)
+		while (it != endit)
 		{
-			do
-			{
-				if (shader_file.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-					continue;
-
-				files.push_back(path + shader_file.cFileName);
-
-			} while (FindNextFile(h_find, &shader_file));
-			FindClose(h_find);
+			if (fs::is_regular_file(*it) && it->path().extension() == ".fx") 
+				files.push_back(it->path().c_str());
+				++it;
 		}
 
 		for (int i = 0; i < files.size(); i++)

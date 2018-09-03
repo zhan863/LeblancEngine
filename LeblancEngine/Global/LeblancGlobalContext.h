@@ -8,6 +8,7 @@
 #include "LeblancEngine/Render/Material/LeblancMaterialManager.h"
 #include "LeblancEngine/Render/Window/LeblancWindow.h"
 #include "LeblancEngine/Asset/LeblancAssetManager.h"
+#include "LeblancEngine/Render/Material/LeblancGlobalCBManager.h"
 
 namespace Leblanc
 {
@@ -27,6 +28,7 @@ namespace Leblanc
 		RenderStateManager m_render_state_manager;
 		SceneManager m_scene_manager;
 		MaterialManager m_material_manager;
+		GlobalCBManager m_global_cb_manager;
 		AssetManager m_asset_manager;
 	};
 

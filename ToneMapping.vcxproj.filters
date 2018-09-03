@@ -172,6 +172,12 @@
     <ClCompile Include="LeblancEngine\Render\RenderCommand\LeblancRenderCommand.cpp">
       <Filter>LeblancEngine\Render\RenderCommand</Filter>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancD3D11Include.cpp">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancGlobalCBManager.cpp">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeblancEngine\Render\Pipeline\LeblancDeferredPipeline.h">
@@ -374,6 +380,15 @@
     </ClInclude>
     <ClInclude Include="LeblancEngine\Render\RenderCommand\LeblancRenderCommand.h">
       <Filter>LeblancEngine\Render\RenderCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancD3D11Include.h">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancGlobalCBManager.h">
+      <Filter>LeblancEngine\Render\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancGlobalCBD3D11.h">
+      <Filter>LeblancEngine\Render\Material\D3D11</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

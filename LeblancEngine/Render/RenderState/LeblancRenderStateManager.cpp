@@ -15,7 +15,7 @@ namespace Leblanc
 
 	RenderStateManager::~RenderStateManager()
 	{
-
+		release();
 	}
 
 	void RenderStateManager::initialize()

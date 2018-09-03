@@ -21,13 +21,13 @@ namespace Leblanc
 
 		void initialize();
 
-		void release();
-
 		IVertexDeclaration* getOrCreateVertexDeclaration(VertexLayoutDeclaration* layout_declaration);
 		IRasterizerState* getOrCreateRasterizerState(RasterizerState rasterizer_mode);
 		IDepthStencilState* getOrCreateDepthStencilState(DepthStencilState depth_stencil_mode);
 		IBlendState* getOrCreateBlendState(BlendState blend_mode);
 	protected:
+		void release();
+
 		std::vector<IVertexDeclaration*> m_vertex_declarations;
 		std::map<RasterizerState, IRasterizerState*> m_rasterizer_states;
 		std::map<DepthStencilState, IDepthStencilState*> m_depth_stencil_states;

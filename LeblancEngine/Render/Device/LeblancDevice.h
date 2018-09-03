@@ -22,6 +22,7 @@ namespace Leblanc
 	class IDepthStencilState;
 	class IBlendState;
 	class IShader;
+	class ConstantBuffer;
 
 	class IDevice
 	{
@@ -45,6 +46,8 @@ namespace Leblanc
 		virtual ISurface* backBuffer() = 0;
 		virtual IDepthSurface* depthSurface() = 0;
 		virtual FrameBuffer* getFrameBuffer() = 0;
+
+		virtual ConstantBuffer* createConstantBuffer(int slot_index, size_t buffer_size) = 0;
 
 		virtual void* getHandle() = 0;
 

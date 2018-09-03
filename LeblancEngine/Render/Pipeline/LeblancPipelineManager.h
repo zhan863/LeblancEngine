@@ -18,11 +18,11 @@ namespace Leblanc
 
 		void initialize();
 
-		void release();
-
 		void render(RenderType render_type);
 
 	protected:
+		void release();
+
 		DeferredPipeline m_deferred_pipeline;
 	};
 }

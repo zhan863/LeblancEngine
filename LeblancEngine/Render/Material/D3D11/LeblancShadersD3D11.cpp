@@ -5,6 +5,7 @@
 #include "LeblancEngine/Render/Device/LeblancDevice.h"
 
 #include "LeblancEngine/BasicInclude/LeblancMemoryOperation.h"
+#include "LeblancEngine/Render/Material/D3D11/LeblancD3D11Include.h"
 #include "ThirdParty/Effect/Include/d3dx11effect.h"
 
 namespace Leblanc
@@ -20,23 +21,30 @@ namespace Leblanc
 		release();
 	}
 
-	void ShaderD3D11::initialize(string file_name, string include_file_name)
+	void ShaderD3D11::initialize(string file_name)
 	{
 		setFileName(file_name);
-		setIncludeName(include_file_name);
 
 		release();
 
 		std::wstring w_file_name = std::wstring(file_name.begin(), file_name.end());
-		std::wstring w_include_file_name = std::wstring(include_file_name.begin(), include_file_name.end());
 		ID3DBlob* error_message = nullptr;
-		if (SUCCEEDED(D3DX11CompileEffectFromFile(w_file_name.c_str(), nullptr, nullptr, D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY, 0, (ID3D11Device*)m_device->getHandle(), &m_effect_handle, &error_message)))
+
+		IncludeD3D11 default_include("Content\\Shader\\", "Content\\Shader\\");
+		if (SUCCEEDED(D3DX11CompileEffectFromFile(w_file_name.c_str(), nullptr, &default_include, D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY, 0, (ID3D11Device*)m_device->getHandle(), &m_effect_handle, &error_message)))
 		{
 			D3DX11_EFFECT_DESC desc;
 			if (SUCCEEDED(m_effect_handle->GetDesc(&desc)))
 			{
 				enumerateVariables(desc);
 				enumerateTechniques(desc);
+			}
+		}
+		else
+		{
+			if (error_message)
+			{
+				OutputDebugStringA((char*)error_message->GetBufferPointer());
 			}
 		}
 	}
@@ -53,6 +61,7 @@ namespace Leblanc
 	}
 
 	void ShaderD3D11::enumerateVariables(D3DX11_EFFECT_DESC& desc)
+
 	{
 		for (int i = 0; i < desc.GlobalVariables; i++)
 		{
@@ -64,7 +73,7 @@ namespace Leblanc
 
 		for (int i = 0; i < desc.ConstantBuffers; i++)
 		{
-			ConstantBufferD3D11* constant_buffer = new ConstantBufferD3D11(m_device, m_device_context);
+			EffectConstantBufferD3D11* constant_buffer = new EffectConstantBufferD3D11(m_device, m_device_context);
 			constant_buffer->initialize(m_effect_handle, i);
 
 			// The hack here, remove the globals from the constant buffer pool since it is used to store the instance data of shader.

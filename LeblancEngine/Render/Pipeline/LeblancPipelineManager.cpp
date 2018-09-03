@@ -11,7 +11,7 @@ namespace Leblanc
 
 	PipelineManager::~PipelineManager()
 	{
-
+		release();
 	}
 
 	void PipelineManager::initialize()

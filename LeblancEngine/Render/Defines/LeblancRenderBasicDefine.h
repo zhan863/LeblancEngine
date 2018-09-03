@@ -156,6 +156,16 @@ namespace Leblanc
 		METHOD_LOOKUPPRESAMPLED,     // Lookup a pre-sampled displacement map
 	};
 
+	enum ShaderFrequency
+	{
+		SF_Vertex,
+		SF_Hull,
+		SF_Domain,
+		SF_Geometry,
+		SF_Pixel,
+		SF_Compute
+	};
+
 	enum DeclarationType
 	{
 		FLOAT1 = 0,  // 1D float expanded to (value, 0., 0., 1.)

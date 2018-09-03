@@ -17,11 +17,11 @@ namespace Leblanc
 
 		void initialize();
 
-		void release();
-
 		IShader* getShaderByFilePath(string filename);
 
 	private:
+		void release();
+
 		// data
 		map<string, IShader*> m_shaders;
 	};

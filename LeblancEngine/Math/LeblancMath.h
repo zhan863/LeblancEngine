@@ -8,6 +8,7 @@
 //======================================================================
 #pragma once
 #include "LeblancEngine/BasicInclude/LeblancPCH.h"
+#include <xnamath.h>
 
 namespace Leblanc
 {

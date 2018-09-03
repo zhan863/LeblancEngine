@@ -17,6 +17,8 @@
 #include "LeblancEngine/Global/LeblancGlobalContext.h"
 #include "LeblancEngine/Render/RenderState/D3D11/LeblancRenderStateD3D11.h"
 
+#include "LeblancEngine/Render/Material/D3D11/LeblancConstantBufferD3D11.h"
+
 #include "LeblancEngine/Render/Include/LeblancDirectInclude.h"
 
 namespace Leblanc
@@ -180,7 +182,7 @@ namespace Leblanc
 	{
 		ShaderD3D11* new_shader = new ShaderD3D11(g_global_context.m_device_manager.getDevice(), g_global_context.m_device_manager.getImmediateContext());
 		if (new_shader)
-			new_shader->initialize(file_name, "");
+			new_shader->initialize(file_name);
 
 		return new_shader;
 	}
@@ -228,6 +230,12 @@ namespace Leblanc
 		}
 
 		return vertex_buffer;
+	}
+
+	ConstantBuffer* DeviceD3D11::createConstantBuffer(int slot_index, size_t buffer_size)
+	{
+		ConstantBufferD3D11* constantBuffer = new ConstantBufferD3D11(this, g_global_context.m_device_manager.getImmediateContext(), slot_index, buffer_size);
+		return constantBuffer;
 	}
 
 	void DeviceD3D11::createRasterizerState(D3D11_RASTERIZER_DESC* desc, ID3D11RasterizerState** state)

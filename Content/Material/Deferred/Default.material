@@ -1,0 +1,8 @@
+<Material name="deferred_default">
+   <Shader name="GBuffer.fx"/>
+   <Technique name="GBuffer"/>
+   <Pass name="GBuffer"/>
+   <Parameters>
+   		<Parameter name="deferred_color" type="Float4" value="1.0 1.0 1.0 1.0"/>
+   </Parameters>
+</Material>

@@ -228,6 +228,7 @@
     <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancConstantBufferD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancD3D11Include.cpp" />
     <ClCompile Include="LeblancEngine\Render\Material\D3D11\LeblancGpuVariableD3D11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -240,6 +241,7 @@
     <ClCompile Include="LeblancEngine\Render\Material\LeblancConstantBuffer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeblancEngine\Render\Material\LeblancGlobalCBManager.cpp" />
     <ClCompile Include="LeblancEngine\Render\Material\LeblancGpuVariable.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -362,10 +364,13 @@
     <ClInclude Include="LeblancEngine\Render\Device\LeblancDeviceManager.h" />
     <ClInclude Include="LeblancEngine\Render\Include\LeblancDirectInclude.h" />
     <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancConstantBufferD3D11.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancD3D11Include.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancGlobalCBD3D11.h" />
     <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancGpuVariableD3D11.h" />
     <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancShadersD3D11.h" />
     <ClInclude Include="LeblancEngine\Render\Material\D3D11\LeblancTechniqueD3D11.h" />
     <ClInclude Include="LeblancEngine\Render\Material\LeblancConstantBuffer.h" />
+    <ClInclude Include="LeblancEngine\Render\Material\LeblancGlobalCBManager.h" />
     <ClInclude Include="LeblancEngine\Render\Material\LeblancGpuVariable.h" />
     <ClInclude Include="LeblancEngine\Render\Material\LeblancMaterial.h" />
     <ClInclude Include="LeblancEngine\Render\Material\LeblancMaterialManager.h" />
